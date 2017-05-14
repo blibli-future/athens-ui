@@ -1,0 +1,32 @@
+{
+  "name": "athens",
+  "version": "1.0.0",
+  "description": "athens-ui",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blibli-future/athens.git"
+  },
+  "author": "athens",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blibli-future/athens/issues"
+  },
+  "homepage": "https://github.com/blibli-future/athens#readme",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^0.28.1",
+    "vue-loader": "^12.0.4",
+    "vue-template-compiler": "^2.3.3",
+    "webpack": "^2.5.1"
+  },
+  "dependencies": {
+    "vue": "^2.3.3"
+  }
+}
