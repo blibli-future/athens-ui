@@ -18,13 +18,15 @@ export default {
     html{
         height: 100%;
         width: 100%;
+        font-family: "Arial Rounded MT Bold" ;
     }
     body {
-        background-color: #005373;
+        background-color: #00d8ff;
         min-width: 100%;
         min-height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
+
     }
 </style>

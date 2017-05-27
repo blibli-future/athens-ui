@@ -5,7 +5,7 @@
     </div>
     <form onclick="return false">
       <!--I think it ^ shouldn't be like this-->
-      <input class="login-form--input" v-model="nik" type="text" placeholder="nik" autofocus/>
+      <input class="login-form--input" v-model="nik" type="text" placeholder="nik LOG IN" autofocus/>
       <input class="login-form--input" v-model="password" type="password" placeholder="password" />
       <button v-on:click="tryCors" class="login-form--button">Log In</button>
     </form>
@@ -57,6 +57,7 @@
     .login-form {
       width: 35%;
       background-color: #008AC0;
+      border-radius: 5px;
       /*border-radius: 8px;*/
     }
 
@@ -71,14 +72,16 @@
     }
 
     .login-form--input {
-      /*border-radius: 4px;*/
+      border-radius: 4px;
       height: 30px;
+      padding:  0 0 0 15px;
+
     }
 
     .login-form--button {
       height: 30px;
       color: white;
-      background-color: #C06500;
+      background-color: #ef8900;
       border-radius: 4px;
       border: none;
     }
