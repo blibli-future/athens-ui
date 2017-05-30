@@ -1,16 +1,17 @@
 <template>
-    <login-form></login-form>
+    <router-view></router-view>
 </template>
 
 <script>
-import LoginForm from './component/LoginForm.vue'
+import LoginForm from './component/LoginForm.vue';
+import Container from './component/Container.vue';
 
 export default {
   data: function () {
       return {
       }
   },
-  components: { LoginForm }
+  components: { LoginForm, Container }
 }
 </script>
 
@@ -21,7 +22,6 @@ export default {
         font-family: "Arial Rounded MT Bold" ;
     }
     body {
-        background-color: #00d8ff;
         min-width: 100%;
         min-height: 100%;
         display: flex;

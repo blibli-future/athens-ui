@@ -3,30 +3,28 @@
     <div class="login-form--text">
       LOG IN
     </div>
-    <form onclick="return false">
-      <!--I think it ^ shouldn't be like this-->
-      <input class="login-form--input" v-model="nik" type="text" placeholder="nik LOG IN" autofocus/>
+    <form onsubmit="return false">
+      <!--I don't think it ^ should be like this-->
+      <input class="login-form--input" v-model="nik" type="text" placeholder="nik" autofocus/>
       <input class="login-form--input" v-model="password" type="password" placeholder="password" />
       <button v-on:click="tryCors" class="login-form--button">Log In</button>
     </form>
-    <span id="answer">{{answer}}</span>
   </div>
 </template>
 
 <script>
-  import URL from '../Url';
+  import API from '../constant/api.url';
 
   export default {
     data() {
       return {
         nik: '',
         password: '',
-        answer: ''
       }
     },
     methods: {
       tryCors: function () {
-        fetch(URL.LOGIN_URL, {
+        fetch(API.LOGIN_URL, {
           method: 'POST',
           mode: 'cors',
           headers: {
