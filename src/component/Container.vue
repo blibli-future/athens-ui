@@ -1,19 +1,19 @@
 <template>
     <div id="container">
-        <navbar></navbar>
+        <navigation-bar></navigation-bar>
         <router-view></router-view>
     </div>
 </template>
 
 <script>
-import NavBar from './NavBar.vue';
-import Request from './Request.vue';
+import NavigationBar from './NavBar.vue';
+import Request from './request/Request.vue';
 
 export default {
-  data: function () {
-    return {}
+  data() {
+    return {};
   },
-  components: {NavBar, Request}
+  components: { NavigationBar, Request}
 };
 </script>
 

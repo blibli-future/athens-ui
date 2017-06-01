@@ -7,7 +7,7 @@
       <!--I don't think it ^ should be like this-->
       <input class="login-form--input" v-model="nik" type="text" placeholder="nik" autofocus/>
       <input class="login-form--input" v-model="password" type="password" placeholder="password" />
-      <button v-on:click="tryCors" class="login-form--button">Log In</button>
+      <button v-on:click="authenticateUser" class="login-form--button">Log In</button>
     </form>
   </div>
 </template>
@@ -23,7 +23,7 @@
       }
     },
     methods: {
-      tryCors: function () {
+      authenticateUser: function authenticateUser() {
         fetch(API.LOGIN_URL, {
           method: 'POST',
           mode: 'cors',
@@ -40,8 +40,7 @@
           console.log(response);
         })
       }
-    },
-    name: 'login-form'
+    }
   }
 </script>
 

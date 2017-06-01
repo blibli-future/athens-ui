@@ -7,9 +7,8 @@ import LoginForm from './component/LoginForm.vue';
 import Container from './component/Container.vue';
 
 export default {
-  data: function () {
-      return {
-      }
+  data() {
+      return {};
   },
   components: { LoginForm, Container }
 }

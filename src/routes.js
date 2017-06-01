@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import LoginPage from './component/LoginForm.vue';
-import Request from './component/Request.vue';
+import Request from './component/request/Request.vue';
 import Container from './component/Container.vue';
 
 Vue.use(Router);
