@@ -1,16 +1,22 @@
 <template>
-    <router-view></router-view>
+    <div>
+        <navigation-bar v-if="authenticated"></navigation-bar>
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
+import NavigationBar from './component/NavBar.vue';
 import LoginForm from './component/LoginForm.vue';
 import Container from './component/Container.vue';
 
 export default {
   data() {
-      return {};
+      return {
+        authenticated: true
+      };
   },
-  components: { LoginForm, Container }
+  components: { Container, NavigationBar, LoginForm }
 }
 </script>
 
