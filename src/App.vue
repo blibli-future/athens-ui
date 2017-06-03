@@ -8,15 +8,15 @@
 <script>
 import NavigationBar from './component/NavBar.vue';
 import LoginForm from './component/LoginForm.vue';
-import Container from './component/Container.vue';
+import Request from './component/Request.vue';
 
 export default {
   data() {
       return {
-        authenticated: true
+        authenticated: false
       };
   },
-  components: { Container, NavigationBar, LoginForm }
+  components: { NavigationBar, LoginForm, Request }
 }
 </script>
 

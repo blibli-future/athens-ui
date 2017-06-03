@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import Summaries from './Summary.vue';
-import Apply from './Apply.vue';
-import History from './History.vue';
+import Summaries from './request/Summary.vue';
+import Apply from './request/Apply.vue';
+import History from './request/History.vue';
 
 export default {
   data() {
