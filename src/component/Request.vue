@@ -1,8 +1,12 @@
 <template>
     <div>
-        <summaries></summaries>
-        <apply></apply>
-        <history></history>
+        <nav-bar></nav-bar>
+            <div class="container-">
+
+            <summaries></summaries>
+            <apply></apply>
+            <history></history>
+        </div>
     </div>
 </template>
 
@@ -10,20 +14,23 @@
 import Summaries from './request/Summary.vue';
 import Apply from './request/Apply.vue';
 import History from './request/History.vue';
+import NavBar from './NavBar.vue';
 
 export default {
   data() {
     return {};
   },
-  components: { Apply, History, Summaries }
+  components: { NavBar, Apply, History, Summaries }
 };
 </script>
 
 <style lang="scss">
     body {
         font-family:  Helvetica;
-        padding : 0 10%;
         width: 100%;
+    }
+    .container-{
+        margin : 0 10%;
     }
 
 </style>

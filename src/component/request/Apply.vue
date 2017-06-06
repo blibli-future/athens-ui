@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div>
         <h3>Apply for absence request</h3>
         <form>
             <div class="col--md-3">
