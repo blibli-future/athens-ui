@@ -32,7 +32,7 @@
                 <label for="reason">Reason :</label>
                 <textarea id="reason" class="form--item" rows="6"></textarea>
             </div>
-            <button>Apply</button>
+            <button class="button">Apply</button>
         </form>
     </div>
 </template>
@@ -48,8 +48,7 @@ export default {
 <style>
     textarea.form--item {
         height: auto;
-
- }
+    }
     .form--item{
         display: block;
         width: 100%;
@@ -77,7 +76,21 @@ export default {
     float: left;
     margin:5px;
     }
-
+    .button{
+        margin-left: 5px;
+        display: inline-block;
+        padding: 8px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        text-align: center;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background-color: #b3dcff;
+        cursor: pointer;
+    }
+    .button:hover{
+        background-color: #92ccff;
+    }
     input[type="date"]{
         font-family: Arial;
         overflow: hidden;

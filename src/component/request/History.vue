@@ -90,7 +90,7 @@ export default {
     .panels--head{
        padding: 1px 18px;
         border-radius: 5px 5px 0 0;
-        background-color: #abd4f8;
+        background-color: #c1e5ff;
         color: #3d7fca;
 
     }
