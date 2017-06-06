@@ -19,6 +19,11 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+    body {
+        font-family:  Helvetica;
+        padding : 0 10%;
+        width: 100%;
+    }
 
 </style>

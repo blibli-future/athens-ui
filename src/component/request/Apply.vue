@@ -1,32 +1,37 @@
 <template>
-    <div>
+    <div >
         <h3>Apply for absence request</h3>
         <form>
-            <label for="criteria">Criteria</label>
-            <select id="criteria">
-                <option>Cuti istimewa</option>
-                <option>Cuti tahunan</option>
-                <option>Ijin sakit</option>
-                <option>Sakit dengan surat dokter</option>
-            </select>
-
-            <label for="sub-criteria">Sub Criteria</label>
-            <select id="sub-criteria">
-                <option>Cuti istimewa</option>
-                <option>Cuti tahunan</option>
-                <option>Ijin sakit</option>
-                <option>Sakit dengan surat dokter</option>
-            </select>
-
-            <label for="start-date">Start Date</label>
-            <input id="start-date" type="date" />
-
-            <label for="end-date">End Date</label>
-            <input id="end-date" type="date" />
-
-            <label for="reason">Reason :</label>
-            <textarea id="reason"></textarea>
-
+            <div class="col--md-3">
+                <label for="criteria">Criteria</label>
+                <select id="criteria" class="form--item">
+                    <option>Cuti istimewa</option>
+                    <option>Cuti tahunan</option>
+                    <option>Ijin sakit</option>
+                    <option>Sakit dengan surat dokter</option>
+                </select>
+            </div>
+            <div class="col--md-3">
+                <label for="sub-criteria">Sub Criteria</label>
+                <select id="sub-criteria" class="form--item">
+                    <option>Cuti istimewa</option>
+                    <option>Cuti tahunan</option>
+                    <option>Ijin sakit</option>
+                    <option>Sakit dengan surat dokter</option>
+                </select>
+            </div>
+            <div class="col--md-3">
+                <label for="start-date">Start Date</label>
+                <input id="start-date" type="date" class="form--item"/>
+            </div>
+            <div class="col--md-3">
+                <label for="end-date">End Date</label>
+                <input id="end-date" type="date"  class="form--item" />
+            </div>
+            <div class="col--md-12">
+                <label for="reason">Reason :</label>
+                <textarea id="reason" class="form--item" rows="6"></textarea>
+            </div>
             <button>Apply</button>
         </form>
     </div>
@@ -41,5 +46,41 @@ export default {
 </script>
 
 <style>
+    textarea.form--item {
+        height: auto;
 
+ }
+    .form--item{
+        display: block;
+        width: 100%;
+        height: 30px;
+        padding: 5px 10px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #555;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075)
+
+    }
+    .col--md-3{
+        width:24%;
+        float: left;
+        margin: 5px;
+
+
+    }
+    .col--md-12{
+    width:99%;
+    float: left;
+    margin:5px;
+    }
+
+    input[type="date"]{
+        font-family: Arial;
+        overflow: hidden;
+        padding: 5px;
+    }
 </style>
