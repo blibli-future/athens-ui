@@ -7,13 +7,13 @@
                 <li class="dropdown--" >
                     <span style="color: white" class="dropdown--btn" v-on:click="showDropdown">Absensi</span>
                     <ul class="dropdown--content" id="myDropdown" >
-                        <li><router-link to="/app/request">Upload</router-link></li>
+                        <li><router-link to="/absensi">Upload</router-link></li>
                         <li><router-link to="/app/request">Shift</router-link></li>
                         <li><router-link to="/app/request">Presensi</router-link></li>
                         <li><router-link to="/app/request">Employee List</router-link></li>
                     </ul>
                 </li>
-                <li><router-link to="/app/request">Request</router-link></li>
+                <li><router-link to="/index">Request</router-link></li>
                 <li><router-link to="/app/request">Approval</router-link></li>
                 <li><router-link to="/app/request">Report</router-link></li>
             </ul>
@@ -60,7 +60,7 @@ export default {
     nav li{
         display: inline-block;
     }
-   nav li a {
+    nav li a {
         display: block;
         color: white;
         text-align: center;
@@ -94,7 +94,7 @@ export default {
         min-width: 160px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
-        margin-top: 12px;
+        margin-top: 12.5px;
 
     }
     .dropdown-- .dropdown--btn {
@@ -115,12 +115,10 @@ export default {
         border-bottom: thin solid #daeaff;
         text-align: left;
     }
-    .dropdown--content li a {
+    .dropdown--content a li {
         float: none;
         color: black;
         padding:0;
-
-
         text-decoration: none;
         text-align: left;
     }
