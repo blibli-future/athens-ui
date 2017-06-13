@@ -11,8 +11,8 @@
                         <li>Employee List</li>
                     </ul>
                 </li>
-                <li><router-link to="/app/request">Request</router-link></li>
-                <li>Approval</li>
+                <li><router-link to="/request">Request</router-link></li>
+                <li><router-link to="/approval">Approval</router-link></li>
                 <li>Report</li>
             </ul>
         </div>

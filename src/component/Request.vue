@@ -1,4 +1,4 @@
-<template>
+    <template>
     <div>
         <summaries></summaries>
         <apply></apply>
