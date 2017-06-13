@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <main>
         <navigation-bar v-if="authenticated"></navigation-bar>
         <router-view></router-view>
-    </div>
+    </main>
 </template>
 
 <script>
@@ -16,7 +16,7 @@ export default {
         authenticated: false
       };
   },
-  components: { NavigationBar, LoginForm, Request }
+  components: { NavigationBar }
 }
 </script>
 
