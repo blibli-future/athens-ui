@@ -59,13 +59,12 @@ export default {
         box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
 
         transition: width .5s ease;
-
+        p{
+            margin: 0;
+            padding:0;
+        }
     }
-    .progress--bar p{
-        margin: 0;
-        padding:0;
 
-    }
     .progress--bar-blue{
         background-color: #3b96dc;
     }

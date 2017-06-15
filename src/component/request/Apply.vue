@@ -46,7 +46,7 @@ export default {
 </script>
 
 <style>
-    textarea.form--item {
+    textarea .form--item {
         height: auto;
     }
     .form--item{
@@ -68,8 +68,6 @@ export default {
         width:24%;
         float: left;
         margin: 5px;
-
-
     }
     .col--md-12{
     width:99%;

@@ -76,7 +76,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
     .panels {
         margin-bottom: 20px;
         background-color: #fff;
@@ -85,18 +85,19 @@ export default {
         -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
         box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
         height: 170px;
+        .panels--head{
+            padding: 1px 18px;
+            border-radius: 5px 5px 0 0;
+            background-color: #c1e5ff;
+            color: #3d7fca;
+        }
+        .panels--body{
+            padding: 15px;
+            overflow: scroll;
+            height: 70px;
+        }
 
     }
-    .panels--head{
-       padding: 1px 18px;
-        border-radius: 5px 5px 0 0;
-        background-color: #c1e5ff;
-        color: #3d7fca;
 
-    }
-    .panels--body{
-        padding: 15px;
-        overflow: scroll;
-        height: 70px;
-    }
+
 </style>

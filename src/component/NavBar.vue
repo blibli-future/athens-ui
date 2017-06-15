@@ -4,8 +4,7 @@
     <nav>
         <div>
             <ul>
-                <li class="dropdown--" >
-                    <span style="color: white" class="dropdown--btn" v-on:click="showDropdown">Absensi</span>
+                <li class="dropdown--" style="color: white" v-on:click="showDropdown"> <a> Absensi</a>
                     <ul class="dropdown--content" id="myDropdown" >
                         <li><router-link to="/absensi">Upload</router-link></li>
                         <li><router-link to="/app/request">Shift</router-link></li>
@@ -56,35 +55,24 @@ export default {
         background-color: #5b8eca;
         padding: 0 0 0 3px;
         margin: -16px 0 0 -8px;
-    }
-    nav li{
-        display: inline-block;
-    }
-    nav li a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-       vertical-align: middle;
-    }
-    .dropdown-- {
+        font: {
+            size: 14px;
+        };
+        li{
+            &:hover{
+                background-color: #3d7fca;
+            }
 
-        overflow: hidden;
-        display: inline-block;
-        text-align: center;
-        vertical-align: middle;
-    }
-
-    .dropdown--btn {
-
-        cursor: pointer;
-        font-size: 16px;
-        border: none;
-        outline: none;
-        color: white;
-        padding: 14px 16px;
-        background-color: inherit;
+            display: inline-block;
+            a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                vertical-align: middle;
+            }
+        }
     }
 
     .dropdown--content{
@@ -94,37 +82,49 @@ export default {
         min-width: 160px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
-        margin-top: 12.5px;
-
+        border:{
+            color: #dee1e4;
+            width: 1px;
+            style: solid;
+        }
     }
-    .dropdown-- .dropdown--btn {
+
+    .dropdown-- {
+        overflow: hidden;
+        text-align: center;
+        vertical-align: middle;
         cursor: pointer;
         font-size: 16px;
         border: none;
         outline: none;
         color: white;
-        padding: 14px 16px;
         background-color: inherit;
+        font: {
+            size: 14px;
+        };
+
+        .dropdown--content{
+            li{
+                float: none;
+                color: black;
+                display: block;
+                margin:0 0 0 -40px;
+                padding: 10px 0 15px 20px;
+                &:hover{
+                    background-color: #c1e5ff;
+                    cursor: pointer;
+                }
+                a{
+                    float: none;
+                    color: black;
+                    padding:0;
+                    text-decoration: none;
+                    text-align: left;
+                }
+            }
+        }
     }
-    .dropdown--content li  {
-        float: none;
-        color: black;
-        display: block;
-        margin:0 0 0 -40px;
-        padding: 10px 0 15px 20px;;
-        border-bottom: thin solid #daeaff;
-        text-align: left;
-    }
-    .dropdown--content a li {
-        float: none;
-        color: black;
-        padding:0;
-        text-decoration: none;
-        text-align: left;
-    }
-    .dropdown--:hover .dropdown--btn {
-        background-color: #3d7fca;
-    }
+
     .show {
         display: block;
     }
