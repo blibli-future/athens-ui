@@ -1,4 +1,4 @@
-<template>
+    <template>
     <div>
         <nav-bar></nav-bar>
             <div class="container-">

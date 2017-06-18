@@ -13,8 +13,8 @@
                     </ul>
                 </li>
                 <li><router-link to="/index">Request</router-link></li>
-                <li><router-link to="/app/request">Approval</router-link></li>
-                <li><router-link to="/app/request">Report</router-link></li>
+                <li><router-link to="/approval">Approval</router-link></li>
+                <li>Report</li>
             </ul>
         </div>
     </nav>
