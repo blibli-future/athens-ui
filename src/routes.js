@@ -3,7 +3,7 @@ import Router from 'vue-router';
 
 import LoginPage from './component/LoginForm.vue';
 import Request from './component/Request.vue';
-
+import Upload from './component/absensi/Upload.vue';
 Vue.use(Router);
 
 export default new Router({
@@ -15,6 +15,9 @@ export default new Router({
     }, {
       path: '/index',
       component: Request
-    }
+    },{
+      path:'/upload',
+      component:Upload
+      }
   ]
 });

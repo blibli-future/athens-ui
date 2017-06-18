@@ -6,7 +6,7 @@
             <ul>
                 <li class="dropdown--" style="color: white" v-on:click="showDropdown"> <a> Absensi</a>
                     <ul class="dropdown--content" id="myDropdown" >
-                        <li><router-link to="/absensi">Upload</router-link></li>
+                        <li><router-link to="/upload">Upload</router-link></li>
                         <li><router-link to="/app/request">Shift</router-link></li>
                         <li><router-link to="/app/request">Presensi</router-link></li>
                         <li><router-link to="/app/request">Employee List</router-link></li>
