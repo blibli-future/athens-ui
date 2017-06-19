@@ -1,7 +1,7 @@
 <template>
     <main>
         <navigation-bar v-if="authenticated"></navigation-bar>
-        <router-view></router-view>
+        <router-view class="container"></router-view>
     </main>
 </template>
 
@@ -25,6 +25,9 @@ export default {
 </script>
 
 <style lang="scss">
+    .container{
+        margin:0 15%;
+    }
   html, body {
       height: 100%;
       width: 100%;

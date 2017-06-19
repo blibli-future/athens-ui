@@ -1,20 +1,20 @@
 <template>
     <div class="container">
         <h2>New Shift</h2>
-        <form>
-            <div class="form-section">
+        <form method="post">
+            <div class="form--section">
                 <label for="shiftName"> Shift Name  </label>:
                 <input type="text" name="shiftName" id="shiftName">
             </div>
-            <div class="form-section">
+            <div class="form--section">
                 <label for="startShift"> Shift Start  </label> :
                 <input type="time" name="startShift" id="startShift">
             </div>
-            <div class="form-section">
+            <div class="form--section">
                 <label for="endShift"> Shift End  </label>:
                 <input type="time" name="endShift" id="endShift">
             </div>
-            <div class="form-section">
+            <div class="form--section">
                 <label for="department"> Department</label>:
                 <select name="department" id="department" >
                     <option value="{{}}">Business Development </option>
@@ -29,7 +29,7 @@
                 </select>
 
             </div>
-            <div class="form-section">
+            <div class="form--section">
                 <label for="location"> Location  </label>:
                 <select type="text" name="location" id="location">
                     <option value="{{}}">Thamrin</option>
@@ -50,7 +50,7 @@
     .container{
         margin:0 15%;
     }
-    .form-section{
+    .form--section{
         display: block;
         margin-bottom: 10px;
         width: 100%;

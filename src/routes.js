@@ -6,7 +6,7 @@ import Request from './component/Request.vue';
 import Upload from './component/absensi/Upload.vue';
 import Shift from './component/absensi/Shift/Shift.vue';
 import NewShift from './component/absensi/Shift/NewShift.vue';
-
+import Presensi from './component/absensi/Presensi.vue';
 Vue.use(Router);
 
 export default new Router({
@@ -27,6 +27,9 @@ export default new Router({
       },{
           path:'/shift/add',
           component: NewShift
+      },{
+          path:'/presensi',
+          component: Presensi
       }
   ]
 });
