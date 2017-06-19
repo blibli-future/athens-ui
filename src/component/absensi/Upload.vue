@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <alerts></alerts>
         <br/>
         <h3>Upload Absensi</h3>
         <br/>
@@ -8,13 +9,20 @@
     </div>
 </template>
 
+
 <script>
+    import Alerts from '../alert.vue'
     export default {
         data() {
-            return {};
-        }
+            return {
 
-    };
+            };
+        },
+
+        components: {Alerts}
+
+
+    }
 </script>
 
 <style lang="scss">
