@@ -3,7 +3,7 @@
         <strong>Success</strong> Your data has been added
     </div>
     <div class="alert-- alert--danger" v-else >
-        <strong>Success</strong> Something wrong happen
+        <strong>Error</strong> Something wrong happen
     </div>
 </template>
 
