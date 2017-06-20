@@ -1,7 +1,5 @@
 <template>
-    <div  >
-
-
+    <div>
         <br/>
         <h3>Employee List</h3>
         <br/>
@@ -30,9 +28,6 @@
 </script>
 
 <style lang="scss">
-    .container--{
-
-    }
     .button{
         display: inline-block;
         padding: 8px 12px;
