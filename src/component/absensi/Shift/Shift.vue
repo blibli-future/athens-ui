@@ -37,7 +37,7 @@
 
 
 <script>
-    import Alerts from '../../alert.vue'
+    import Alerts from '../../Alert.vue'
 
     export default {
         data() {

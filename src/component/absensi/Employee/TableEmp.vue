@@ -52,6 +52,7 @@
     table{
         width: 100%;
         border-collapse: collapse;
+        font-size:11px;
         thead{
             text-align: center;
             font-weight: bold;
