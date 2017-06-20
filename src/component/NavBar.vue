@@ -59,6 +59,9 @@ export default {
         font: {
             size: 16px;
         };
+        ul{
+            margin:0;
+        }
         li{
             &:hover{
                 background-color: #3d7fca;
