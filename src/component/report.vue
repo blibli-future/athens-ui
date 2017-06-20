@@ -19,6 +19,7 @@
                 <td>Hourly Leave</td>
                 <td>Replacement Leave</td>
                 <td>No-tap out days</td>
+                <td>Transport fee</td>
             </tr>
             </thead>
             <tbody>
@@ -37,6 +38,7 @@
                 <td>Hourly Leave</td>
                 <td>Replacement Leave</td>
                 <td>No-tap out days</td>
+                <td>Transport fee</td>
             </tr>
 
             </tbody>
@@ -52,7 +54,7 @@
 </script>
 <style lang="scss">
     .container{
-        margin : 0 10%;
+        margin : 0 5%;
     }
     table{
         width: 100%;
@@ -65,6 +67,7 @@
             td{
                 padding:5px ;
                 border: solid thin #a1a1a1;
+                font-size:12px;
             }
         }
         }
