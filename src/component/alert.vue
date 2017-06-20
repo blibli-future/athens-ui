@@ -1,8 +1,8 @@
 <template>
-    <div v-if="isSuccess" class="alert-- alert--success ">
+    <div v-if="isSuccess" class="alert alert--success ">
         <strong>Success</strong> Your data has been added
     </div>
-    <div class="alert-- alert--danger" v-else >
+    <div class="alert alert--danger" v-else >
         <strong>Error</strong> Something wrong happen
     </div>
 </template>
@@ -18,17 +18,17 @@
 </script>
 
 <style lang="scss">
-    .alert--{
+    .alert{
         padding: 20px 10px;
         margin-bottom: 10px;
         border-radius: 6px;
         border: thin solid #d1d1d1;
 
 
-        &success{
+        &--success{
             background-color: #ddf9d2;
         }
-        &danger{
+        &--danger{
             background-color: #f9bdbd;
         }
 
