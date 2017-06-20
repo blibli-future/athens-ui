@@ -15,7 +15,7 @@
                 </li>
                 <li><router-link to="/index">Request</router-link></li>
                 <li><router-link to="/app/request">Approval</router-link></li>
-                <li><router-link to="/app/request">Report</router-link></li>
+                <li><router-link to="/report">Report</router-link></li>
             </ul>
         </div>
     </nav>
@@ -54,7 +54,7 @@ export default {
 <style lang="scss">
     nav {
         background-color: #5b8eca;
-        padding: 0 6px;
+        padding: 0 3px;
         margin: -16px 0 0 -8px;
         font: {
             size: 16px;
@@ -71,7 +71,7 @@ export default {
                 text-align: center;
                 padding: 14px 20px;
                 text-decoration: none;
-                vertical-align: middle;
+
             }
         }
     }
@@ -100,8 +100,10 @@ export default {
         outline: none;
         color: white;
         background-color: inherit;
+        vertical-align: middle;
         font: {
             size: 16px;
+
         };
 
         .dropdown--content{

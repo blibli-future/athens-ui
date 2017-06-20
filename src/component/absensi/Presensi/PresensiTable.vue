@@ -6,9 +6,12 @@
                 <td width="5px"></td>
                 <td>NIK
                 <td>Nama</td>
+                <td>Date</td>
                 <td>Tap In</td>
                 <td>Tap Out</td>
                 <td>Duration</td>
+              
+
             </tr>
             </thead>
             <tbody>

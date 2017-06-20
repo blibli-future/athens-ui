@@ -9,6 +9,7 @@ import NewShift from './component/absensi/Shift/NewShift.vue';
 import Presensi from './component/absensi/Presensi.vue';
 import Employee from './component/absensi/Employee.vue';
 import NewEmployee from './component/absensi/Employee/NewEmp.vue';
+import Report from './component/report.vue';
 Vue.use(Router);
 
 export default new Router({
@@ -38,6 +39,9 @@ export default new Router({
       },{
           path:'/employee/add',
           component: NewEmployee
+      },{
+          path:'/report',
+          component: Report
       }
 
   ]
