@@ -1,6 +1,6 @@
 <template>
     <div>
-            <div class="container-">
+            <div >
             <summaries></summaries>
             <apply></apply>
             <history></history>
@@ -27,7 +27,7 @@ export default {
         font-family:  Helvetica;
         width: 100%;
     }
-    .container-{
+    .container{
         margin : 0 10%;
     }
 

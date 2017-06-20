@@ -4,12 +4,13 @@
     <nav>
         <div>
             <ul>
+                <li><router-link to="/index"><strong>ATHENS</strong></router-link></li>
                 <li class="dropdown--" style="color: white" v-on:click="showDropdown"> <a> Absensi</a>
                     <ul class="dropdown--content" id="myDropdown" >
                         <li><router-link to="/upload">Upload</router-link></li>
                         <li><router-link to="/shift">Shift</router-link></li>
                         <li><router-link to="/presensi">Presensi</router-link></li>
-                        <li><router-link to="/app/request">Employee List</router-link></li>
+                        <li><router-link to="/employee">Employee List</router-link></li>
                     </ul>
                 </li>
                 <li><router-link to="/index">Request</router-link></li>
@@ -53,10 +54,10 @@ export default {
 <style lang="scss">
     nav {
         background-color: #5b8eca;
-        padding: 0 0 0 3px;
+        padding: 0 6px;
         margin: -16px 0 0 -8px;
         font: {
-            size: 14px;
+            size: 16px;
         };
         li{
             &:hover{
@@ -68,7 +69,7 @@ export default {
                 display: block;
                 color: white;
                 text-align: center;
-                padding: 14px 16px;
+                padding: 14px 20px;
                 text-decoration: none;
                 vertical-align: middle;
             }
@@ -100,7 +101,7 @@ export default {
         color: white;
         background-color: inherit;
         font: {
-            size: 14px;
+            size: 16px;
         };
 
         .dropdown--content{
