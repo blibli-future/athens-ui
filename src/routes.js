@@ -10,6 +10,8 @@ import Presensi from './component/absensi/Presensi.vue';
 import Employee from './component/absensi/Employee.vue';
 import NewEmployee from './component/absensi/employee/NewEmp.vue';
 import Report from './component/Report.vue';
+import Approval from  './component/Approval.vue';
+
 Vue.use(Router);
 
 export default new Router({
@@ -42,6 +44,9 @@ export default new Router({
       },{
           path:'/report',
           component: Report
+      }, {
+        path: '/approval',
+        component: Approval
       }
 
   ]

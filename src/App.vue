@@ -17,10 +17,7 @@ export default {
         authenticated: true
       };
   },
-
-  components: { NavigationBar}
-
-
+  components: { NavigationBar }
 }
 </script>
 
