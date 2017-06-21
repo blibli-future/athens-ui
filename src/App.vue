@@ -1,7 +1,7 @@
 <template>
     <main>
         <navigation-bar v-if="authenticated"></navigation-bar>
-        <router-view></router-view>
+        <router-view class="container"></router-view>
     </main>
 </template>
 
@@ -9,11 +9,12 @@
 import NavigationBar from './component/NavBar.vue';
 import LoginForm from './component/LoginForm.vue';
 import Request from './component/Request.vue';
+import Upload from './component/absensi/Upload.vue';
 
 export default {
   data() {
       return {
-        authenticated: false
+        authenticated: true
       };
   },
   components: { NavigationBar }
@@ -21,10 +22,14 @@ export default {
 </script>
 
 <style lang="scss">
+    .container{
+        margin:0 15%;
+    }
   html, body {
       height: 100%;
       width: 100%;
       font-family: Arial;
+      margin : 0;
   }
 
   /*body {*/

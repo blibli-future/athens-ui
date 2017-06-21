@@ -4,17 +4,18 @@
     <nav>
         <div>
             <ul>
+                <li><router-link to="/index"><strong>ATHENS</strong></router-link></li>
                 <li class="dropdown--" style="color: white" v-on:click="showDropdown"> <a> Absensi</a>
                     <ul class="dropdown--content" id="myDropdown" >
-                        <li><router-link to="/absensi">Upload</router-link></li>
-                        <li><router-link to="/app/request">Shift</router-link></li>
-                        <li><router-link to="/app/request">Presensi</router-link></li>
-                        <li><router-link to="/app/request">Employee List</router-link></li>
+                        <li><router-link to="/upload">Upload</router-link></li>
+                        <li><router-link to="/shift">Shift</router-link></li>
+                        <li><router-link to="/presensi">Presensi</router-link></li>
+                        <li><router-link to="/employee">Employee List</router-link></li>
                     </ul>
                 </li>
                 <li><router-link to="/index">Request</router-link></li>
                 <li><router-link to="/approval">Approval</router-link></li>
-                <li>Report</li>
+                <li><router-link to="/report">Report</router-link></li>
             </ul>
         </div>
     </nav>
@@ -53,11 +54,14 @@ export default {
 <style lang="scss">
     nav {
         background-color: #5b8eca;
-        padding: 0 0 0 3px;
-        margin: -16px 0 0 -8px;
+        padding: 0 3px;
+        //margin: -16px 0 0 -8px;
         font: {
-            size: 14px;
+            size: 16px;
         };
+        ul{
+            margin:0;
+        }
         li{
             &:hover{
                 background-color: #3d7fca;
@@ -68,9 +72,9 @@ export default {
                 display: block;
                 color: white;
                 text-align: center;
-                padding: 14px 16px;
+                padding: 14px 20px;
                 text-decoration: none;
-                vertical-align: middle;
+
             }
         }
     }
@@ -99,8 +103,10 @@ export default {
         outline: none;
         color: white;
         background-color: inherit;
+        vertical-align: middle;
         font: {
-            size: 14px;
+            size: 16px;
+
         };
 
         .dropdown--content{
