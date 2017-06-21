@@ -8,8 +8,8 @@
 
 </template>
 <script>
-    import SearchBar from './Presensi/SearchPresensi.vue';
-    import Tabel from './Presensi/PresensiTable.vue';
+    import SearchBar from './presensi/SearchPresensi.vue';
+    import Tabel from './presensi/TablePresensi.vue';
     export default {
         data() {
             return {};

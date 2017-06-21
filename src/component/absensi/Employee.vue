@@ -12,8 +12,8 @@
 
 
 <script>
-    import Search from './Employee/SearchEmp.vue';
-    import TableEmp from './Employee/TableEmp.vue'
+    import Search from './employee/SearchEmp.vue';
+    import TableEmp from './employee/TableEmp.vue'
     export default {
         data() {
             return {
