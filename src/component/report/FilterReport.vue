@@ -2,10 +2,10 @@
     <div>
         <form>
             <label for="startMonth">Search By</label>
-            <input type="month" id="startMonth" name="startMonth"  min="2017-01" max="2018-01"/>
+            <input type="date" id="startMonth" name="startMonth"  min="2017-01-01" max="2018-01-01"/>
 
             <label for="endMonth">Search By</label>
-            <input type="month" id="endMonth" name="endMonth"  min="2017-01" max="2018-01"/>
+            <input type="date" id="endMonth" name="endMonth"  min="2017-01" max="2018-01-01"/>
 
             <label for="filter">Filter</label>
             <select id="filter" class="form--section">
