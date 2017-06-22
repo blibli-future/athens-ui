@@ -1,15 +1,12 @@
 <template>
-    <main>
+    <div>
         <navigation-bar v-if="authenticated"></navigation-bar>
         <router-view class="container"></router-view>
-    </main>
+    </div>
 </template>
 
 <script>
 import NavigationBar from './component/NavBar.vue';
-import LoginForm from './component/LoginForm.vue';
-import Request from './component/Request.vue';
-import Upload from './component/absensi/Upload.vue';
 
 export default {
   data() {
@@ -22,6 +19,8 @@ export default {
 </script>
 
 <style lang="scss">
+    @import "_scss/default";
+
     .container{
         margin:0 15%;
     }
@@ -31,10 +30,6 @@ export default {
       font-family: Arial;
       margin : 0;
   }
-
-  /*body {*/
-    /*display: flex;*/
-  /*}*/
 
   * {
     box-sizing: border-box;

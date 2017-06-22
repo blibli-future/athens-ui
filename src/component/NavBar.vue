@@ -1,138 +1,96 @@
 <template>
-
-
-    <nav>
-        <div>
-            <ul>
-                <li><router-link to="/index"><strong>ATHENS</strong></router-link></li>
-                <li class="dropdown--" style="color: white" v-on:click="showDropdown"> <a> Absensi</a>
-                    <ul class="dropdown--content" id="myDropdown" >
-                        <li><router-link to="/upload">Upload</router-link></li>
-                        <li><router-link to="/shift">Shift</router-link></li>
-                        <li><router-link to="/presensi">Presensi</router-link></li>
-                        <li><router-link to="/employee">Employee List</router-link></li>
-                    </ul>
-                </li>
-                <li><router-link to="/index">Request</router-link></li>
-                <li><router-link to="/approval">Approval</router-link></li>
-                <li><router-link to="/report">Report</router-link></li>
-            </ul>
-        </div>
+    <nav class="nav">
+        <router-link class="nav__link" to="/index"><div class="nav__item"><strong>ATHENS</strong></div></router-link>
+        <ul class="nav__menu">
+            <li class="nav__item nav__link nav__drop-link">Absensi
+                <ul class="nav__drop-down">
+                    <router-link class="nav__link" to="/upload"><li class="nav__sub-item">Upload</li></router-link>
+                    <router-link class="nav__link" to="/shift"><li class="nav__sub-item">Shift</li></router-link>
+                    <router-link class="nav__link" to="/presensi"><li class="nav__sub-item">Presensi</li></router-link>
+                    <router-link class="nav__link" to="/employee"><li class="nav__sub-item">Employee List</li></router-link>
+                </ul>
+            </li>
+            <router-link class="nav__link" to="/index"><li class="nav__item">Request</li></router-link>
+            <router-link class="nav__link" to="/approval"><li class="nav__item">Approval</li></router-link>
+            <router-link class="nav__link" to="/report"><li class="nav__item">Report</li></router-link>
+        </ul>
+        <a class="nav__link"><div class="nav__item">Log Out</div></a>
     </nav>
 </template>
 
 <script>
 export default {
-  data() {
-    return {};
-  },
     methods:{
-         showDropdown:function ()  {
-    document.getElementById("myDropdown").classList.toggle("show");
-         },
-        created:function () {
-            window.onclick = function(e) {
-                if (!e.target.matches('.dropdown--btn')) {
-                    var myDropdown = document.getElementById("myDropdown");
-                    if (myDropdown.classList.contains('show')) {
-                        myDropdown.classList.remove('show');
-                    }
-                }
-            }
+        showDropDown: function() {
+            document.getElementById("dropDownBox").classList.toggle("nav__drop-down--hidden");
         }
-  }
-
-
-
+    },
+    mounted: function() {
+        window.onclick = function(e) {
+          if (!e.target.matches('.dropdown--btn')) {
+            var myDropdown = document.getElementById('dropDownBox');
+            if (myDropdown.classList.contains('show')) {
+              myDropdown.classList.remove('show');
+            }
+          }
+        }
+    }
 }
-
-
-
 </script>
 
-
 <style lang="scss">
-    nav {
-        background-color: #5b8eca;
-        padding: 0 3px;
-        //margin: -16px 0 0 -8px;
-        font: {
-            size: 16px;
-        };
-        ul{
-            margin:0;
-        }
-        li{
-            &:hover{
-                background-color: #3d7fca;
-            }
+.nav {
+    background-color: #5b8eca;
+    padding: 0 3px;
+    font-size: 16px;
+    display: flex;
+    font-family: Helvetica;
 
-            display: inline-block;
-            a {
-                display: block;
-                color: white;
-                text-align: center;
-                padding: 14px 20px;
-                text-decoration: none;
+    &__menu {
+        flex-grow: 1;
+        display: flex;
+        z-index: 2;
+    }
 
-            }
+    &__item {
+        padding: 14px 20px;
+        color: white;
+
+        &:hover{
+            background-color: #3d7fca;
         }
     }
 
-    .dropdown--content{
-        display: none;
+    &__link {
+        cursor: pointer;
+        color: white;
+    }
+
+    &__drop-down {
         position: absolute;
         background-color: #f9f9f9;
-        min-width: 160px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        margin: 11px 0px 0px -20px;
         z-index: 1;
-        border:{
-            color: #dee1e4;
-            width: 1px;
-            style: solid;
+        display: none;
+
+        > .nav__link{
+            color: black;
         }
     }
 
-    .dropdown-- {
-        overflow: hidden;
-        text-align: center;
-        vertical-align: middle;
-        cursor: pointer;
-        font-size: 16px;
-        border: none;
-        outline: none;
-        color: white;
-        background-color: inherit;
-        vertical-align: middle;
-        font: {
-            size: 16px;
-
-        };
-
-        .dropdown--content{
-            li{
-                float: none;
-                color: black;
-                display: block;
-                margin:0 0 0 -40px;
-                padding: 10px 0 15px 20px;
-                &:hover{
-                    background-color: #c1e5ff;
-                    cursor: pointer;
-                }
-                a{
-                    float: none;
-                    color: black;
-                    padding:0;
-                    text-decoration: none;
-                    text-align: left;
-                }
-            }
+    &__drop-link:hover {
+        > .nav__drop-down {
+            display: block;
         }
     }
 
-    .show {
-        display: block;
-    }
+    &__sub-item {
+        padding: 14px 20px;
 
+        &:hover {
+            background-color: #c1e5ff;
+        }
+    }
+}
 </style>
