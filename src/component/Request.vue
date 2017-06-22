@@ -1,11 +1,9 @@
-    <template>
-    <div>
-            <div >
-            <summaries></summaries>
-            <apply></apply>
-            <history></history>
-        </div>
-    </div>
+<template>
+    <main>
+        <summaries></summaries>
+        <apply></apply>
+        <history></history>
+    </main>
 </template>
 
 <script>
@@ -23,12 +21,5 @@ export default {
 </script>
 
 <style lang="scss">
-    body {
-        font-family:  Helvetica;
-        width: 100%;
-    }
-    .container{
-        margin : 0 10%;
-    }
 
 </style>

@@ -22,16 +22,16 @@ export default {
     @import "_scss/default";
 
     .container{
-        margin:0 15%;
+        margin: auto;
+        width: 90%;
+        max-width: 1000px;
+        background-color: white;
     }
-  html, body {
-      height: 100%;
-      width: 100%;
-      font-family: Arial;
-      margin : 0;
-  }
 
-  * {
-    box-sizing: border-box;
-  }
+    html, body {
+        height: 100%;
+        width: 100%;
+        font-family: Helvetica sans-serif;
+        margin : 0;
+    }
 </style>
