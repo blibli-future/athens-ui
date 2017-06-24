@@ -1,40 +1,25 @@
 <template>
     <nav class="nav">
-        <router-link class="nav__link" to="/index"><div class="nav__item"><strong>ATHENS</strong></div></router-link>
+        <router-link class="nav__link nav__item nav__title" to="/index">ATHENS</router-link>
         <ul class="nav__menu">
             <li class="nav__item nav__link nav__drop-link">Absensi
                 <ul class="nav__drop-down">
-                    <router-link class="nav__link" to="/upload"><li class="nav__sub-item">Upload</li></router-link>
-                    <router-link class="nav__link" to="/shift"><li class="nav__sub-item">Shift</li></router-link>
-                    <router-link class="nav__link" to="/presensi"><li class="nav__sub-item">Presensi</li></router-link>
-                    <router-link class="nav__link" to="/employee"><li class="nav__sub-item">Employee List</li></router-link>
+                    <li class="nav__sub-item"><router-link class="nav__link" to="/upload">Upload</router-link></li>
+                    <li class="nav__sub-item"><router-link class="nav__link" to="/shift">Shift</router-link></li>
+                    <li class="nav__sub-item"><router-link class="nav__link" to="/presensi">Presensi</router-link></li>
+                    <li class="nav__sub-item"><router-link class="nav__link" to="/employee">Employee List</router-link></li>
                 </ul>
             </li>
-            <router-link class="nav__link" to="/index"><li class="nav__item">Request</li></router-link>
-            <router-link class="nav__link" to="/approval"><li class="nav__item">Approval</li></router-link>
-            <router-link class="nav__link" to="/report"><li class="nav__item">Report</li></router-link>
+            <li class="nav__item"><router-link class="nav__link" to="/index">Request</router-link></li>
+            <li class="nav__item"><router-link class="nav__link" to="/approval">Approval</router-link></li>
+            <li class="nav__item"><router-link class="nav__link" to="/report">Report</router-link></li>
         </ul>
-        <a class="nav__link"><div class="nav__item">Log Out</div></a>
+        <div class="nav__item nav__link nav__log-out">Log Out</div>
     </nav>
 </template>
 
 <script>
 export default {
-    methods:{
-        showDropDown: function() {
-            document.getElementById("dropDownBox").classList.toggle("nav__drop-down--hidden");
-        }
-    },
-    mounted: function() {
-        window.onclick = function(e) {
-          if (!e.target.matches('.dropdown--btn')) {
-            var myDropdown = document.getElementById('dropDownBox');
-            if (myDropdown.classList.contains('show')) {
-              myDropdown.classList.remove('show');
-            }
-          }
-        }
-    }
 }
 </script>
 
@@ -43,22 +28,23 @@ export default {
     background-color: #5b8eca;
     padding: 0 3px;
     font-size: 16px;
-    display: flex;
-    font-family: Helvetica;
 
     &__menu {
-        flex-grow: 1;
-        display: flex;
-        z-index: 2;
+        display: inline-block;
     }
 
     &__item {
         padding: 14px 20px;
         color: white;
+        display: inline-block;
 
         &:hover{
             background-color: #3d7fca;
         }
+    }
+
+    &__title {
+        display: inline-block;
     }
 
     &__link {
@@ -66,17 +52,17 @@ export default {
         color: white;
     }
 
+    &__log-out {
+        float: right;
+        display: inline-block;
+    }
+
     &__drop-down {
         position: absolute;
         background-color: #f9f9f9;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        margin: 11px 0px 0px -20px;
-        z-index: 1;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        margin: 11px 0 0 -20px;
         display: none;
-
-        > .nav__link{
-            color: black;
-        }
     }
 
     &__drop-link:hover {
@@ -87,6 +73,10 @@ export default {
 
     &__sub-item {
         padding: 14px 20px;
+
+        > .nav__link{
+            color: black;
+        }
 
         &:hover {
             background-color: #c1e5ff;
