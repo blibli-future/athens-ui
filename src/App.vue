@@ -31,7 +31,7 @@ export default {
     html, body {
         height: 100%;
         width: 100%;
-        font-family: Helvetica sans-serif;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
         margin : 0;
     }
 </style>

@@ -1,49 +1,96 @@
 <template>
-    <div>
-        <h3>Employee's Summary</h3>
-        <div>
-            <div class="col--md-4">
-                <h5>Annual leave right</h5>
-                <div class="progress_ ">
-                    <div class="progress--bar progress--bar-blue" style="width: 50%">
-                       <p>  50%</p>
+    <section class="summary">
+        <h3 class="summary__title">Employee's Summary</h3>
+        <div class="summary__container">
+            <div class="summary__status status">
+                <h5 class="status__title">Annual leave right</h5>
+                <div class="status__progress">
+                    <div class="status__progress-bar status__progress-bar--blue" style="width: 50%">
+                       50%
                     </div>
                 </div>
             </div>
-            <div class="col--md-4">
-                <h5>Substitution leave right</h5>
-                <div class="progress_ ">
-                    <div class="progress--bar progress--bar-blue" style="width: 50%">
+            <div class="summary__status">
+                <h5 class="status__title">Substitution leave right</h5>
+                <div class="status__progress">
+                    <div class="status__progress-bar status__progress-bar--blue" style="width: 50%">
                         50%
                     </div>
 
                 </div>
             </div>
-            <div class="col--md-4">
-                <h5>Number of Late</h5>
-                <div class="progress_ ">
-                    <div class="progress--bar progress--bar-red" style="width: 50%">
+            <div class="summary__status">
+                <h5 class="status__title">Number of Late</h5>
+                <div class="status__progress">
+                    <div class="status__progress-bar status__progress-bar--red" style="width: 50%">
                         50%
                     </div>
 
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>
 export default {
-  data() {
-    return {};
-  }
 }
 </script>
 
 <style lang="scss">
-.progress_{
+    .summary {
+        &__container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        &__status {
+            flex-grow: 1;
+            margin: 0 1rem 1rem 1rem;
+            min-width: 200px;
+        }
+
+        &__title {
+            color: rgb(51, 51, 51);
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 26.4px;
+            margin-bottom: 10px;
+        }
+    }
+
+    .status {
+        &__title {
+            margin: 0 0 5px 0;
+        }
+
+        &__progress {
+            height: 20px;
+            background-color: #ececec;
+            border-radius: 4px;
+        }
+
+        &__progress-bar {
+            height: 20px;
+            border-radius: 4px;
+            overflow: hidden;
+            text-align: center;
+            color: white;
+
+            &--blue {
+                background-color: #3b96dc;
+            }
+
+            &--red {
+                background-color: #ff6f6d;
+            }
+        }
+    }
+
+.progress {
     height: 20px;
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
     background-color: #ececec;
     border-radius: 4px;
     overflow: hidden;
