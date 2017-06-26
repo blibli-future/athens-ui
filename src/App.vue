@@ -22,7 +22,7 @@ export default {
     @import "_scss/default";
 
     .container{
-        margin:0 15%;
+        margin:3% 15%;
     }
   html, body {
       height: 100%;
