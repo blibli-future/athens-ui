@@ -70,7 +70,7 @@ export default {
         position: absolute;
         background-color: #f9f9f9;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        margin: 11px 0px 0px -20px;
+        margin: 13.5px 0px 0px -20px;
         z-index: 1;
         display: none;
 

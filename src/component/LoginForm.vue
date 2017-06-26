@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="login">
     <div class="login-form">
       <h2 class="login-form--text">
         A T H E N S
@@ -47,11 +47,12 @@
 </script>
 
 <style lang="scss" scoped="true">
-  main {
+  .login {
     background-image: url("https://upload.wikimedia.org/wikipedia/commons/9/91/View_of_the_Acropolis_Athens_%28pixinn.net%29.jpg");
     width: inherit;
-    height: inherit;
+    height: 94.5vh;
     display: flex;
+    background-size: cover;
   }
 
   .login-form {
