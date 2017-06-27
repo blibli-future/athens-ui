@@ -1,10 +1,12 @@
 <template>
-    <main>
-        <navigation-bar v-if="authenticated"></navigation-bar>
+    <div>
+        <navigation-bar v-if="authenticated"
+                        v-on:invalidating="removeToken"></navigation-bar>
         <router-view
                 v-on:receivingToken="registerToken"
-                class="container"></router-view>
-    </main>
+                class="container">
+        </router-view>
+    </div>
 </template>
 
 <script>
@@ -32,6 +34,11 @@ export default {
                 'Bearer ' + localStorage.getItem('jwtToken');
 
             this.$router.push("/index");
+        },
+        removeToken: function () {
+            this.authenticated = false;
+            delete this.$http.defaults.headers.common['Authorization'];
+            this.$router.push("/login");
         }
     },
     components: { NavigationBar }
