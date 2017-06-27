@@ -1,7 +1,9 @@
 <template>
     <main>
         <navigation-bar v-if="authenticated"></navigation-bar>
-        <router-view class="container"></router-view>
+        <router-view
+                v-on:receivingToken="registerToken"
+                class="container"></router-view>
     </main>
 </template>
 
@@ -12,12 +14,27 @@ import Request from './component/Request.vue';
 import Upload from './component/absensi/Upload.vue';
 
 export default {
-  data() {
-      return {
-        authenticated: true
-      };
-  },
-  components: { NavigationBar }
+    data() {
+        return {
+            authenticated: false
+        };
+    },
+    created: function () {
+        if(localStorage.getItem('jwtToken')!==null) {
+            this.registerToken();
+        }
+    },
+    methods: {
+        registerToken: function() {
+            this.authenticated = true;
+
+            this.$http.defaults.headers.common['Authorization'] =
+                'Bearer ' + localStorage.getItem('jwtToken');
+
+            this.$router.push("/index");
+        }
+    },
+    components: { NavigationBar }
 }
 </script>
 

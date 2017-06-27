@@ -1,49 +1,44 @@
 <template>
-  <main>
-    <div class="login-form">
-      <h2 class="login-form--text">
-        A T H E N S
-      </h2>
-      <form onsubmit="return false">
-        <!--I don't think it ^ should be like this-->
-        <input class="login-form--input" v-model="nik" type="text" placeholder="nik" autofocus/>
-        <input class="login-form--input" v-model="password" type="password" placeholder="password" />
-        <button v-on:click="authenticateUser" class="login-form--button">Log In</button>
-      </form>
-    </div>
-  </main>
+    <main>
+        <div class="login-form">
+            <h2 class="login-form--text">
+                A T H E N S
+            </h2>
+            <form onsubmit="return false">
+                <!--I don't think it ^ should be like this-->
+                <input class="login-form--input" v-model="nik" type="text" placeholder="nik" autofocus/>
+                <input class="login-form--input" v-model="password" type="password" placeholder="password" />
+                <div v-if="validatingError">Invalid NIK or Password</div>
+                <button v-on:click="authenticateUser" class="login-form--button">Log In</button>
+            </form>
+        </div>
+    </main>
 </template>
 
 <script>
-  import API from '../constant/api.url';
-
-  export default {
+export default {
     data() {
-      return {
-        nik: '',
-        password: '',
-      }
+        return {
+            nik: '',
+            password: '',
+            validatingError: false
+        }
     },
     methods: {
-      authenticateUser: function authenticateUser() {
-        fetch(API.LOGIN_URL, {
-          method: 'POST',
-          mode: 'cors',
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-              nik: this.nik,
-              password: this.password
+        authenticateUser: function() {
+            this.$http.post('http://localhost:8080/login', {
+                nik: this.nik,
+                password: this.password
+            }).then((response) => {
+                this.$emit('receivingToken', response.data.token);
+                localStorage.setItem('jwtToken', response.data.token);
             })
-        }).then(function (response) {
-          return response.json();
-        }).then(function (response) {
-          console.log(response);
-        })
-      }
+            .catch(() => {
+                this.validatingError = true;
+            })
+        }
     }
-  }
+}
 </script>
 
 <style lang="scss" scoped="true">
