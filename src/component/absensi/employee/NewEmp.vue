@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div>
         <h2>New Employee</h2>
         <form method="post">
             <div class="form--section">
@@ -76,9 +76,7 @@
 
 </script>
 <style lang="scss">
-    .container{
-        margin:0 15%;
-    }
+
     .form--section{
         display: block;
         margin-bottom: 10px;
