@@ -24,7 +24,7 @@
                         <option value="{{}}">Trade Partnership</option>
                 </select>
                 <button class="emp-search__button">Search</button>
-                <button class="emp-search__button emp-search__button-blue">Add New</button>
+                <router-link class="emp-search__button emp-search__button-blue" to="/employee/add">Add New</router-link>
 
             </form>
         </section>
