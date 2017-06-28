@@ -1,4 +1,5 @@
 <template>
+
     <nav class="nav">
         <router-link class="nav__link nav__item nav__title" to="/index">ATHENS</router-link>
         <ul class="nav__menu">
@@ -14,12 +15,31 @@
             <li class="nav__item"><router-link class="nav__link" to="/approval">Approval</router-link></li>
             <li class="nav__item"><router-link class="nav__link" to="/report">Report</router-link></li>
         </ul>
-        <div class="nav__item nav__link nav__log-out">Log Out</div>
+        <div v-on:click="invalidate" class="nav__item nav__link nav__log-out">Log Out</div>
     </nav>
 </template>
 
 <script>
 export default {
+    methods:{
+         showDropdown:function ()  {
+    document.getElementById("myDropdown").classList.toggle("show");
+         },
+        created:function () {
+            window.onclick = function(e) {
+                if (!e.target.matches('.dropdown--btn')) {
+                    var myDropdown = document.getElementById("myDropdown");
+                    if (myDropdown.classList.contains('show')) {
+                        myDropdown.classList.remove('show');
+                    }
+                }
+            }
+        },
+        invalidate: function () {
+            localStorage.removeItem('jwtToken');
+            this.$emit('invalidating');
+        }
+  }
 }
 </script>
 

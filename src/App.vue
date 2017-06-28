@@ -1,7 +1,11 @@
 <template>
     <div>
-        <navigation-bar v-if="authenticated"></navigation-bar>
-        <router-view class="container"></router-view>
+        <navigation-bar v-if="authenticated"
+                        v-on:invalidating="removeToken"></navigation-bar>
+        <router-view
+                v-on:receivingToken="registerToken"
+                class="container">
+        </router-view>
     </div>
 </template>
 
@@ -9,12 +13,32 @@
 import NavigationBar from './component/NavBar.vue';
 
 export default {
-  data() {
-      return {
-        authenticated: true
-      };
-  },
-  components: { NavigationBar }
+    data() {
+        return {
+            authenticated: false
+        };
+    },
+    created: function () {
+        if(localStorage.getItem('jwtToken')!==null) {
+            this.registerToken();
+        }
+    },
+    methods: {
+        registerToken: function() {
+            this.authenticated = true;
+
+            this.$http.defaults.headers.common['Authorization'] =
+                'Bearer ' + localStorage.getItem('jwtToken');
+
+            this.$router.push("/index");
+        },
+        removeToken: function () {
+            this.authenticated = false;
+            delete this.$http.defaults.headers.common['Authorization'];
+            this.$router.push("/login");
+        }
+    },
+    components: { NavigationBar }
 }
 </script>
 
