@@ -96,7 +96,7 @@
     export default {
         data() {
             return {
-                showModalTapIn: true,
+                showModalTapIn: false,
                 showModalTapOut: false,
                 presensi:[
                     {nik:'9999',nama:'Employee1',date:'14-Jul-2017',tapin:'08:00', tapout:'17:05', duration:'9h 5m'}
