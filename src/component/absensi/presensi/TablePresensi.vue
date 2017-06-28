@@ -1,55 +1,25 @@
 <template>
-    <div>
-        <table>
-            <thead>
-            <tr>
-                <td width="5px"></td>
-                <td>NIK
-                <td>Nama</td>
-                <td>Date</td>
-                <td>Tap In</td>
-                <td>Tap Out</td>
-                <td>Duration</td>
-              
-
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><input type="checkbox"/></td>
-                <td>NIK
-                <td>Nama</td>
-                <td>Tap In</td>
-                <td>Tap Out</td>
-                <td>Duration</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <tr>
+        <td><input type="checkbox"/></td>
+        <td>{{item.nik}}</td>
+        <td>{{item.nama}}</td>
+        <td>{{item.date}}</td>
+        <td>{{item.tapin}}</td>
+        <td>{{item.tapout}}</td>
+        <td>{{item.duration}}</td>
+    </tr>
 
 </template>
 <script>
 
     export default {
-        data() {
-            return {};
-        },
-
+        props: {
+            item: {
+                type: Object
+            }
+        }
     };
 </script>
 <style lang="scss">
-    table{
-    width: 100%;
-    border-collapse: collapse;
-    thead{
-        text-align: center;
-        font-weight: bold;
-    }
-    tr{
-        td{
-            padding:5px ;
-            border: solid thin #a1a1a1;
 
-        }
-    }
-}</style>
+</style>
