@@ -1,6 +1,4 @@
 <template>
-
-
     <nav>
         <div>
             <ul>
@@ -17,15 +15,13 @@
                 <li><router-link to="/approval">Approval</router-link></li>
                 <li><router-link to="/report">Report</router-link></li>
             </ul>
+            <div v-on:click="invalidate">Log Out</div>
         </div>
     </nav>
 </template>
 
 <script>
 export default {
-  data() {
-    return {};
-  },
     methods:{
          showDropdown:function ()  {
     document.getElementById("myDropdown").classList.toggle("show");
@@ -39,17 +35,14 @@ export default {
                     }
                 }
             }
+        },
+        invalidate: function () {
+            localStorage.removeItem('jwtToken');
+            this.$emit('invalidating');
         }
   }
-
-
-
 }
-
-
-
 </script>
-
 
 <style lang="scss">
     nav {
