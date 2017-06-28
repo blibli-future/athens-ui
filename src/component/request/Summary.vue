@@ -2,7 +2,7 @@
     <section class="summary">
         <h3 class="summary__title">Employee's Summary</h3>
         <div class="summary__container">
-            <div class="summary__status">
+            <div class="summary__status summary__status--left">
                 <h5 class="summary__sub-title">Annual leave right</h5>
                 <div class="summary__progress">
                     <div class="summary__progress-bar summary__progress-bar--blue" style="width: 50%">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-            <div class="summary__status">
+            <div class="summary__status summary__status--right">
                 <h5 class="summary__sub-title">Number of Late</h5>
                 <div class="summary__progress">
                     <div class="summary__progress-bar summary__progress-bar--red" style="width: 50%">
@@ -40,12 +40,20 @@ export default {
         &__container {
             display: flex;
             flex-wrap: wrap;
+            justify-content: space-between;
         }
 
         &__status {
             flex-grow: 1;
-            margin: 0 1rem 1rem 1rem;
             min-width: 200px;
+
+            &--left {
+                margin-right: 1.5rem;
+            }
+
+            &--right {
+                margin-left: 1.5rem;
+            }
         }
 
         &__title {
