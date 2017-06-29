@@ -1,22 +1,21 @@
 <template>
-    <nav>
-        <div>
-            <ul>
-                <li><router-link to="/index"><strong>ATHENS</strong></router-link></li>
-                <li class="dropdown--" style="color: white" v-on:click="showDropdown"> <a> Absensi</a>
-                    <ul class="dropdown--content" id="myDropdown" >
-                        <li><router-link to="/upload">Upload</router-link></li>
-                        <li><router-link to="/shift">Shift</router-link></li>
-                        <li><router-link to="/presensi">Presensi</router-link></li>
-                        <li><router-link to="/employee">Employee List</router-link></li>
-                    </ul>
-                </li>
-                <li><router-link to="/index">Request</router-link></li>
-                <li><router-link to="/approval">Approval</router-link></li>
-                <li><router-link to="/report">Report</router-link></li>
-            </ul>
-            <div v-on:click="invalidate">Log Out</div>
-        </div>
+
+    <nav class="nav">
+        <router-link class="nav__link nav__item nav__title" to="/index">ATHENS</router-link>
+        <ul class="nav__menu">
+            <li class="nav__item nav__link nav__drop-link">Absensi
+                <ul class="nav__drop-down">
+                    <li class="nav__sub-item"><router-link class="nav__link" to="/upload">Upload</router-link></li>
+                    <li class="nav__sub-item"><router-link class="nav__link" to="/shift">Shift</router-link></li>
+                    <li class="nav__sub-item"><router-link class="nav__link" to="/presensi">Presensi</router-link></li>
+                    <li class="nav__sub-item"><router-link class="nav__link" to="/employee">Employee List</router-link></li>
+                </ul>
+            </li>
+            <li class="nav__item"><router-link class="nav__link" to="/index">Request</router-link></li>
+            <li class="nav__item"><router-link class="nav__link" to="/approval">Approval</router-link></li>
+            <li class="nav__item"><router-link class="nav__link" to="/report">Report</router-link></li>
+        </ul>
+        <div v-on:click="invalidate" class="nav__item nav__link nav__log-out">Log Out</div>
     </nav>
 </template>
 
@@ -45,87 +44,63 @@ export default {
 </script>
 
 <style lang="scss">
-    nav {
-        background-color: #5b8eca;
-        padding: 0 3px;
-        //margin: -16px 0 0 -8px;
-        font: {
-            size: 16px;
-        };
-        ul{
-            margin:0;
-        }
-        li{
-            &:hover{
-                background-color: #3d7fca;
-            }
+.nav {
+    background-color: #5b8eca;
+    padding: 0 3px;
+    font-size: 16px;
 
-            display: inline-block;
-            a {
-                display: block;
-                color: white;
-                text-align: center;
-                padding: 14px 20px;
-                text-decoration: none;
+    &__menu {
+        display: inline-block;
+    }
 
-            }
+    &__item {
+        padding: 14px 20px;
+        color: white;
+        display: inline-block;
+
+        &:hover{
+            background-color: #3d7fca;
         }
     }
 
-    .dropdown--content{
-        display: none;
+    &__title {
+        display: inline-block;
+    }
+
+    &__link {
+        cursor: pointer;
+        color: white;
+    }
+
+    &__log-out {
+        float: right;
+        display: inline-block;
+    }
+
+    &__drop-down {
         position: absolute;
         background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-        border:{
-            color: #dee1e4;
-            width: 1px;
-            style: solid;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        margin: 11px 0 0 -20px;
+        display: none;
+    }
+
+    &__drop-link:hover {
+        > .nav__drop-down {
+            display: block;
         }
     }
 
-    .dropdown-- {
-        overflow: hidden;
-        text-align: center;
-        vertical-align: middle;
-        cursor: pointer;
-        font-size: 16px;
-        border: none;
-        outline: none;
-        color: white;
-        background-color: inherit;
-        vertical-align: middle;
-        font: {
-            size: 16px;
+    &__sub-item {
+        padding: 14px 20px;
 
-        };
+        > .nav__link{
+            color: black;
+        }
 
-        .dropdown--content{
-            li{
-                float: none;
-                color: black;
-                display: block;
-                margin:0 0 0 -40px;
-                padding: 10px 0 15px 20px;
-                &:hover{
-                    background-color: #c1e5ff;
-                    cursor: pointer;
-                }
-                a{
-                    float: none;
-                    color: black;
-                    padding:0;
-                    text-decoration: none;
-                    text-align: left;
-                }
-            }
+        &:hover {
+            background-color: #c1e5ff;
         }
     }
-
-    .show {
-        display: block;
-    }
-
+}
 </style>

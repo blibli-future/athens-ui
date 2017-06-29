@@ -1,11 +1,9 @@
-    <template>
-    <div>
-            <div >
-            <summaries></summaries>
-            <apply></apply>
-            <history></history>
-        </div>
-    </div>
+<template>
+    <main class="request">
+        <summaries class="request__summaries"></summaries>
+        <apply class="request__apply"></apply>
+        <history class="request__history"></history>
+    </main>
 </template>
 
 <script>
@@ -13,22 +11,20 @@ import Summaries from './request/Summary.vue';
 import Apply from './request/Apply.vue';
 import History from './request/History.vue';
 
-
 export default {
-  data() {
-    return {};
-  },
   components: { Apply, History, Summaries }
 };
 </script>
 
 <style lang="scss">
-    body {
-        font-family:  Helvetica;
-        width: 100%;
-    }
-    .container{
-        margin : 0 10%;
+    .request {
+        margin: 0 auto;
+        width: 90%;
+        max-width: 1000px;
+
+        &__summaries, &__apply, &__history {
+            margin: 1rem 0;
+        }
     }
 
 </style>

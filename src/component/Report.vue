@@ -1,11 +1,11 @@
 <template>
-    <div>
+    <main class="report">
         <h2>Report</h2>
         <br/>
        <filters></filters>
         <br/>
         <report-table></report-table>
-    </div>
+    </main>
 </template>
 <script>
     import Filters from './report/FilterReport.vue';
@@ -18,8 +18,10 @@
     };
 </script>
 <style lang="scss">
-    .container{
-        margin : 0 5%;
+    .report {
+        margin: 0 auto;
+        width: 90%;
+        max-width: 1000px;
     }
 
 </style>
