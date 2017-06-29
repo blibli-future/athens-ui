@@ -56,6 +56,9 @@ export default {
 
 <style lang="scss">
     .approval {
+        margin: 0 auto;
+        width: 90%;
+        max-width: 1000px;
 
         &__title {
             color: rgb(51, 51, 51);

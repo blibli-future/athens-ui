@@ -2,9 +2,7 @@
     <div>
         <navigation-bar v-if="authenticated"
                         v-on:invalidating="removeToken"></navigation-bar>
-        <router-view
-                v-on:receivingToken="registerToken"
-                class="container">
+        <router-view v-on:receivingToken="registerToken">
         </router-view>
     </div>
 </template>
@@ -44,13 +42,6 @@ export default {
 
 <style lang="scss">
     @import "_scss/default";
-
-    .container{
-        margin: auto;
-        width: 90%;
-        max-width: 1000px;
-        background-color: white;
-    }
 
     html, body {
         height: 100%;
