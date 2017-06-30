@@ -1,5 +1,5 @@
 <template>
-    <div class="approval">
+    <main class="approval">
         <div class="approval__title">Request List</div>
         <section class="search-area">
             <input class="search-area__input" type="text" placeholder="search"/>
@@ -26,7 +26,7 @@
                     :item="item">
             </history-box>
         </section>
-    </div>
+    </main>
 </template>
 
 <script>
@@ -56,10 +56,9 @@ export default {
 
 <style lang="scss">
     .approval {
-        margin: auto;
+        margin: 0 auto;
         width: 90%;
-        max-width: 800px;
-        background-color: white;
+        max-width: 1000px;
 
         &__title {
             color: rgb(51, 51, 51);
@@ -84,10 +83,10 @@ export default {
 
     .search-area {
         display: flex;
-        margin: 10px 0px;
+        margin: 10px 0;
 
         &__input, &__drop-down  {
-            margin: 0px 5px;
+            margin: 0 5px;
             border-radius: 5px;
             border: 1px solid rgb(204, 204, 204);
             padding: 2px;
@@ -108,7 +107,7 @@ export default {
             border-radius: 4px;
             background-color: #b3dcff;
             cursor: pointer;
-            margin: 0px 5px;
+            margin: 0 5px;
         }
     }
 
