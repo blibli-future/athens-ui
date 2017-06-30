@@ -46,9 +46,8 @@
             padding: 7px 15px;
             font-family:Arial;
             font-size:inherit;
-            &[type=file]{
-                border: none;
-            }
+            border: none;
+
         }
         &__button{
             display: inline-block;

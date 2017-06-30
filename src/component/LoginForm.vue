@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main class="login">
         <div class="login-form">
             <h2 class="login-form--text">
                 A T H E N S

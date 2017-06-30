@@ -31,28 +31,28 @@
         <br/>
         <section class="table">
             <table class="emp-table">
-            <thead class="emp-table__title">
-            <tr>
-                <td>NIK</td>
-                <td>Full Name</td>
-                <td>Gender</td>
-                <td>Position Text</td>
-                <td>Organizational Unit</td>
-                <td>Marital Status</td>
-                <td>Religion</td>
-                <td>Name Of Dept</td>
-                <td>Chief NIK</td>
-                <td>Chief Name</td>
-                <td>Start Working Date</td>
-            </tr>
-            </thead>
-            <tbody>
-               <table-emp v-for="item in employee"
-                          :key="item.nik"
-                          :item="item">
-               </table-emp>
-            </tbody>
-        </table>
+                <thead class="emp-table__title">
+                <tr>
+                    <td>NIK</td>
+                    <td>Full Name</td>
+                    <td>Gender</td>
+                    <td>Position Text</td>
+                    <td>Organizational Unit</td>
+                    <td>Marital Status</td>
+                    <td>Religion</td>
+                    <td>Name Of Dept</td>
+                    <td>Chief NIK</td>
+                    <td>Chief Name</td>
+                    <td>Start Working Date</td>
+                </tr>
+                </thead>
+                <tbody>
+                   <table-emp v-for="item in employee"
+                              :key="item.nik"
+                              :item="item">
+                   </table-emp>
+                </tbody>
+            </table>
         </section>
     </main>
 </template>
