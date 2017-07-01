@@ -46,11 +46,20 @@
                     <td>Start Working Date</td>
                 </tr>
                 </thead>
-                <tbody>
-                   <table-emp v-for="item in employee"
-                              :key="item.nik"
-                              :item="item">
-                   </table-emp>
+                <tbody class="emp-table__body">
+                <tr v-for="item in employee">
+                    <td>{{item.nik}}</td>
+                    <td>{{item.fullname}}</td>
+                    <td>{{item.gender}}</td>
+                    <td>{{item.positionText}}</td>
+                    <td>{{item.organizationalUnitText}}</td>
+                    <td>{{item.maritalStatus}}</td>
+                    <td>{{item.religion}}</td>
+                    <td>{{item.nameOfDept}}</td>
+                    <td>{{item.chiefNik}}</td>
+                    <td>{{item.chiefName}}</td>
+                    <td>{{item.startWorkingDate}}</td>
+                </tr>
                 </tbody>
             </table>
         </section>
@@ -59,7 +68,6 @@
 
 
 <script>
-    import TableEmp from './employee/TableEmp.vue'
     export default {
         data() {
             return {
@@ -73,7 +81,6 @@
                 ],
             };
         },
-        components: {TableEmp}
     }
 </script>
 
@@ -138,6 +145,11 @@
             text-align: center;
             font-weight: bold;
         }
+        &__body{
+             tr:hover{
+                 background-color: #e1e1e1
+             }
+         }
         tr{
             td{
                 padding:5px ;

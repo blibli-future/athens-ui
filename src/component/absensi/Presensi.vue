@@ -40,11 +40,20 @@
                     <td>Duration</td>
                 </tr>
                 </thead>
-                <tbody>
-                <table-content v-for="item in presensi"
-                        :key="item.nik"
-                        :item="item">
-                </table-content>
+                <tbody class="table__body">
+                    <tr v-for="item in presensi">
+                        <td>{{item.nik}}</td>
+                        <td>{{item.fullname}}</td>
+                        <td>{{item.gender}}</td>
+                        <td>{{item.positionText}}</td>
+                        <td>{{item.organizationalUnitText}}</td>
+                        <td>{{item.maritalStatus}}</td>
+                        <td>{{item.religion}}</td>
+                        <td>{{item.nameOfDept}}</td>
+                        <td>{{item.chiefNik}}</td>
+                        <td>{{item.chiefName}}</td>
+                        <td>{{item.startWorkingDate}}</td>
+                    </tr>
                 </tbody>
             </table>
         </section>
@@ -89,7 +98,6 @@
 
 </template>
 <script>
-    import TableContent from './presensi/TablePresensi.vue';
     import Modal from'../Modal.vue';
    //TODO: get data from checked item to be edited
 
@@ -103,8 +111,7 @@
                 ]
             };
         },
-
-        components: {TableContent,Modal}
+        components: {Modal}
     };
 </script>
 <style lang="scss">
@@ -159,6 +166,11 @@
             &__header{
                 text-align: center;
                 font-weight: bold;
+            }
+            &__body{
+                tr:hover{
+                    background-color: #e1e1e1
+                }
             }
             tr{
                 td{

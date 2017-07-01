@@ -13,7 +13,7 @@ import NavigationBar from './component/NavBar.vue';
 export default {
     data() {
         return {
-            authenticated: false
+            authenticated: true
         };
     },
     created: function () {
