@@ -5,7 +5,7 @@
         <br/>
         <router-link to="/shift/add" class="shift__button">Add New</router-link>
         <br/><br/>
-        <table class="table table-hover">
+        <table class="table">
             <thead class="table__header">
                 <tr>
                     <td>ID Shift</td>
@@ -16,7 +16,7 @@
                     <td>Location</td>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table__body">
                 <tr v-for="item in shiftItems"
                     :key="item.id"
                     :item="item">
@@ -86,16 +86,13 @@
             text-align: center;
             font-weight: bold;
         }
-        &-hover{
-            tbody{
-                tr:hover{
-                    background-color: #e1e1e1
-                }
+        &__body{
+            tr:hover{
+                background-color: #e1e1e1
             }
-
         }
-        tr{
-            td{
+          tr{
+             td{
                 padding:5px ;
                 border: solid thin #a1a1a1;
             }
