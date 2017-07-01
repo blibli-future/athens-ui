@@ -41,22 +41,19 @@
                 </tr>
                 </thead>
                 <tbody class="table__body">
-                    <tr v-for="item in presensi">
+                    <tr v-for="item in presensi" >
+                        <td><input type="checkbox" :value=item.nik  v-model="selectedEmp"/></td>
                         <td>{{item.nik}}</td>
-                        <td>{{item.fullname}}</td>
-                        <td>{{item.gender}}</td>
-                        <td>{{item.positionText}}</td>
-                        <td>{{item.organizationalUnitText}}</td>
-                        <td>{{item.maritalStatus}}</td>
-                        <td>{{item.religion}}</td>
-                        <td>{{item.nameOfDept}}</td>
-                        <td>{{item.chiefNik}}</td>
-                        <td>{{item.chiefName}}</td>
-                        <td>{{item.startWorkingDate}}</td>
+                        <td>{{item.nama}}</td>
+                        <td>{{item.date}}</td>
+                        <td>{{item.tapin}}</td>
+                        <td>{{item.tapout}}</td>
+                        <td>{{item.duration}}</td>
                     </tr>
                 </tbody>
             </table>
         </section>
+        <br/>
         <section class="editTapHour">
             <button id="tapIn-modal" @click="showModalTapIn = true" class="form__button">Tap In</button>
             <modal v-if="showModalTapIn" @close="showModalTapIn = false">
@@ -106,8 +103,15 @@
             return {
                 showModalTapIn: false,
                 showModalTapOut: false,
+                selectedEmp:[],
                 presensi:[
-                    {nik:'9999',nama:'Employee1',date:'14-Jul-2017',tapin:'08:00', tapout:'17:05', duration:'9h 5m'}
+                    {nik:'9999',nama:'Employee1',date:'14-Jul-2017',tapin:'08:00', tapout:'17:05', duration:'9h 5m'},
+                    {nik:'9997',nama:'Employee1',date:'14-Jul-2017',tapin:'08:00', tapout:'17:05', duration:'9h 5m'},
+                    {nik:'9993',nama:'Employee1',date:'14-Jul-2017',tapin:'08:00', tapout:'17:05', duration:'9h 5m'},
+                    {nik:'9998',nama:'Employee1',date:'14-Jul-2017',tapin:'08:00', tapout:'17:05', duration:'9h 5m'},
+                    {nik:'9990',nama:'Employee1',date:'14-Jul-2017',tapin:'08:00', tapout:'17:05', duration:'9h 5m'},
+                    {nik:'9991',nama:'Employee1',date:'14-Jul-2017',tapin:'08:00', tapout:'17:05', duration:'9h 5m'},
+                    {nik:'9992',nama:'Employee1',date:'14-Jul-2017',tapin:'08:00', tapout:'17:05', duration:'9h 5m'}
                 ]
             };
         },
