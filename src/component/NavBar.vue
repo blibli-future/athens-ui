@@ -36,7 +36,6 @@ export default {
             }
         },
         invalidate: function () {
-            localStorage.removeItem('jwtToken');
             this.$emit('invalidating');
         }
   }
