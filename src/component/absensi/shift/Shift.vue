@@ -17,9 +17,7 @@
                 </tr>
             </thead>
             <tbody class="table__body">
-                <tr v-for="item in shiftItems"
-                    :key="item.id"
-                    :item="item">
+                <tr v-for="item in shiftItems">
                     <td>{{item.id}}</td>
                     <td>{{item.name}}</td>
                     <td class="text-center">{{item.startHour}}</td>
