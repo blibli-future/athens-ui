@@ -13,7 +13,7 @@ import NavigationBar from './component/NavBar.vue';
 export default {
     data() {
         return {
-            authenticated: false
+            authenticated: true
         };
     },
     created: function () {
@@ -42,11 +42,13 @@ export default {
 
 <style lang="scss">
     @import "_scss/default";
-
-    html, body {
-        height: 100%;
-        width: 100%;
-        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-        margin : 0;
-    }
+  html, body {
+      height: 100%;
+      width: 100%;
+      font-family: Arial;
+      margin : 0;
+  }
+  * {
+    box-sizing: border-box;
+  }
 </style>

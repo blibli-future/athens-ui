@@ -7,7 +7,7 @@ import Upload from './component/absensi/Upload.vue';
 import Shift from './component/absensi/shift/Shift.vue';
 import NewShift from './component/absensi/shift/NewShift.vue';
 import Presensi from './component/absensi/Presensi.vue';
-import Employee from './component/absensi/Employee.vue';
+import Employee from './component/absensi/employee/Employee.vue';
 import NewEmployee from './component/absensi/employee/NewEmp.vue';
 import Report from './component/Report.vue';
 import Approval from  './component/Approval.vue';
