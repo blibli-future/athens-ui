@@ -5,24 +5,25 @@
         <section>
             <form class="report__form-search">
                 <label for="startMonth" class="report__label">Start Date</label>
-                <input type="date" id="startMonth" name="startMonth"  min="2017-01-01" max="2018-01-01" class="report__input"/>
+                <input v-model="mulai" type="date" id="startMonth" name="startMonth"  min="2017-01-01" max="2018-01-01" class="report__input"/>
 
                 <label for="endMonth" class="report__label">End Date</label>
-                <input type="date" id="endMonth" name="endMonth"  min="2017-01" max="2018-01-01" class="report__input"/>
+                <input v-model="selesai" type="date" id="endMonth" name="endMonth"  min="2017-01-01" max="2018-01-01" class="report__input"/>
 
                 <label for="filter" class="report__label" >Department</label>
-                <select id="filter" class="report__input">
+                <select v-model="selected" id="filter" class="report__input">
                     <option>All Department</option>
-                    <option value="{{}}">Business Development </option>
-                    <option value="{{}}">Finance</option>
-                    <option value="{{}}">Human Resource </option>
-                    <option value="{{}}">Marketing</option>
-                    <option value="{{}}">Operations </option>
-                    <option value="{{}}">Product Management </option>
-                    <option value="{{}}">Program Management </option>
-                    <option value="{{}}">Technology </option>
-                    <option value="{{}}">Trade Partnership</option>
+                    <option value="TT">Business Development </option>
+                    <option value="TT">Finance</option>
+                    <option value="TT">Human Resource </option>
+                    <option value="TT">Marketing</option>
+                    <option value="TT">Operations </option>
+                    <option value="TT">Product Management </option>
+                    <option value="TT">Program Management </option>
+                    <option value="IT">Technology </option>
+                    <option value="TT">Trade Partnership</option>
                 </select>
+                <button v-on:click="showReport" class="report__button">Search</button>
                 <button class="report__button">Download</button>
             </form>
         </section>
@@ -32,6 +33,7 @@
                 <tr>
                     <td>NIK</td>
                     <td>Nama</td>
+                    <td>Dept</td>
                     <td>Days Coming</td>
                     <td>Days Absence</td>
                     <td>Sick</td>
@@ -43,25 +45,26 @@
                     <td>Hourly Leave</td>
                     <td>Replacement Leave</td>
                     <td>No-tap out days</td>
-                    <td>Transport fee</td>
+                    <!--<td>Transport fee</td>-->
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="item in reportData">
                     <td>{{item.nik}}</td>
-                    <td>{{item.nama}}</td>
+                    <td>{{item.fullName}}</td>
+                    <td>{{item.department}}</td>
                     <td>{{item.daysComing}}</td>
                     <td>{{item.daysAbsence}}</td>
                     <td>{{item.sick}}</td>
                     <td>{{item.unpaidLeave}}</td>
                     <td>{{item.yearlyLeave}}</td>
                     <td>{{item.leaveEarly}}</td>
-                    <td>{{item.late}}</td>
-                    <td>{{item.latewithPermisson}}</td>
+                    <td>{{item.lateWithoutPermission}}</td>
+                    <td>{{item.lateWithPermission}}</td>
                     <td>{{item.hourlyLeave}}</td>
                     <td>{{item.replacementLeave}}</td>
-                    <td>{{item.noTapOut}}</td>
-                    <td>{{item.transportFee}}</td>
+                    <td>{{item.noTapOutDay}}</td>
+                    <!--<td>{{item.transportFee}}</td>-->
                 </tr>
 
                 </tbody>
@@ -75,6 +78,9 @@
     export default {
         data() {
             return {
+                mulai:'2017-01-01',
+                selesai:'2017-12-31',
+                selected:'All Department',
                 reportData: [
                     { nik: '001', nama: 'Ariel' , daysComing: 5, daysAbsence:6, sick:1,unpaidLeave:"-" ,yearlyLeave:'-',leaveEarly:'-', leaveEarly:1,late:2,latewithPermisson:1,hourlyLeave:5,replacementLeave:9,noTapOut:2, transportFee:50000},
                     { nik: '002', nama: 'Ariela' , daysComing: 5, daysAbsence:6, sick:1,unpaidLeave:"-" ,yearlyLeave:'-',leaveEarly:'-', leaveEarly:1,late:2,latewithPermisson:1,hourlyLeave:5,replacementLeave:9,noTapOut:2, transportFee:50000},
@@ -87,6 +93,21 @@
             };
         },
 
+        methods: {
+            showReport: function() {
+                this.$http.get('http://localhost:8080/report', {params:{
+                    dept:this.selected,
+                    startDate:this.mulai,
+                    endDate:this.selesai
+                }})
+                .then(response => {
+                    this.reportData = response.data;
+                })
+                .catch(function (error) {
+                  console.log(error);
+                })
+            }
+        }
     };
 </script>
 <style lang="scss">
