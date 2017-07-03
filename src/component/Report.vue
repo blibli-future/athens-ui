@@ -24,27 +24,27 @@
                     <option value="TT">Trade Partnership</option>
                 </select>
                 <button v-on:click="showReport" class="report__button">Search</button>
-                <button class="report__button">Download</button>
+                <button v-on:click="downloadReport" class="report__button">Download</button>
             </form>
         </section>
         <section id="table">
             <table class="rep-table">
                 <thead class="rep-table__title">
                 <tr>
-                    <td>NIK</td>
-                    <td>Nama</td>
-                    <td>Dept</td>
-                    <td>Days Coming</td>
-                    <td>Days Absence</td>
-                    <td>Sick</td>
-                    <td>Unpaid Leave</td>
-                    <td>Yearly Leave</td>
-                    <td>Leave Early</td>
-                    <td>Late without Permission</td>
-                    <td>Late with Permission</td>
-                    <td>Hourly Leave</td>
-                    <td>Replacement Leave</td>
-                    <td>No-tap out days</td>
+                    <th>Nama</th>
+                    <th>NIK</th>
+                    <th>Dept</th>
+                    <th>Days Coming</th>
+                    <th>Days Absence</th>
+                    <th>Sick</th>
+                    <th>Unpaid Leave</th>
+                    <th>Yearly Leave</th>
+                    <th>Leave Early</th>
+                    <th>Late without Permission</th>
+                    <th>Late with Permission</th>
+                    <th>Hourly Leave</th>
+                    <th>Replacement Leave</th>
+                    <th>No-tap out days</th>
                     <!--<td>Transport fee</td>-->
                 </tr>
                 </thead>
@@ -106,7 +106,54 @@
                 .catch(function (error) {
                   console.log(error);
                 })
-            }
+            },
+
+            download_csv: function(csv, filename) {
+              var csvFile;
+              var downloadLink;
+
+              // CSV FILE
+              csvFile = new Blob([csv], {type: "text/csv"});
+
+              // Download link
+              downloadLink = document.createElement("a");
+
+              // File name
+              downloadLink.download = filename;
+
+              // We have to create a link to the file
+              downloadLink.href = window.URL.createObjectURL(csvFile);
+
+              // Make sure that the link is not displayed
+              downloadLink.style.display = "none";
+
+              // Add the link to your DOM
+              document.body.appendChild(downloadLink);
+
+              // Lanzamos
+              downloadLink.click();
+          },
+
+          export_table_to_csv: function(html, filename) {
+          	var csv = [];
+          	var rows = document.querySelectorAll("table tr");
+
+              for (var i = 0; i < rows.length; i++) {
+          		var row = [], cols = rows[i].querySelectorAll("td, th");
+
+                  for (var j = 0; j < cols.length; j++)
+                      row.push(cols[j].innerText);
+
+          		csv.push(row.join(","));
+          	}
+
+              // Download CSV
+              this.download_csv(csv.join("\n"), filename);
+          },
+          downloadReport: function () {
+            var html = document.querySelector("table").outerHTML;
+          	this.export_table_to_csv(html, "table.csv");
+          }
         }
     };
 </script>
