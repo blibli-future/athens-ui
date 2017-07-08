@@ -97,8 +97,8 @@
             showReport: function() {
                 this.$http.get('http://localhost:8080/report', {params:{
                     dept:this.selected,
-                    startDate:this.mulai,
-                    endDate:this.selesai
+                    startDate:this.startDate,
+                    endDate:this.endDate
                 }})
                 .then(response => {
                     this.reportData = response.data;
@@ -134,7 +134,7 @@
               downloadLink.click();
           },
 
-          export_table_to_csv: function(html, filename) {
+          export_table_to_csv: function(html, fileName) {
           	var csv = [];
           	var rows = document.querySelectorAll("table tr");
 
@@ -148,7 +148,7 @@
           	}
 
               // Download CSV
-              this.download_csv(csv.join("\n"), filename);
+              this.download_csv(csv.join("\n"), fileName);
           },
           downloadReport: function () {
             var html = document.querySelector("table").outerHTML;
