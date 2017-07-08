@@ -5,10 +5,10 @@
         <section>
             <form class="report__form-search">
                 <label for="startMonth" class="report__label">Start Date</label>
-                <input v-model="mulai" type="date" id="startMonth" name="startMonth"  min="2017-01-01" max="2018-01-01" class="report__input"/>
+                <input v-model="startDate" type="date" id="startMonth" name="startMonth"  min="2017-01-01" max="2018-01-01" class="report__input"/>
 
                 <label for="endMonth" class="report__label">End Date</label>
-                <input v-model="selesai" type="date" id="endMonth" name="endMonth"  min="2017-01-01" max="2018-01-01" class="report__input"/>
+                <input v-model="endDate" type="date" id="endMonth" name="endMonth"  min="2017-01-01" max="2018-01-01" class="report__input"/>
 
                 <label for="filter" class="report__label" >Department</label>
                 <select v-model="selected" id="filter" class="report__input">
@@ -78,16 +78,16 @@
     export default {
         data() {
             return {
-                mulai:'2017-01-01',
-                selesai:'2017-12-31',
+                startDate:'2017-01-01',
+                endDate:'2017-12-31',
                 selected:'All Department',
                 reportData: [
-                    { nik: '001', nama: 'Ariel' , daysComing: 5, daysAbsence:6, sick:1,unpaidLeave:"-" ,yearlyLeave:'-',leaveEarly:'-', leaveEarly:1,late:2,latewithPermisson:1,hourlyLeave:5,replacementLeave:9,noTapOut:2, transportFee:50000},
-                    { nik: '002', nama: 'Ariela' , daysComing: 5, daysAbsence:6, sick:1,unpaidLeave:"-" ,yearlyLeave:'-',leaveEarly:'-', leaveEarly:1,late:2,latewithPermisson:1,hourlyLeave:5,replacementLeave:9,noTapOut:2, transportFee:50000},
-                    { nik: '003', nama: 'Aimee' , daysComing: 5, daysAbsence:6, sick:1,unpaidLeave:"-" ,yearlyLeave:'-',leaveEarly:'-', leaveEarly:1,late:2,latewithPermisson:1,hourlyLeave:5,replacementLeave:9,noTapOut:2, transportFee:50000},
-                    { nik: '004', nama: 'Ariela' , daysComing: 5, daysAbsence:6, sick:1,unpaidLeave:"-" ,yearlyLeave:'-',leaveEarly:'-', leaveEarly:1,late:2,latewithPermisson:1,hourlyLeave:5,replacementLeave:9,noTapOut:2, transportFee:50000},
-                    { nik: '005', nama: 'Aeriel' , daysComing: 5, daysAbsence:6, sick:1,unpaidLeave:"-" ,yearlyLeave:'-',leaveEarly:'-', leaveEarly:1,late:2,latewithPermisson:1,hourlyLeave:5,replacementLeave:9,noTapOut:2, transportFee:50000},
-                    { nik: '006', nama: 'Arie' , daysComing: 5, daysAbsence:6, sick:1,unpaidLeave:"-" ,yearlyLeave:'-',leaveEarly:'-', leaveEarly:1,late:2,latewithPermisson:1,hourlyLeave:5,replacementLeave:9,noTapOut:2, transportFee:50000},
+                    { nik: '001', fullName: 'Ariel Christanto' , department:'Technology', daysComing: 5, daysAbsence:6, sick:1,unpaidLeave:"-" ,yearlyLeave:'-',leaveEarly:'-', noTapOutDay:1,lateWithoutPermission:2,lateWithPermission:1,hourlyLeave:5,replacementLeave:9,noTapOut:2, transportFee:50000},
+                    { nik: '002', fullName: 'Ariela Christanto' ,department:'Technology', daysComing: 5, daysAbsence:6, sick:1,unpaidLeave:"-" ,yearlyLeave:'-',leaveEarly:'-', noTapOutDay:1,lateWithoutPermission:2,lateWithPermission:1,hourlyLeave:5,replacementLeave:9,noTapOut:2, transportFee:50000},
+                    { nik: '003', fullName: 'Aimee Christanto' ,department:'Technology', daysComing: 5, daysAbsence:6, sick:1,unpaidLeave:"-" ,yearlyLeave:'-',leaveEarly:'-', noTapOutDay:1,lateWithoutPermission:2,lateWithPermission:1,hourlyLeave:5,replacementLeave:9,noTapOut:2, transportFee:50000},
+                    { nik: '004', fullName: 'Ariela Christanto' ,department:'Technology', daysComing: 5, daysAbsence:6, sick:1,unpaidLeave:"-" ,yearlyLeave:'-',leaveEarly:'-', noTapOutDay:1,lateWithoutPermission:2,lateWithPermission:1,hourlyLeave:5,replacementLeave:9,noTapOut:2, transportFee:50000},
+                    { nik: '005', fullName: 'Aeriel Christanto' ,department:'Technology', daysComing: 5, daysAbsence:6, sick:1,unpaidLeave:"-" ,yearlyLeave:'-',leaveEarly:'-', noTapOutDay:1,lateWithoutPermission:2,lateWithPermission:1,hourlyLeave:5,replacementLeave:9,noTapOut:2, transportFee:50000},
+                    { nik: '006', fullName: 'Arie Christanto' , department:'Technology',daysComing: 5, daysAbsence:6, sick:1,unpaidLeave:"-" ,yearlyLeave:'-',leaveEarly:'-', noTapOutDay:1,lateWithoutPermission:2,lateWithPermission:1,hourlyLeave:5,replacementLeave:9,noTapOut:2, transportFee:50000},
 
                 ]
             };
@@ -184,7 +184,6 @@
         }
         &__form-search {
             display: flex;
-            ;
             flex-direction: row;
             align-content: center;
             justify-content: baseline;
@@ -223,7 +222,7 @@
         }
     }
     .rep-table{
-        width: auto;
+        width: 100%;
         border-collapse: collapse;
         font-size:13px;
         &__title{
@@ -231,7 +230,7 @@
             font-weight: bold;
         }
         tr{
-            td{
+            td, th{
                 padding:5px ;
                 border: solid thin #a1a1a1;
             }
