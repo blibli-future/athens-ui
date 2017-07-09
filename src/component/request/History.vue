@@ -1,15 +1,19 @@
 <template>
     <section class="history">
         <div class="history__title">Leave History</div>
-        <panel></panel>
+        <panel>
+            <span slot="title">Title</span>
+            <span slot="sub-title">Date</span>
+            <span slot="body">Reason</span>
+        </panel>
     </section>
 </template>
 
 <script>
-import panel from './history/Panel.vue';
+import Panel from './history/Panel.vue';
 
 export default {
-    components: { panel },
+    components: { Panel },
     name: 'request--history'
 };
 </script>
