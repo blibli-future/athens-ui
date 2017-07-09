@@ -134,7 +134,7 @@
               downloadLink.click();
           },
 
-          export_table_to_csv: function(html, fileName) {
+          exportTableToCsv: function(html, fileName) {
           	var csv = [];
           	var rows = document.querySelectorAll("table tr");
 
@@ -152,8 +152,9 @@
           },
           downloadReport: function () {
             var html = document.querySelector("table").outerHTML;
-          	this.export_table_to_csv(html, "table.csv");
+          	this.exportTableToCsv(html, "report.csv");
           }
+
         }
     };
 </script>
