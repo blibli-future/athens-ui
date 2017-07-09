@@ -30,10 +30,10 @@ export default {
                 nik: this.nik,
                 password: this.password
             }).then((response) => {
-                localStorage.setItem('jwtToken', response.data.token);
                 this.$emit('receivingToken', response.data.token);
             })
-            .catch(() => {
+            .catch((error) => {
+                console.log(error);
                 this.validatingError = true;
             })
         }

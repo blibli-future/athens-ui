@@ -22,21 +22,7 @@
 <script>
 export default {
     methods:{
-         showDropdown:function ()  {
-    document.getElementById("myDropdown").classList.toggle("show");
-         },
-        created:function () {
-            window.onclick = function(e) {
-                if (!e.target.matches('.dropdown--btn')) {
-                    var myDropdown = document.getElementById("myDropdown");
-                    if (myDropdown.classList.contains('show')) {
-                        myDropdown.classList.remove('show');
-                    }
-                }
-            }
-        },
         invalidate: function () {
-            localStorage.removeItem('jwtToken');
             this.$emit('invalidating');
         }
   }
