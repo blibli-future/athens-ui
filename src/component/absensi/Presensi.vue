@@ -119,7 +119,7 @@
     };
 </script>
 <style lang="scss">
-
+    @import "../../_scss/_color.scss";
     .presensi{
         margin: 3% 15%;
         &__title{
@@ -145,7 +145,7 @@
                 padding: 5px;
                 background-color: white;
                 border-radius: 5px;
-                border: 1px solid #ccc;
+                border: 1px solid $border__grey;
             }
             &__button{
                 margin: auto 5px;
@@ -155,12 +155,12 @@
                 text-align: center;
                 border: 1px solid transparent;
                 border-radius: 4px;
-                background-color: #b3dcff;
+                background-color: $button__blue;
                 cursor: pointer;
                 text-decoration: none;
                 color:black;
                 &:hover{
-                    background-color: #94c2ee;
+                    background-color: $button__blue-hover;
                 }
             }
         }
@@ -173,13 +173,13 @@
             }
             &__body{
                 tr:hover{
-                    background-color: #e1e1e1
+                    background-color: $table-hover;
                 }
             }
             tr{
                 td{
                     padding:5px ;
-                    border: solid thin #a1a1a1;
+                    border: solid thin $border__grey;
                 }
             }
         }

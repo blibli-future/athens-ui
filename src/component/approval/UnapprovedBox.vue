@@ -29,10 +29,11 @@ export default {
 </script>
 
 <style lang="scss">
+    @import "../../_scss/_color.scss";
     .unapproved {
         display: flex;
         border-radius: 4px;
-        border: 1px solid rgb(188, 232, 241);
+        border: 1px solid transparentize($panel__blue,0.5);
         margin: 10px 0px;
         padding: 5px;
 
@@ -51,11 +52,17 @@ export default {
             color: white;
 
             &--accept {
-                background-color: rgb(49, 112, 143);
+                background-color: $button__blue;
+                &:hover{
+                    background-color: $button__blue-hover;
+                }
             }
 
             &--decline {
-                background-color: rgb(169, 68, 66);
+                background-color: $button__red;
+                &:hover{
+                    background-color: $button__red-hover;
+                }
             }
         }
     }

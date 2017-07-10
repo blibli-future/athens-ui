@@ -28,6 +28,7 @@
 </script>
 
 <style lang="scss">
+    @import "../../_scss/_color.scss";
     .upload{
         margin: 3% 15%;
         &__title{
@@ -42,9 +43,7 @@
         &__input{
             border-radius: 5px;
             height: 2em;
-            border: 1px solid #ccc;
             padding: 7px 15px;
-            font-family:Arial;
             font-size:inherit;
             border: none;
 
@@ -57,10 +56,10 @@
             text-align: center;
             border: 1px solid transparent;
             border-radius: 4px;
-            background-color: #b3dcff;
+            background-color: $button__blue;
             cursor: pointer;
             &:hover{
-                background-color: #92ccff;
+                background-color: $button__blue-hover;
             }
         }
     }

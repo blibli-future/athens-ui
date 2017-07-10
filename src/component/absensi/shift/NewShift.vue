@@ -47,6 +47,7 @@
 
 </script>
 <style lang="scss">
+    @import "../../../_scss/_color.scss";
     .newShift{
         margin:3% 15%;
         &__title{
@@ -69,13 +70,13 @@
         }
         &__input{
             border-radius: 5px;
-            border: 1px solid #ccc;
+            border: 1px solid $input__grey;
             padding: 3px 15px;
             height:2em;
             box-sizing: border-box;
             font-size:inherit;
             flex:  1;
-            background-color: #ffffff;
+            background-color: white;
         }
 
 
@@ -88,10 +89,10 @@
             text-align: center;
             border: 1px solid transparent;
             border-radius: 4px;
-            background-color: #b3dcff;
+            background-color: $button__blue;
             cursor: pointer;
             &:hover{
-                background-color: #92ccff;
+                background-color: $button__blue-hover;
             }
         }
 
@@ -109,7 +110,7 @@
             border-radius: 5px;
             height:30px;
             line-height:1.5;
-            border: 1px solid #ccc;
+            border: 1px solid $input__grey;
             padding: 10px 15px;
             font-family:Arial;
             font-size:14px;

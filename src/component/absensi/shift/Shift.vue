@@ -53,7 +53,7 @@
 </script>
 
 <style lang="scss">
-
+    @import "../../../_scss/_color.scss";
     .shift{
         margin:3% 15%;
         &__title{
@@ -69,12 +69,12 @@
             text-align: center;
             border: 1px solid transparent;
             border-radius: 4px;
-            background-color: #b3dcff;
+            background-color:$button__blue;
             color: black;
             cursor: pointer;
             text-decoration: none;
             &:hover{
-                background-color: #92ccff;
+                background-color: $button__blue-hover;
             }
         }
     }
@@ -86,13 +86,13 @@
         }
         &__body{
             tr:hover{
-                background-color: #e1e1e1
+                background-color: $table-hover;
             }
         }
           tr{
              td{
                 padding:5px ;
-                border: solid thin #a1a1a1;
+                border: solid thin $border__grey;
             }
         }
     }

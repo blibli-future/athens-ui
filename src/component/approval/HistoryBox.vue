@@ -37,6 +37,7 @@
 </script>
 
 <style lang="scss">
+    @import "../../_scss/_color.scss";
     .history {
         display: flex;
         border-radius: 4px;
@@ -44,15 +45,15 @@
         padding: 5px;
 
         &--approved {
-            background-color: rgb(217, 237, 247);
-            border: 1px solid rgb(188, 232, 241);
-            color: rgb(49, 112, 143);
+            background-color: transparentize($panel__blue,0.8);
+            border: 1px solid transparentize($panel__blue,0.7);
+            color: $panel__blue;
         }
 
         &--rejected {
-            background-color: rgb(242, 222, 222);
-            border: 1px solid rgb(235, 204, 209);
-            color: rgb(169, 68, 66);
+            background-color: transparentize($panel__red,0.8);
+            border: 1px solid transparentize($panel__red,0.7);
+            color: $panel__red;
         }
 
         &__status-holder {

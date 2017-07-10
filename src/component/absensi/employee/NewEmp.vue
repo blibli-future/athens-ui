@@ -74,6 +74,7 @@
 
 </script>
 <style lang="scss">
+    @import "../../../_scss/_color.scss";
     .new-emp{
         margin:3% 10%;
         &__title{
@@ -97,11 +98,11 @@
                 border-radius: 5px;
                 height:30px;
                 line-height:1.5;
-                border: 1px solid #ccc;
+                border: 1px solid $input__grey;
                 padding: 10px 15px;
                 font-family:Arial;
                 font-size:14px;
-                background-color: #fff;
+                background-color: white;
             }
         }
     }
@@ -114,10 +115,10 @@
         text-align: center;
         border: 1px solid transparent;
         border-radius: 4px;
-        background-color: #b3dcff;
+        background-color: $button__light-blue;
         cursor: pointer;
         &:hover{
-            background-color: #92ccff;
+            background-color: $button__light-blue-hover;
         }
     }
 
