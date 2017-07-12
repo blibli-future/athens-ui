@@ -159,6 +159,7 @@
     };
 </script>
 <style lang="scss">
+    @import "../_scss/_color.scss";
     .report {
         $r: &;
         margin: 3% 5%;
@@ -175,12 +176,12 @@
             text-align: center;
             border: 1px solid transparent;
             border-radius: 4px;
-            background-color: #b3dcff;
+            background-color: $button__light-blue;
             color: black;
             cursor: pointer;
             text-decoration: none;
             &:hover {
-                background-color: #92ccff;
+                background-color: $button__light-blue-hover;
             }
         }
         &__form-search {

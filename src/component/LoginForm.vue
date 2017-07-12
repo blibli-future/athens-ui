@@ -42,6 +42,7 @@ export default {
 </script>
 
 <style lang="scss" scoped="true">
+    @import "../_scss/_color.scss";
   .login {
     background-image: url("https://upload.wikimedia.org/wikipedia/commons/9/91/View_of_the_Acropolis_Athens_%28pixinn.net%29.jpg");
     width: inherit;
@@ -58,7 +59,7 @@ export default {
     /*height: 200px;*/
     /*max-height: 30%;*/
 
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color:transparentize( $shadow, 0.5);
 
     border-radius: 5px;
 
@@ -70,11 +71,11 @@ export default {
     }
 
     &--text {
-      background-color: rgba(255, 255, 255, 0.8);
+      background-color: transparentize(white,0.2);
       text-align: center;
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-size: x-large;
-      color: #101010;
+      color: black;
       border-radius: 5px;
     }
 
@@ -83,7 +84,6 @@ export default {
       border-top: none;
       border-right: none;
       border-left: none;
-      border-bottom: 1px solid #2b669a;
       border-radius: 5px;
 
       &:focus {
@@ -92,9 +92,8 @@ export default {
     }
 
     &--button {
-      background-color: #5bc0de;
+      background-color: $button__blue;
       border-radius: 5px;
-      border: 1px solid #2b669a;
       color: black;
     }
 

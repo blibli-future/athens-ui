@@ -55,6 +55,7 @@ export default {
 </script>
 
 <style lang="scss">
+    @import "../_scss/_color.scss";
     .approval {
         margin: 0 auto;
         width: 90%;
@@ -88,7 +89,7 @@ export default {
         &__input, &__drop-down  {
             margin: 0 5px;
             border-radius: 5px;
-            border: 1px solid rgb(204, 204, 204);
+            border: 1px solid $shadow;
             padding: 2px;
         }
 
@@ -105,7 +106,7 @@ export default {
             flex: 1;
             border: 1px solid transparent;
             border-radius: 4px;
-            background-color: #b3dcff;
+            background-color: $button__blue;
             cursor: pointer;
             margin: 0 5px;
         }

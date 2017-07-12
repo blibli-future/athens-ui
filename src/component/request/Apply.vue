@@ -34,7 +34,7 @@
             </div>
             <div class="apply__sub-wrapper apply__sub-wrapper--full">
                 <label class="apply__label--reason" for="reason">Reason :</label>
-                <textarea id="reason" class="apply__input--full"></textarea>
+                <textarea id="reason" class="apply__input--full" rows="4"></textarea>
             </div>
             <div class="apply__input-wrapper">
                 <div class="apply__submit-helper"></div>
@@ -50,10 +50,11 @@ export default {
 </script>
 
 <style lang="scss">
+    @import "../../_scss/_color.scss";
     .apply {
         margin: 1rem 0;
         &__title {
-            color: rgb(51, 51, 51);
+            color: black;
             font-size: 20px;
             font-weight: 500;
             line-height: 26.4px;
@@ -104,12 +105,11 @@ export default {
 
             &--selector {
                 font-size: 14px;
-                color: #555;
-                background-color: #fff;
-                border: 1px solid #ccc;
+                background-color: white;
+                border: 1px solid  $input__grey;
                 border-radius: 4px;
-                -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-                box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+                -webkit-box-shadow: inset 0 1px 1px $shadow;
+                box-shadow: inset 0 1px 1px $shadow;
             }
 
             &--full {
@@ -117,19 +117,6 @@ export default {
             }
         }
 
-        &__selector {
-            display: inline-block;
-            height: 30px;
-            padding: 5px 10px;
-            font-size: 14px;
-            line-height: 1.5;
-            color: #555;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-        }
 
         &__submit {
             padding: 8px 12px;
@@ -137,9 +124,8 @@ export default {
             text-align: center;
             border: 1px solid transparent;
             border-radius: 4px;
-            background-color: #b3dcff;
+            background-color: $button__blue;
             cursor: pointer;
-
             &-helper {
                 flex-grow: 1;
             }

@@ -15,6 +15,7 @@ export default {
 </script>
 
 <style lang="scss">
+    @import "../../_scss/_color.scss";
     .history {
         &__title {
             color: rgb(51, 51, 51);
@@ -22,16 +23,6 @@ export default {
             font-weight: 500;
             line-height: 26.4px;
             margin-bottom: 10px;
-        }
-
-        &__container {
-            margin-bottom: 20px;
-            background-color: #fff;
-            border: 1px solid #abd4f8;
-            border-radius: 4px;
-            -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-            box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-            height: 170px;
         }
     }
 </style>

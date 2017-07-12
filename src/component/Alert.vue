@@ -18,17 +18,18 @@
 </script>
 
 <style lang="scss">
+    @import "../_scss/_color.scss";
     .alert{
         padding: 20px 10px;
         margin-bottom: 10px;
         border-radius: 6px;
         &--success{
-            background-color: #ddf9d2;
-            border: thin solid #c7edbd;
+            background-color: $alert__green;
+            border: thin solid transparentize($alert__green,0.2);
         }
         &--danger{
-            background-color: #f9bdbd;
-            border: thin solid #eea7aa;
+            background-color: $alert__red;
+            border: thin solid transparentize($alert__red,0.2)
         }
 
 

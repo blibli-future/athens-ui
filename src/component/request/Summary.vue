@@ -36,6 +36,7 @@ export default {
 </script>
 
 <style lang="scss">
+    @import "../../_scss/_color.scss";
     .summary {
         &__container {
             display: flex;
@@ -70,7 +71,7 @@ export default {
 
         &__progress {
             height: 20px;
-            background-color: #ececec;
+            background-color: whitesmoke;
             border-radius: 4px;
         }
 
@@ -78,15 +79,16 @@ export default {
             height: 20px;
             border-radius: 4px;
             overflow: hidden;
+            padding-top: 2px;
             text-align: center;
             color: white;
 
             &--blue {
-                background-color: #3b96dc;
+                background-color:$progress__blue;
             }
 
             &--red {
-                background-color: #ff6f6d;
+                background-color: $progress__red;
             }
         }
     }

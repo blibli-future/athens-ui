@@ -30,8 +30,9 @@ export default {
 </script>
 
 <style lang="scss">
+    @import "../_scss/_color.scss";
 .nav {
-    background-color: #5b8eca;
+    background-color: $navbar__blue;
     padding: 0 3px;
     font-size: 16px;
 
@@ -45,7 +46,7 @@ export default {
         display: inline-block;
 
         &:hover{
-            background-color: #3d7fca;
+            background-color: $navbar__blue-hover;
         }
     }
 
@@ -65,9 +66,9 @@ export default {
 
     &__drop-down {
         position: absolute;
-        background-color: #f9f9f9;
+        background-color: white;
         z-index: 1;
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        box-shadow: 0 8px 16px 0 transparentize(black, 0.8);
         margin: 13.5px 0 0 -20px;
         display: none;
     }
@@ -86,7 +87,7 @@ export default {
         }
 
         &:hover {
-            background-color: #c1e5ff;
+            background-color:$sub-nav;
         }
     }
 }

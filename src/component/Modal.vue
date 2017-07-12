@@ -29,6 +29,7 @@
     </transition>
 </template>
 <style lang="scss">
+    @import "../_scss/_color.scss";
     .modal{
         &-mask {
             position: fixed;
@@ -37,7 +38,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, .5);
+            background-color: transparentize(black, 0.5);
             transition: opacity .3s ease;
 
 
@@ -51,16 +52,16 @@
             flex-basis:30%;
             margin: 0px auto;
             padding: 20px 30px;
-            background-color: #fff;
+            background-color: white;
             border-radius: 2px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+            box-shadow: 0 2px 8px transparentize(black,0.33);
             //transition: all .3s ease;
             //transition: all 5px;
             font-family: Helvetica, Arial, sans-serif;
         }
         &-header {
             margin-top: 0;
-            color: #529fff;
+            color: $modal__blue;
             font-weight: bold;
         }
         &-body {
@@ -73,7 +74,6 @@
             float: right;
         }
     }
-
 
     .modal-enter {
         opacity: 0;

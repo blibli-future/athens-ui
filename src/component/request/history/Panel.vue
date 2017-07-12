@@ -18,19 +18,20 @@ export default {
 </script>
 
 <style lang="scss">
+    @import "../../../_scss/_color.scss";
     .panel {
         margin-bottom: 20px;
-        background-color: #fff;
-        border: 1px solid #abd4f8;
+        background-color:white;
+        border: 1px solid transparentize($panel__blue,0.7) ;
         border-radius: 4px;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+        box-shadow: 0 1px 1px $shadow;
         height: 170px;
 
         &__header {
             padding: 1px 10px;
             border-radius: 5px 5px 0 0;
-            background-color: #c1e5ff;
-            color: #3d7fca;
+            background-color: transparentize($panel__blue,0.7);
+            color: black;
         }
 
         &__title {
@@ -47,26 +48,4 @@ export default {
             height: 120px;
         }
     }
-
-    /*.panels {*/
-        /*margin-bottom: 20px;*/
-        /*background-color: #fff;*/
-        /*border: 1px solid #abd4f8;*/
-        /*border-radius: 4px;*/
-        /*-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);*/
-        /*box-shadow: 0 1px 1px rgba(0, 0, 0, .05);*/
-        /*height: 170px;*/
-
-    /*&--head{*/
-         /*padding: 1px 18px;*/
-         /*border-radius: 5px 5px 0 0;*/
-         /*background-color: #c1e5ff;*/
-         /*color: #3d7fca;*/
-     /*}*/
-    /*&--body{*/
-         /*padding: 15px;*/
-         /*overflow: scroll;*/
-         /*height: 70px;*/
-     /*}*/
-    /*}*/
 </style>
