@@ -11,43 +11,46 @@ import Employee from './component/absensi/employee/Employee.vue';
 import NewEmployee from './component/absensi/employee/NewEmp.vue';
 import Report from './component/Report.vue';
 import Approval from  './component/Approval.vue';
+import Home from './component/Home.vue';
 
 Vue.use(Router);
 
 export default new Router({
   // mode: 'history',
-  routes: [
-    {
-      path: '/login',
-      component: LoginPage
-    }, {
-      path: '/index',
-      component: Request
-    },{
-      path:'/upload',
-      component:Upload
-    },{
-      path:'/shift',
-          component: Shift
-      },{
-          path:'/shift/add',
-          component: NewShift
-      },{
-          path:'/presensi',
-          component: Presensi
-      },{
-          path:'/employee',
-          component: Employee
-      },{
-          path:'/employee/add',
-          component: NewEmployee
-      },{
-          path:'/report',
-          component: Report
-      }, {
-        path: '/approval',
-        component: Approval
-      }
-
+    routes: [
+        {
+            path: '/login',
+            component: LoginPage
+        }, {
+            path: '/index',
+            component: Request
+        }, {
+            path:'/upload',
+            component:Upload
+        }, {
+            path:'/shift',
+            component: Shift
+        },{
+            path:'/shift/add',
+            component: NewShift
+        },{
+            path:'/presensi',
+            component: Presensi
+        },{
+            path:'/employee',
+            component: Employee
+        },{
+            path:'/employee/add',
+            component: NewEmployee
+        },{
+            path:'/report',
+            component: Report
+        }, {
+            path: '/approval',
+            component: Approval
+        }, {
+            path: '/home',
+            component: Home
+        }
   ]
 });
