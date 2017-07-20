@@ -1,5 +1,5 @@
 <template>
-    <section class="history">
+    <section class="request-history">
         <div class="history__title">Leave History</div>
         <panel></panel>
     </section>
@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style lang="scss">
-    .history {
+    .request-history {
         &__title {
             color: rgb(51, 51, 51);
             font-size: 20px;

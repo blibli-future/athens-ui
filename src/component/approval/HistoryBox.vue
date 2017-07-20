@@ -1,5 +1,5 @@
 <template>
-    <div :class="'history history--'+item.status">
+    <div :class="'approval-history approval-history--'+item.status">
         <div>
             <div>
                 <span>{{item.nik}}</span> - <span>{{item.name}}</span>
@@ -37,7 +37,7 @@
 </script>
 
 <style lang="scss">
-    .history {
+    .approval-history {
         display: flex;
         border-radius: 4px;
         margin: 10px 0px;
