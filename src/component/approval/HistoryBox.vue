@@ -11,9 +11,9 @@
                 <span>start date</span> - <span>end date</span>
             </div>
         </div>
-        <div class="history__status-holder">
-            <div class="history__status">
-                <strong :class="'history__status--'+item.status">{{item.status}}</strong> by someone
+        <div class="approval-history__status-holder">
+            <div class="approval-history__status">
+                <strong :class="'approval-history__status--'+item.status">{{item.status}}</strong> by someone
             </div>
         </div>
     </div>
