@@ -1,7 +1,7 @@
 <template>
 
     <nav class="nav">
-        <router-link class="nav__link nav__item nav__title" to="/index">ATHENS</router-link>
+        <router-link class="nav__link nav__item nav__title" to="/home">ATHENS</router-link>
         <ul class="nav__menu">
             <li class="nav__item nav__link nav__drop-link">Absensi
                 <ul class="nav__drop-down">
