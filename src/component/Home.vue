@@ -223,9 +223,6 @@ export default {
             justify-content: space-between;
         }
     }
-
-    .call-out:nth-child(1) {background-color: #c0dbe2;}
-    .call-out:nth-child(2) {background-color: #cdf1c3;}
-    .call-out:nth-child(3) {background-color: #ccb9da;}
+    
 
 </style>
