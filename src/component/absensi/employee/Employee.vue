@@ -76,12 +76,30 @@
                     {nik:'02002757',fullname:'Kusumo Martanto',gender:'Male',positionText:'General Manager',organizationalUnitText:'Operation', maritalStatus:'Nikah',religion:'Katholik',nameOfDept:'Business Development -GDN',chiefNik:'-',chiefName:'-',startWorkingDate:'8/1/09'},
                     {nik:'01004108',fullname:'Dhany Koespratamadjati',gender:'Male',positionText:'Brand Activation Staff',organizationalUnitText:'Brand Activation', maritalStatus:'Lajang',religion:'Islam',nameOfDept:'Marketing -GDN',chiefNik:'06300020',chiefName:'Deny Agsana',startWorkingDate:'12/1/13'},
                     {nik:'02002759',fullname:'Kusumo Martanto',gender:'Male',positionText:'General Manager',organizationalUnitText:'Operation', maritalStatus:'Nikah',religion:'Katholik',nameOfDept:'Business Development -GDN',chiefNik:'-',chiefName:'-',startWorkingDate:'8/1/09'}
-
-
                 ],
             };
         },
-    }
+        created: function() {
+            this.$http.get('http://localhost:8080/employees')
+            .then(response => {
+                this.employee = response.data;
+            })
+            .catch(function (error) {
+              console.log(error);
+            })
+        },
+        methods: {
+            showReport: function() {
+                this.$http.get('http://localhost:8080/employees')
+                .then(response => {
+                    this.employee = response.data;
+                })
+                .catch(function (error) {
+                  console.log(error);
+                })
+            }
+        }
+    };
 </script>
 
 <style lang="scss">
