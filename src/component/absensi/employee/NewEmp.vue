@@ -95,7 +95,7 @@
             &__input{
                 width: 40%;
                 border-radius: 5px;
-                height:30px;
+                height:3em;
                 line-height:1.5;
                 border: 1px solid #ccc;
                 padding: 10px 15px;
