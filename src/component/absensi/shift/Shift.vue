@@ -25,7 +25,7 @@
                     <td class="text-center">{{item.endHour}}</td>
                     <td>{{item.department}}</td>
                     <td>{{item.location}}</td>
-                    <td> <button id="tapIn-modal"  @click="showModal = true" class="form__button">Tap In</button></td>
+                    <td> <button id="tapIn-modal"  @click="showModal = true" class="shift__link">Add Employee</button></td>
                 </tr>
             </tbody>
         </table>
@@ -117,6 +117,16 @@
             &:hover{
                 background-color: #92ccff;
             }
+        }
+        &__link{
+            text-decoration: underline;
+            background: none;
+            border : none;
+            color: cornflowerblue;
+            &:hover{
+                cursor:pointer;
+            }
+
         }
     }
     .table{
