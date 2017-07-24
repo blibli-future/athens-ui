@@ -52,6 +52,9 @@ export default new Router({
         }, {
             path: '/shifting',
             component: EmployeeShifting
+        }, {
+            path: '/home',
+            component: Home
         }
   ]
 });
