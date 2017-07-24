@@ -5,11 +5,6 @@
         <section class="search">
             <form class="emp-search">
                 <input type="text" placeholder="search"class="emp-search__input"/>
-                <label for="searchKey" class="emp-search__label">Search By</label>
-                <select id="searchKey" class="emp-search__input">
-                    <option>NIK</option>
-                    <option>Name</option>
-                </select>
                 <label for="dep" class="emp-search__label">Department</label>
                 <select id="dep"class="emp-search__input">
                         <option>All Department</option>
