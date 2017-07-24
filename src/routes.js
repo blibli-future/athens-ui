@@ -12,7 +12,7 @@ import NewEmployee from './component/absensi/employee/NewEmp.vue';
 import Report from './component/Report.vue';
 import Approval from  './component/Approval.vue';
 import Home from './component/Home.vue';
-import EmployeeShifting from './component/absensi/shift/EmployeeShifting.vue';
+
 
 Vue.use(Router);
 
@@ -49,10 +49,7 @@ export default new Router({
         }, {
             path: '/approval',
             component: Approval
-        }, {
-            path: '/shifting',
-            component: EmployeeShifting
-        }, {
+        },  {
             path: '/home',
             component: Home
         }
