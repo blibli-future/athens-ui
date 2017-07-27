@@ -9,6 +9,7 @@
 
 <script>
 import NavigationBar from './component/NavBar.vue';
+import JwtDecode from 'jwt-decode';
 
 export default {
     data() {
@@ -22,8 +23,13 @@ export default {
         }
     },
     methods: {
-        registerToken: function() {
+        registerToken: function(jwtToken) {
             this.authenticated = true;
+
+            const payload = JwtDecode(jwtToken);
+
+            localStorage.setItem('jwtToken', jwtToken);
+            localStorage.setItem('payload', payload);
 
             this.$http.defaults.headers.common['Authorization'] =
                 'Bearer ' + localStorage.getItem('jwtToken');
@@ -32,6 +38,10 @@ export default {
         },
         removeToken: function () {
             this.authenticated = false;
+
+            localStorage.removeItem('jwtToken');
+            localStorage.removeItem('payload');
+
             delete this.$http.defaults.headers.common['Authorization'];
             this.$router.push("/login");
         }
