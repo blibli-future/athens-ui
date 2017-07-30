@@ -7,64 +7,64 @@
                 <input type="text" v-model="nik" name="nik" id="nik" class="form__input"/>
             </div>
             <div class="form__section">
-                <label for="fullName"class="form__label">Full Name</label>
+                <label for="fullName" class="form__label">Full Name</label>
                 <input type="text" v-model="fullName" name="fullName" id="fullName" class="form__input"/>
             </div>
             <div class="form__section">
                 <label for="gender" class="form__label"> Gender</label>
                 <select name="gender" v-model="gender" id="gender" class="form__input">
-                    <option value="{{}}">Laki Laki </option>
-                    <option value="{{}}">Perempuan</option>
+                    <option value="Male">Laki Laki </option>
+                    <option value="Female">Perempuan</option>
                 </select>
             </div>
             <div class="form__section">
                 <label for="position" class="form__label"> Position </label>
-                <input type="text " v-model="position" name="position" id="position" class="form__input"/>
+                <input type="text" v-model="position" name="position" id="position" class="form__input"/>
             </div>
             <div class="form__section">
                 <label for="organizationUnit" class="form__label"> Organization Unit </label>
-                <input type="text " v-model="organizationUnit" name="organizationUnit" id="organizationUnit" class="form__input"/>
+                <input type="text" v-model="organizationalUnitText" name="organizationUnit" id="organizationUnit" class="form__input"/>
             </div>
             <div class="form__section">
                 <label for="department" class="form__label"> Department</label>
-                <select name="department" id="department" class="form__input">
-                    <option value="{{}}">Business Development </option>
-                    <option value="{{}}">Finance</option>
-                    <option value="{{}}">Human Resource </option>
-                    <option value="{{}}">Marketing</option>
-                    <option value="{{}}">Operations </option>
-                    <option value="{{}}">Product Management </option>
-                    <option value="{{}}">Program Management </option>
-                    <option value="{{}}">Technology </option>
-                    <option value="{{}}">Trade Partnership</option>
+                <select v-model="nameOfDept" name="department" id="department" class="form__input">
+                    <option value="Business Development">Business Development </option>
+                    <option value="Finance">Finance</option>
+                    <option value="Human Resource">Human Resource </option>
+                    <option value="Marketin">Marketing</option>
+                    <option value="Operations">Operations </option>
+                    <option value="Product Managemen">Product Management </option>
+                    <option value="Program Management">Program Management </option>
+                    <option value="Technology">Technology </option>
+                    <option value="Trade Partnership">Trade Partnership</option>
                 </select>
 
             </div>
             <div class="form__section">
                 <label for="marital" class="form__label"> Marital Status</label>
-                <select type="text" name="marital" id="marital" class="form__input">
-                    <option value="{{}}">Menikah</option>
-                    <option value="{{}}">Lajang</option>
-                    <option value="{{}}">Janda</option>
+                <select v-model="maritalStatus" name="marital" id="marital" class="form__input">
+                    <option value="Menikah">Menikah</option>
+                    <option value="Lajang">Lajang</option>
+                    <option value="Janda">Janda</option>
                 </select>
             </div>
             <div class="form__section">
                 <label for="religion" class="form__label"> Religion</label>
-                <select type="text" name="religion" id="religion" class="form__input">
-                    <option value="{{}}">Kristen</option>
-                    <option value="{{}}">Katholik</option>
-                    <option value="{{}}">Islam</option>
-                    <option value="{{}}">Hindu</option>
-                    <option value="{{}}">Budha</option>
+                <select v-model="religion" name="religion" id="religion" class="form__input">
+                    <option value="Kristen">Kristen</option>
+                    <option value="Katholik">Katholik</option>
+                    <option value="Islam">Islam</option>
+                    <option value="Hindu">Hindu</option>
+                    <option value="Budha">Budha</option>
                 </select>
             </div>
             <div class="form__section">
-                <label for="marital" class="form__label"> Chief Nik  </label>
-                <select type="text" name="chiefNik" id="chiefNik" class="form__input">
-                    <option value="{{}}">{{}}</option>
-                    <option value="{{}}">{{}}</option>
-                    <option value="{{}}">{{}}</option>
-                </select>
+                <label for="chiefNik" class="form__label"> Chief Nik  </label>
+                <input type="text" v-model="chiefNik" name="chiefNik" id="chiefNik" class="form__input"/>
+            </div>
+            <div class="form__section">
+                <label for="startWorkinfDate" class="form__label"> Start Working Date </label>
+                <input type="date" v-model="startWorkinfDate" name="startWorkinfDate" id="startWorkinfDate" class="form__input"/>
             </div>
             <button type="submit">Save</button>
         </form>
@@ -113,7 +113,6 @@
                 line-height:1.5;
                 border: 1px solid #ccc;
                 padding: 10px 15px;
-                font-family:Arial;
                 font-size:14px;
                 background-color: #fff;
             }
