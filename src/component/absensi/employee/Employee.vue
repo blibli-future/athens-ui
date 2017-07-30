@@ -89,15 +89,6 @@
             })
         },
         methods: {
-            showReport: function() {
-                this.$http.get('http://localhost:8080/employees')
-                .then(response => {
-                    this.employee = response.data;
-                })
-                .catch(function (error) {
-                  console.log(error);
-                })
-            }
         }
     };
 </script>

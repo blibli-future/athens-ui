@@ -4,26 +4,26 @@
         <form method="post">
             <div class="form__section">
                 <label for="nik" class="form__label">NIK</label>
-                <input type="text" name="nik" id="nik" class="form__input"/>
+                <input type="text" v-model="nik" name="nik" id="nik" class="form__input"/>
             </div>
             <div class="form__section">
                 <label for="fullName"class="form__label">Full Name</label>
-                <input type="text" name="fullName" id="fullName" class="form__input"/>
+                <input type="text" v-model="fullName" name="fullName" id="fullName" class="form__input"/>
             </div>
             <div class="form__section">
                 <label for="gender" class="form__label"> Gender</label>
-                <select name="gender" id="gender" class="form__input">
+                <select name="gender" v-model="gender" id="gender" class="form__input">
                     <option value="{{}}">Laki Laki </option>
                     <option value="{{}}">Perempuan</option>
                 </select>
             </div>
             <div class="form__section">
                 <label for="position" class="form__label"> Position </label>
-                <input type="text " name="position" id="position" class="form__input"/>
+                <input type="text " v-model="position" name="position" id="position" class="form__input"/>
             </div>
             <div class="form__section">
                 <label for="organizationUnit" class="form__label"> Organization Unit </label>
-                <input type="text " name="organizationUnit" id="organizationUnit" class="form__input"/>
+                <input type="text " v-model="organizationUnit" name="organizationUnit" id="organizationUnit" class="form__input"/>
             </div>
             <div class="form__section">
                 <label for="department" class="form__label"> Department</label>
@@ -71,7 +71,21 @@
     </div>
 </template>
 <script>
-
+    export default {
+        methods: {
+            addEmployee: function() {
+                this.$http.post('http://localhost:8080/employees', {
+                    nik: this.nik,
+                    password: this.password
+                }).then((response) => {
+                    //this.$emit('receivingToken', response.data.token);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+            }
+        }
+    };
 </script>
 <style lang="scss">
     .new-emp{
