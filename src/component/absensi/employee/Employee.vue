@@ -44,6 +44,7 @@
                     <td>Chief NIK</td>
                     <td>Chief Name</td>
                     <td>Start Working Date</td>
+                    <td></td>
                 </tr>
                 </thead>
                 <tbody class="emp-table__body">
@@ -59,6 +60,7 @@
                     <td>{{item.chiefNik}}</td>
                     <td>{{item.chiefName}}</td>
                     <td>{{item.startWorkingDate}}</td>
+                    <td><router-link to="/employee/edit" class="employee__link">Edit</router-link></td>
                 </tr>
                 </tbody>
             </table>
@@ -100,6 +102,9 @@
             display: block;
             font-size: 1.5em;
             font-weight: bold;
+        }
+        &__link{
+            color: cornflowerblue;
         }
     }
     .emp-search{

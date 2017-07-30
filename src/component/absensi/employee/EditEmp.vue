@@ -1,6 +1,23 @@
 <template>
-    <div class="new-emp">
-        <h2 class="new-emp__title">New Employee</h2>
+    <div class="edit-emp">
+        <h2 class="edit-emp__title">Edit Employee</h2>
+        <button id="showModalResign" @click="showModalResign = true" class="form__button">Add Resign Date</button>
+        <modal v-if="showModalResign" @close="showModalResign = false" class="modal">
+            <h3 slot="header">Add Resign Date</h3>
+            <form slot="body" class="modal__form">
+                <label for="endWorkingDate" class="modal__label">Resign Date</label>
+                <input v-model="endWorkingDate" type="date" class="modal__input" id="endWorkingDate"/>
+            </form>
+            <div slot="footer">
+                <button class="modal-button form__button">
+                    Save
+                </button>
+                <button class="modal-button form__button" @click="showModalResign = false">
+                    Cancel
+                </button>
+            </div>
+        </modal>
+        <br/><br/>
         <form method="post">
             <div class="form__section">
                 <label for="nik" class="form__label">NIK</label>
@@ -64,31 +81,27 @@
             </div>
             <div class="form__section">
                 <label for="startWorkinfDate" class="form__label"> Start Working Date </label>
-                <input type="date" v-model="startWorkinfDate" name="startWorkinfDate" id="startWorkinfDate" class="form__input"/>
+                <input type="date" v-model="startWorkingDate" name="startWorkinfDate" id="startWorkinfDate" class="form__input"/>
             </div>
-            <button type="submit">Save</button>
+
+            <button type="submit" class="form__button">Save</button>
         </form>
     </div>
 </template>
 <script>
+    import Modal from'../../Modal.vue';
     export default {
-        methods: {
-            addEmployee: function() {
-                this.$http.post('http://localhost:8080/employees', {
-                    nik: this.nik,
-                    password: this.password
-                }).then((response) => {
-                    //this.$emit('receivingToken', response.data.token);
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
+        data() {
+            return {
+                showModalResign:false
             }
-        }
+        },
+        methods: {},
+        components: {Modal}
     };
 </script>
 <style lang="scss">
-    .new-emp{
+    .edit-emp{
         margin:3% 10%;
         &__title{
             display: block;
@@ -96,42 +109,56 @@
             font-weight: bold;
             margin: 10px 0;
         }
-        .form{
-           &__section{
+        .modal{
+            &__form{
+                display: flex;
+                align-items: center;
+            }
+            &__label{
+                padding-right: 3px;
+            }
+            &__input{
+                flex:1;
+            }
+
+        }
+        .form {
+            &__section {
                 display: block;
                 margin-bottom: 10px;
                 width: 100%;
-           }
-            &__label{
+            }
+            &__label {
                 width: 15%;
                 float: left;
             }
-            &__input{
+            &__input {
                 width: 40%;
                 border-radius: 5px;
-                height:30px;
-                line-height:1.5;
+                height: 30px;
+                line-height: 1.5;
                 border: 1px solid #ccc;
                 padding: 10px 15px;
-                font-size:14px;
+                font-size: 14px;
                 background-color: #fff;
+            }
+            &__button {
+                display: inline-block;
+                padding: 8px 12px;
+                margin: 0 3px;
+                font-size: 14px;
+                text-align: center;
+                border: 1px solid transparent;
+                border-radius: 4px;
+                background-color: #b3dcff;
+                cursor: pointer;
+                &:hover {
+                    background-color: #92ccff;
+                }
             }
         }
     }
 
-    button{
-        display: inline-block;
-        padding: 8px 12px;
-        margin-bottom: 0;
-        font-size: 14px;
-        text-align: center;
-        border: 1px solid transparent;
-        border-radius: 4px;
-        background-color: #b3dcff;
-        cursor: pointer;
-        &:hover{
-            background-color: #92ccff;
-        }
-    }
+
 
 </style>
