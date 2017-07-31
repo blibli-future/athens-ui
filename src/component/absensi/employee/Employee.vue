@@ -8,16 +8,11 @@
                         type="text" placeholder="search by nik or name" class="emp-search__input" />
                 <label for="dep" class="emp-search__label">Department</label>
                 <select id="dep" class="emp-search__input">
-                        <option>All Department</option>
-                        <option value="{{}}">Business Development </option>
-                        <option value="{{}}">Finance</option>
-                        <option value="{{}}">Human Resource </option>
-                        <option value="{{}}">Marketing</option>
-                        <option value="{{}}">Operations </option>
-                        <option value="{{}}">Product Management </option>
-                        <option value="{{}}">Program Management </option>
-                        <option value="{{}}">Technology </option>
-                        <option value="{{}}">Trade Partnership</option>
+                        <option value="All">All Department</option>
+                        <option v-for="department in departments"
+                                :value="department">
+                            {{department}}
+                        </option>
                 </select>
                 <button class="emp-search__button">Search</button>
                 <router-link class="emp-search__button emp-search__button-blue" to="/employee/add">Add New</router-link>
@@ -64,7 +59,8 @@
 
 
 <script>
-    import API from '../../../constant/api.url';
+    import Api from '../../../constant/api.url';
+    import Departments from '../../../constant/departments';
 
     export default {
         data() {
@@ -76,16 +72,20 @@
                     {nik:'02002759',fullname:'Kusumo Martanto',gender:'Male',positionText:'General Manager',organizationalUnitText:'Operation', maritalStatus:'Nikah',religion:'Katholik',nameOfDept:'Business Development -GDN',chiefNik:'-',chiefName:'-',startWorkingDate:'8/1/09'}
                 ],
                 filteredEmployees: [],
-                keyword: ''
+                keyword: '',
+                selectedDepartment: '',
+                departments: Departments
             };
         },
         methods: {
             filterResult: function () {
-                const filter = (/\d/.test(this.keyword)) ?
+                const queryFilter = (/\d/.test(this.keyword)) ?
                     this.nikFilter(this.keyword) :
                     this.nameFilter(this.keyword);
 
-                this.filteredEmployees = this.employees.filter(filter);
+                this.filteredEmployees = this.employees
+                        .filter(queryFilter)
+                        .filter(this.departmentFilter(this.selectedDepartment));
             },
             nameFilter: function (keyword) {
                 return function (employee) {
@@ -96,10 +96,21 @@
                 return function (employee) {
                     return employee.nik.search(keyword) > 0;
                 }
+            },
+            departmentFilter: function (department) {
+                if (department === 'All') {
+                    return function () {
+                        return true;
+                    }
+                }
+
+                return function (employee) {
+                    return employee.department === department;
+                }
             }
         },
         created: function () {
-            this.$http.get(API + '/employees')
+            this.$http.get(Api + '/employees')
                 .then((response) => {
                     this.employees = response.data;
                     this.filteredEmployees = this.employees;
