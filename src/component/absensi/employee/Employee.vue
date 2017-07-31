@@ -64,6 +64,8 @@
 
 
 <script>
+    import API from '../../../constant/api.url';
+
     export default {
         data() {
             return {
@@ -97,7 +99,7 @@
             }
         },
         created: function () {
-            this.$http.get('http://localhost:8080/employees')
+            this.$http.get(API + '/employees')
                 .then((response) => {
                     this.employees = response.data;
                     this.filteredEmployees = this.employees;
