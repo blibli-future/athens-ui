@@ -4,14 +4,10 @@
         <br/>
         <section class="search">
             <form class="emp-search">
-                <input type="text" placeholder="search"class="emp-search__input"/>
-                <label for="searchKey" class="emp-search__label">Search By</label>
-                <select id="searchKey" class="emp-search__input">
-                    <option>NIK</option>
-                    <option>Name</option>
-                </select>
+                <input @keyup="filterResult" v-model="keyword"
+                        type="text" placeholder="search by nik or name" class="emp-search__input" />
                 <label for="dep" class="emp-search__label">Department</label>
-                <select id="dep"class="emp-search__input">
+                <select id="dep" class="emp-search__input">
                         <option>All Department</option>
                         <option value="{{}}">Business Development </option>
                         <option value="{{}}">Finance</option>
@@ -47,18 +43,18 @@
                 </tr>
                 </thead>
                 <tbody class="emp-table__body">
-                <tr v-for="item in employee">
-                    <td>{{item.nik}}</td>
-                    <td>{{item.fullname}}</td>
-                    <td>{{item.gender}}</td>
-                    <td>{{item.positionText}}</td>
-                    <td>{{item.organizationalUnitText}}</td>
-                    <td>{{item.maritalStatus}}</td>
-                    <td>{{item.religion}}</td>
-                    <td>{{item.nameOfDept}}</td>
-                    <td>{{item.chiefNik}}</td>
-                    <td>{{item.chiefName}}</td>
-                    <td>{{item.startWorkingDate}}</td>
+                <tr v-for="employee in employees">
+                    <td>{{employee.nik}}</td>
+                    <td>{{employee.fullname}}</td>
+                    <td>{{employee.gender}}</td>
+                    <td>{{employee.positionText}}</td>
+                    <td>{{employee.organizationalUnitText}}</td>
+                    <td>{{employee.maritalStatus}}</td>
+                    <td>{{employee.religion}}</td>
+                    <td>{{employee.nameOfDept}}</td>
+                    <td>{{employee.chiefNik}}</td>
+                    <td>{{employee.chiefName}}</td>
+                    <td>{{employee.startWorkingDate}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -71,16 +67,42 @@
     export default {
         data() {
             return {
-                employee: [
+                employees: [
                     {nik:'01004106',fullname:'Dhany Koespratamadjati',gender:'Male',positionText:'Brand Activation Staff',organizationalUnitText:'Brand Activation', maritalStatus:'Lajang',religion:'Islam',nameOfDept:'Marketing -GDN',chiefNik:'06300020',chiefName:'Deny Agsana',startWorkingDate:'12/1/13'},
                     {nik:'02002757',fullname:'Kusumo Martanto',gender:'Male',positionText:'General Manager',organizationalUnitText:'Operation', maritalStatus:'Nikah',religion:'Katholik',nameOfDept:'Business Development -GDN',chiefNik:'-',chiefName:'-',startWorkingDate:'8/1/09'},
                     {nik:'01004108',fullname:'Dhany Koespratamadjati',gender:'Male',positionText:'Brand Activation Staff',organizationalUnitText:'Brand Activation', maritalStatus:'Lajang',religion:'Islam',nameOfDept:'Marketing -GDN',chiefNik:'06300020',chiefName:'Deny Agsana',startWorkingDate:'12/1/13'},
                     {nik:'02002759',fullname:'Kusumo Martanto',gender:'Male',positionText:'General Manager',organizationalUnitText:'Operation', maritalStatus:'Nikah',religion:'Katholik',nameOfDept:'Business Development -GDN',chiefNik:'-',chiefName:'-',startWorkingDate:'8/1/09'}
-
-
                 ],
+                filteredEmployees: [],
+                keyword: ''
             };
         },
+        methods: {
+            filterResult: function () {
+                const filter = (/\d/.test(this.keyword)) ?
+                    this.nikFilter(this.keyword) :
+                    this.nameFilter(this.keyword);
+
+                this.filteredEmployees = this.employees.filter(filter);
+            },
+            nameFilter: function (keyword) {
+                return function (employee) {
+                    return employee.name.search(keyword) > 0;
+                }
+            },
+            nikFilter: function (keyword) {
+                return function (employee) {
+                    return employee.nik.search(keyword) > 0;
+                }
+            }
+        },
+        created: function () {
+            this.$http.get('http://localhost:8080/employees')
+                .then((response) => {
+                    this.employees = response.data;
+                    this.filteredEmployees = this.employees;
+                })
+        }
     }
 </script>
 
