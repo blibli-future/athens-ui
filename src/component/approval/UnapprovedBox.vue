@@ -2,18 +2,18 @@
     <div class="unapproved">
         <div>
             <div>
-                <span>{{item.nik}}</span> - <span>{{item.name}}</span>
+                <span>{{unapproved.nik}}</span> - <span>{{unapproved.fullName}}</span>
             </div>
             <div>
-                Type
+                {{unapproved.type}}
             </div>
             <div>
-                <span>start date</span> - <span>end date</span>
+                <span>{{unapproved.startDate}}</span> - <span>{{unapproved.endDate}}</span>
             </div>
         </div>
         <div class="unapproved__button-holder">
-            <button class="unapproved__button unapproved__button--accept">Accept</button>
-            <button class="unapproved__button unapproved__button--decline">Decline</button>
+            <button class="unapproved__button unapproved__button--accept" v-on:click="approving">Accept</button>
+            <button class="unapproved__button unapproved__button--decline" v-on:click="rejecting">Decline</button>
         </div>
     </div>
 </template>
@@ -21,10 +21,36 @@
 <script>
 export default {
   props: {
-    item: {
+    unapproved: {
       type: Object
     }
-  }
+  },
+  methods: {
+      approving: function() {
+        this.$http.put('http://localhost:8080/requests/'+this.unapproved.type+'/'+this.unapproved.id, {
+            nik:localStorage.getItem('nik'),
+            isApproved:true
+        })
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+      },
+      rejecting: function() {
+        this.$http.put('http://localhost:8080/requests/'+this.unapproved.type+'/'+this.unapproved.id, {
+            nik:localStorage.getItem('nik'),
+            isApproved:false
+        })
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+      }
+  },
 }
 </script>
 

@@ -1,19 +1,19 @@
 <template>
-    <div :class="'history history--'+item.status">
+    <div :class="'history history--'+history.status">
         <div>
             <div>
-                <span>{{item.nik}}</span> - <span>{{item.name}}</span>
+                <span>{{history.nik}}</span> - <span>{{history.fullName}}</span>
             </div>
             <div>
-                Type
+                {{history.type}}
             </div>
             <div>
-                <span>start date</span> - <span>end date</span>
+                <span>{{history.startDate}}</span> - <span>{{history.endDate}}</span>
             </div>
         </div>
         <div class="history__status-holder">
             <div class="history__status">
-                <strong :class="'history__status--'+item.status">{{item.status}}</strong> by someone
+                <strong :class="'history__status--'+history.status">{{history.status}}</strong> by someone
             </div>
         </div>
     </div>
@@ -22,12 +22,12 @@
 <script>
   export default {
     props: {
-      item: {
+      history: {
         type: Object
       }
     },
     created: function () {
-        if (this.item.status === 'rejected') {
+        if (this.history.status === 'rejected') {
           console.log('reject');
         } else {
           console.log('acc');
