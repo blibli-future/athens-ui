@@ -13,7 +13,7 @@
         </div>
         <div class="history__status-holder">
             <div class="history__status">
-                <strong :class="'history__status--'+history.status">{{history.status}}</strong> by someone
+                <strong :class="'history__status--'+history.status">{{history.status}}</strong> by {{history.processedBy}}
             </div>
         </div>
     </div>
@@ -27,6 +27,7 @@
       }
     },
     created: function () {
+      this.history.status = this.history.status.toLowerCase();
         if (this.history.status === 'rejected') {
           console.log('reject');
         } else {
