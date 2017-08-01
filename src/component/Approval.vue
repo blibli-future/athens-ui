@@ -62,7 +62,6 @@ export default {
         }})
         .then(response => {
             this.historyList = response.data;
-            console.log(response.data);
         })
         .catch(function (error) {
           console.log(error);
@@ -75,7 +74,6 @@ export default {
         }})
         .then(response => {
             this.unapprovedList = response.data;
-            console.log(response.data);
         })
         .catch(function (error) {
           console.log(error);
