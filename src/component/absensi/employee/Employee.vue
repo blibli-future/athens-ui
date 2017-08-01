@@ -50,9 +50,9 @@
                 <tbody class="emp-table__body">
                 <tr v-for="item in employee">
                     <td>{{item.nik}}</td>
-                    <td>{{item.fullname}}</td>
+                    <td>{{item.fullName}}</td>
                     <td>{{item.gender}}</td>
-                    <td>{{item.positionText}}</td>
+                    <td>{{item.position}}</td>
                     <td>{{item.organizationalUnitText}}</td>
                     <td>{{item.maritalStatus}}</td>
                     <td>{{item.religion}}</td>
