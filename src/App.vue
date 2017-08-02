@@ -29,7 +29,9 @@ export default {
             const payload = JwtDecode(jwtToken);
 
             localStorage.setItem('jwtToken', jwtToken);
-            localStorage.setItem('payload', payload);
+            localStorage.setItem('nik', payload.nik);
+            localStorage.setItem('sub', payload.sub);
+            localStorage.setItem('roles', payload.roles[0]);
 
             this.$http.defaults.headers.common['Authorization'] =
                 'Bearer ' + localStorage.getItem('jwtToken');
@@ -40,7 +42,9 @@ export default {
             this.authenticated = false;
 
             localStorage.removeItem('jwtToken');
-            localStorage.removeItem('payload');
+            localStorage.removeItem('nik');
+            localStorage.removeItem('sub');
+            localStorage.removeItem('roles');
 
             delete this.$http.defaults.headers.common['Authorization'];
             this.$router.push("/login");
