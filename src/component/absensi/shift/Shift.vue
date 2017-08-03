@@ -1,7 +1,7 @@
 <template>
     <main class="shift">
         <h2 class="shift__title">Shift</h2>
-        <alerts></alerts>
+            <alerts></alerts>
         <br/>
         <router-link to="/shift/add" class="shift__button">Add New</router-link>
         <br/><br/>
@@ -12,18 +12,22 @@
                     <td>Name</td>
                     <td>Start Hour</td>
                     <td>End Hour</td>
+                    <td>Start Day</td>
+                    <td>End Day</td>
                     <td>Department</td>
                     <td>Location</td>
                 </tr>
             </thead>
             <tbody class="table__body">
-                <tr v-for="item in shiftItems">
-                    <td>{{item.id}}</td>
-                    <td>{{item.name}}</td>
-                    <td class="text-center">{{item.startHour}}</td>
-                    <td class="text-center">{{item.endHour}}</td>
-                    <td>{{item.department}}</td>
-                    <td>{{item.location}}</td>
+                <tr v-for="shift in shifts">
+                    <td>{{shift.id}}</td>
+                    <td>{{shift.name}}</td>
+                    <td class="text-center">{{shift.startHour}}</td>
+                    <td class="text-center">{{shift.endHour}}</td>
+                    <td>{{shift.startDay}}</td>
+                    <td>{{shift.endDay}}</td>
+                    <td>{{shift.department}}</td>
+                    <td>{{shift.location}}</td>
                 </tr>
             </tbody>
         </table>
@@ -35,19 +39,17 @@
     import Alerts from '../../Alert.vue'
 
     export default {
-
         data() {
             return {
-                shiftItems: [
-                    { id: '001', name: 'Cawang Ops' , startHour:"08:00", endHour:"14:00",department:"Operation",location:"Cawang"},
-                    { id: '002', name: 'Cawang Ops' , startHour:"08:00", endHour:"16:00",department:"Operation",location:"Cawang"},
-                    { id: '003', name: 'Batu Ceper' , startHour:"07:00", endHour:"16:00",department:"Operation",location:"Batu Ceper"},
-                    { id: '004', name: 'KS Tubun BES' , startHour:"08:00", endHour:"17:00",department:"Operation",location:"location"},
-                ],
-
+                shifts: []
             };
         },
-
+        created:function() {
+            this.$http.get('localhost:8080/shifts')
+                .then((response) => {
+                    this.shifts = response.data;
+                });
+        },
         components: {Alerts}
     }
 </script>
