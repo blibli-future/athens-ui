@@ -1,7 +1,7 @@
 <template>
     <div class="new-emp">
         <h2 class="new-emp__title">New Employee</h2>
-        <form method="post">
+        <form onsubmit="return false">
             <div class="form__section">
                 <label for="nik" class="form__label">NIK</label>
                 <input type="text" v-model="nik" name="nik" id="nik" class="form__input"/>
@@ -69,7 +69,7 @@
                 <label for="startWorkingDate" class="form__label"> Start Working Date </label>
                 <input type="date" v-model="startWorkingDate" name="startWorkingDate" id="startWorkingDate" class="form__input"/>
             </div>
-            <button type="submit" v-on:click="addEmployee">Save</button>
+            <button v-on:click="addEmployee">Save</button>
         </form>
     </div>
 </template>
@@ -136,7 +136,7 @@
             &__input{
                 width: 40%;
                 border-radius: 5px;
-                height:30px;
+                height:3em;
                 line-height:1.5;
                 border: 1px solid #ccc;
                 padding: 10px 15px;

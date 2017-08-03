@@ -6,16 +6,16 @@
             <h3 slot="header">Add Resign Date</h3>
             <form slot="body" class="modal__form">
                 <label for="endWorkingDate" class="modal__label">Resign Date</label>
-                <input v-model="endWorkingDate" type="date" class="modal__input" id="endWorkingDate"/>
+                <input v-model="endWorkingDate" type="date" class="modal__input" id="endWorkingDate"/ />
+                <div slot="footer">
+                    <button class="modal-button form__button">
+                        Save
+                    </button>
+                    <button class="modal-button form__button" @click="showModalResign = false">
+                        Cancel
+                    </button>
+                </div>
             </form>
-            <div slot="footer">
-                <button class="modal-button form__button">
-                    Save
-                </button>
-                <button class="modal-button form__button" @click="showModalResign = false">
-                    Cancel
-                </button>
-            </div>
         </modal>
         <br/><br/>
         <form method="post">
@@ -30,13 +30,17 @@
             <div class="form__section">
                 <label for="gender" class="form__label"> Gender</label>
                 <select name="gender" v-model="gender" id="gender" class="form__input">
-                    <option value="Male">Laki Laki </option>
-                    <option value="Female">Perempuan</option>
+                    <option value="MALE">Laki Laki</option>
+                    <option value="FEMALE">Perempuan</option>
                 </select>
             </div>
             <div class="form__section">
                 <label for="position" class="form__label"> Position </label>
                 <input type="text" v-model="position" name="position" id="position" class="form__input"/>
+            </div>
+            <div class="form__section">
+                <label for="level" class="form__label"> Level </label>
+                <input type="text" v-model="level" name="level" id="level" class="form__input"/>
             </div>
             <div class="form__section">
                 <label for="organizationUnit" class="form__label"> Organization Unit </label>
@@ -55,24 +59,23 @@
                     <option value="Technology">Technology </option>
                     <option value="Trade Partnership">Trade Partnership</option>
                 </select>
-
             </div>
             <div class="form__section">
                 <label for="marital" class="form__label"> Marital Status</label>
                 <select v-model="maritalStatus" name="marital" id="marital" class="form__input">
-                    <option value="Menikah">Menikah</option>
-                    <option value="Lajang">Lajang</option>
-                    <option value="Janda">Janda</option>
+                    <option value="MENIKAH">Menikah</option>
+                    <option value="LAJANG">Lajang</option>
+                    <option value="JANDA">Janda</option>
                 </select>
             </div>
             <div class="form__section">
                 <label for="religion" class="form__label"> Religion</label>
                 <select v-model="religion" name="religion" id="religion" class="form__input">
-                    <option value="Kristen">Kristen</option>
-                    <option value="Katholik">Katholik</option>
-                    <option value="Islam">Islam</option>
-                    <option value="Hindu">Hindu</option>
-                    <option value="Budha">Budha</option>
+                    <option value="KRISTEN">Kristen</option>
+                    <option value="KATHOLIK">Katholik</option>
+                    <option value="ISLAM">Islam</option>
+                    <option value="HINDU">Hindu</option>
+                    <option value="BUDHA">Budha</option>
                 </select>
             </div>
             <div class="form__section">
@@ -80,10 +83,9 @@
                 <input type="text" v-model="chiefNik" name="chiefNik" id="chiefNik" class="form__input"/>
             </div>
             <div class="form__section">
-                <label for="startWorkinfDate" class="form__label"> Start Working Date </label>
-                <input type="date" v-model="startWorkingDate" name="startWorkinfDate" id="startWorkinfDate" class="form__input"/>
+                <label for="startWorkingDate" class="form__label"> Start Working Date </label>
+                <input type="date" v-model="startWorkingDate" name="startWorkingDate" id="startWorkingDate" class="form__input"/>
             </div>
-
             <button type="submit" class="form__button">Save</button>
         </form>
     </div>
@@ -93,10 +95,42 @@
     export default {
         data() {
             return {
-                showModalResign:false
+                showModalResign:false,
+                nik:"",
+                fullName:"",
+                gender:"MALE",
+                position:"",
+                level:"",
+                organizationalUnitText:"",
+                maritalStatus:"Menikah",
+                religion:"Kristen",
+                nameOfDept:"Business Development",
+                chiefNik:"",
+                startWorkingDate:""
             }
         },
-        methods: {},
+        methods: {
+          editEmployee: function() {
+              this.$http.post('http://localhost:8080/employees', {
+                  nik: this.nik,
+                  fullName: this.fullName,
+                  gender: this.gender,
+                  position: this.position,
+                  level: this.level,
+                  organizationalUnitText: this.organizationalUnitText,
+                  maritalStatus: this.maritalStatus,
+                  religion: this.religion,
+                  nameOfDept: this.nameOfDept,
+                  chiefNik: this.chiefNik,
+                  startWorkingDate: this.startWorkingDate
+              }).then((response) => {
+                  console.log(response.data);
+              })
+              .catch((error) => {
+                  console.log(error);
+              })
+          }
+        },
         components: {Modal}
     };
 </script>
