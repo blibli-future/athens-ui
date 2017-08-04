@@ -49,8 +49,9 @@ export default new Router({
         path: '/approval',
         component: Approval
       },{
-          path:'/employee/edit',
-          component: EditEmployee
+          path:'/employee/edit/:nik',
+          component: EditEmployee,
+          name:"edit_employee"
       }
 
   ]

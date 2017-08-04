@@ -60,7 +60,7 @@
                     <td>{{item.chiefNik}}</td>
                     <td>{{item.chiefName}}</td>
                     <td>{{item.startWorkingDate}}</td>
-                    <td><router-link to="/employee/edit" class="employee__link">Edit</router-link></td>
+                    <td><router-link :to="{ name: 'edit_employee', params: { nik: item.nik }}">Edit</router-link></td>
                 </tr>
                 </tbody>
             </table>

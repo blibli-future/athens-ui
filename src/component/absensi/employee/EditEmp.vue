@@ -6,16 +6,16 @@
             <h3 slot="header">Add Resign Date</h3>
             <form slot="body" class="modal__form">
                 <label for="endWorkingDate" class="modal__label">Resign Date</label>
-                <input v-model="endWorkingDate" type="date" class="modal__input" id="endWorkingDate"/ />
-                <div slot="footer">
-                    <button class="modal-button form__button">
-                        Save
-                    </button>
-                    <button class="modal-button form__button" @click="showModalResign = false">
-                        Cancel
-                    </button>
-                </div>
+                <input v-model="endWorkingDate" type="date" class="modal__input" id="endWorkingDate" />
             </form>
+            <div slot="footer">
+                <button v-on:click="resignEmployee" class="modal-button form__button" @click="showModalResign = false">
+                    Save
+                </button>
+                <button v-on:click="cancelResignEmployee" class="modal-button form__button" @click="showModalResign = false">
+                    Cancel
+                </button>
+            </div>
         </modal>
         <br/><br/>
         <form method="post">
@@ -86,7 +86,7 @@
                 <label for="startWorkingDate" class="form__label"> Start Working Date </label>
                 <input type="date" v-model="startWorkingDate" name="startWorkingDate" id="startWorkingDate" class="form__input"/>
             </div>
-            <button type="submit" class="form__button">Save</button>
+            <button v-on:click="editEmployee" class="form__button">Save</button>
         </form>
     </div>
 </template>
@@ -98,20 +98,40 @@
                 showModalResign:false,
                 nik:"",
                 fullName:"",
-                gender:"MALE",
+                gender:"",
                 position:"",
                 level:"",
                 organizationalUnitText:"",
-                maritalStatus:"Menikah",
-                religion:"Kristen",
-                nameOfDept:"Business Development",
+                maritalStatus:"",
+                religion:"",
+                nameOfDept:"",
                 chiefNik:"",
-                startWorkingDate:""
+                startWorkingDate:"",
+                status:true
             }
         },
+        created: function() {
+            this.nik = this.$route.params.nik;
+            var now = new Date();
+            var month = (now.getMonth() + 1);
+            var day = now.getDate();
+            if(month < 10)
+                month = "0" + month;
+            if(day < 10)
+                day = "0" + day;
+            var today = now.getFullYear() + '-' + month + '-' + day;
+            this.endWorkingDate = today;
+            this.getEmployee();
+        },
         methods: {
+          resignEmployee:function() {
+              this.status=false;
+          },
+          cancelResignEmployee:function() {
+              this.status=true;
+          },
           editEmployee: function() {
-              this.$http.post('http://localhost:8080/employees', {
+              this.$http.put('http://localhost:8080/employees/' + this.nik, {
                   nik: this.nik,
                   fullName: this.fullName,
                   gender: this.gender,
@@ -122,9 +142,31 @@
                   religion: this.religion,
                   nameOfDept: this.nameOfDept,
                   chiefNik: this.chiefNik,
-                  startWorkingDate: this.startWorkingDate
+                  startWorkingDate: this.startWorkingDate,
+                  endWorkingDate: this.endWorkingDate,
+                  status: this.status
               }).then((response) => {
                   console.log(response.data);
+              })
+              .catch((error) => {
+                  console.log(error);
+              })
+          },
+          getEmployee: function() {
+              this.$http.get('http://localhost:8080/employees/' + this.nik, {
+              }).then((response) => {
+                  console.log(response.data);
+                  this.nik = response.data.nik;
+                  this.fullName = response.data.fullName;
+                  this.gender = response.data.gender;
+                  this.position = response.data.position;
+                  this.level = response.data.level;
+                  this.organizationalUnitText = response.data.organizationalUnitText;
+                  this.maritalStatus = response.data.maritalStatus;
+                  this.religion = response.data.religion;
+                  this.nameOfDept = response.data.nameOfDept;
+                  this.chiefNik= response.data.chiefNik;
+                  this.startWorkingDate = response.data.startWorkingDate;
               })
               .catch((error) => {
                   console.log(error);
@@ -169,7 +211,7 @@
             &__input {
                 width: 40%;
                 border-radius: 5px;
-                height: 30px;
+                height: 3em;
                 line-height: 1.5;
                 border: 1px solid #ccc;
                 padding: 10px 15px;
