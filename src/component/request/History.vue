@@ -1,20 +1,29 @@
 <template>
     <section class="history">
         <div class="history__title">Leave History</div>
-        <panel>
-            <span slot="title">Title</span>
-            <span slot="sub-title">Date</span>
-            <span slot="body">Reason</span>
-        </panel>
+        <history-panel
+                v-for="history in histories"
+                :key="history.nik"
+                :item="history">
+        </history-panel>
     </section>
 </template>
 
 <script>
-import Panel from './history/Panel.vue';
+import HistoryPanel from '../helper/HistoryPanel.vue';
 
 export default {
-    components: { Panel },
-    name: 'request--history'
+    data(){
+        return {
+            histories: [
+                {nik: '001', name: 'Ariel', status: 'rejected'},
+                {nik: '002', name: 'Bastian', status: 'rejected'},
+                {nik: '000', name: 'Paduka Azhalia', status: 'approved'},
+                {nik: '100', name: 'Kaisar Yogie', status: 'approved'}
+            ]
+        }
+    },
+    components: { HistoryPanel },
 };
 </script>
 

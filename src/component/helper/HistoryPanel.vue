@@ -35,13 +35,6 @@
       item: {
         type: Object
       }
-    },
-    created: function () {
-        if (this.item.status === 'rejected') {
-          console.log('reject');
-        } else {
-          console.log('acc');
-        }
     }
   }
 </script>
@@ -59,6 +52,10 @@
             border: 1px solid rgb(235, 204, 209);
         }
 
+        &--waiting {
+            border: 1px solid rgb(234, 234, 234);
+        }
+
         &__header {
             display: flex;
             padding: 5px;
@@ -71,6 +68,11 @@
             &--rejected {
                 background-color: rgb(242, 222, 222);
                 color: rgb(169, 68, 66);
+            }
+
+            &--waiting {
+                background-color: rgb(234, 234, 234);
+                color: rgb(10, 10, 10);
             }
         }
 

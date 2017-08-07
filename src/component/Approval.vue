@@ -20,18 +20,18 @@
         </section>
         <section>
             <div class="approval__sub-title">Request History</div>
-            <history-box
+            <history-panel
                     v-for="item in history"
                     :key="item.nik"
                     :item="item">
-            </history-box>
+            </history-panel>
         </section>
     </main>
 </template>
 
 <script>
 import UnapprovedBox from './approval/UnapprovedBox.vue';
-import HistoryBox from './approval/HistoryBox.vue';
+import HistoryPanel from './helper/HistoryPanel.vue';
 
 export default {
   data() {
@@ -50,7 +50,7 @@ export default {
       ]
     }
   },
-  components: { UnapprovedBox, HistoryBox }
+  components: { UnapprovedBox, HistoryPanel }
 }
 </script>
 
