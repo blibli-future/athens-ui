@@ -4,24 +4,15 @@
         <br/>
         <section class="search">
             <form class="emp-search">
-                <input type="text" placeholder="search"class="emp-search__input"/>
-                <label for="searchKey" class="emp-search__label">Search By</label>
-                <select id="searchKey" class="emp-search__input">
-                    <option>NIK</option>
-                    <option>Name</option>
-                </select>
+                <input @keyup="filterResult" v-model="keyword"
+                        type="text" placeholder="search by nik or name" class="emp-search__input" />
                 <label for="dep" class="emp-search__label">Department</label>
-                <select id="dep"class="emp-search__input">
-                        <option>All Department</option>
-                        <option value="{{}}">Business Development </option>
-                        <option value="{{}}">Finance</option>
-                        <option value="{{}}">Human Resource </option>
-                        <option value="{{}}">Marketing</option>
-                        <option value="{{}}">Operations </option>
-                        <option value="{{}}">Product Management </option>
-                        <option value="{{}}">Program Management </option>
-                        <option value="{{}}">Technology </option>
-                        <option value="{{}}">Trade Partnership</option>
+                <select id="dep" class="emp-search__input">
+                        <option value="All">All Department</option>
+                        <option v-for="department in departments"
+                                :value="department">
+                            {{department}}
+                        </option>
                 </select>
                 <button class="emp-search__button">Search</button>
                 <router-link class="emp-search__button emp-search__button-blue" to="/employee/add">Add New</router-link>
@@ -48,20 +39,20 @@
                 </tr>
                 </thead>
                 <tbody class="emp-table__body">
-                <tr v-for="item in employee">
-                    <td>{{item.nik}}</td>
-                    <td>{{item.fullName}}</td>
-                    <td>{{item.gender}}</td>
-                    <td>{{item.position}}</td>
-                    <td>{{item.organizationalUnitText}}</td>
-                    <td>{{item.maritalStatus}}</td>
-                    <td>{{item.religion}}</td>
-                    <td>{{item.nameOfDept}}</td>
-                    <td>{{item.chiefNik}}</td>
-                    <td>{{item.chiefName}}</td>
-                    <td>{{item.startWorkingDate}}</td>
-                    <td><router-link :to="{ name: 'edit_employee', params: { nik: item.nik }}">Edit</router-link></td>
-                </tr>
+                  <tr v-for="employee in employees">
+                      <td>{{employee.nik}}</td>
+                      <td>{{employee.fullname}}</td>
+                      <td>{{employee.gender}}</td>
+                      <td>{{employee.positionText}}</td>
+                      <td>{{employee.organizationalUnitText}}</td>
+                      <td>{{employee.maritalStatus}}</td>
+                      <td>{{employee.religion}}</td>
+                      <td>{{employee.nameOfDept}}</td>
+                      <td>{{employee.chiefNik}}</td>
+                      <td>{{employee.chiefName}}</td>
+                      <td>{{employee.startWorkingDate}}</td>
+                      <td><router-link :to="{ name: 'edit_employee', params: { nik: item.nik }}">Edit</router-link></td>
+                  </tr>
                 </tbody>
             </table>
         </section>
@@ -70,29 +61,64 @@
 
 
 <script>
+    import Api from '../../../constant/api.url';
+    import Departments from '../../../constant/departments';
+
     export default {
         data() {
             return {
-                employee: [
+                employees: [
                     {nik:'01004106',fullname:'Dhany Koespratamadjati',gender:'Male',positionText:'Brand Activation Staff',organizationalUnitText:'Brand Activation', maritalStatus:'Lajang',religion:'Islam',nameOfDept:'Marketing -GDN',chiefNik:'06300020',chiefName:'Deny Agsana',startWorkingDate:'12/1/13'},
                     {nik:'02002757',fullname:'Kusumo Martanto',gender:'Male',positionText:'General Manager',organizationalUnitText:'Operation', maritalStatus:'Nikah',religion:'Katholik',nameOfDept:'Business Development -GDN',chiefNik:'-',chiefName:'-',startWorkingDate:'8/1/09'},
                     {nik:'01004108',fullname:'Dhany Koespratamadjati',gender:'Male',positionText:'Brand Activation Staff',organizationalUnitText:'Brand Activation', maritalStatus:'Lajang',religion:'Islam',nameOfDept:'Marketing -GDN',chiefNik:'06300020',chiefName:'Deny Agsana',startWorkingDate:'12/1/13'},
                     {nik:'02002759',fullname:'Kusumo Martanto',gender:'Male',positionText:'General Manager',organizationalUnitText:'Operation', maritalStatus:'Nikah',religion:'Katholik',nameOfDept:'Business Development -GDN',chiefNik:'-',chiefName:'-',startWorkingDate:'8/1/09'}
                 ],
+                filteredEmployees: [],
+                keyword: '',
+                selectedDepartment: '',
+                departments: Departments
             };
         },
-        created: function() {
-            this.$http.get('http://localhost:8080/employees')
-            .then(response => {
-                this.employee = response.data;
-            })
-            .catch(function (error) {
-              console.log(error);
-            })
-        },
         methods: {
+            filterResult: function () {
+                const queryFilter = (/\d/.test(this.keyword)) ?
+                    this.nikFilter(this.keyword) :
+                    this.nameFilter(this.keyword);
+
+                this.filteredEmployees = this.employees
+                        .filter(queryFilter)
+                        .filter(this.departmentFilter(this.selectedDepartment));
+            },
+            nameFilter: function (keyword) {
+                return function (employee) {
+                    return employee.name.search(keyword) > 0;
+                }
+            },
+            nikFilter: function (keyword) {
+                return function (employee) {
+                    return employee.nik.search(keyword) > 0;
+                }
+            },
+            departmentFilter: function (department) {
+                if (department === 'All') {
+                    return function () {
+                        return true;
+                    }
+                }
+
+                return function (employee) {
+                    return employee.department === department;
+                }
+            }
+        },
+        created: function () {
+            this.$http.get(Api + '/employees')
+                .then((response) => {
+                    this.employees = response.data;
+                    this.filteredEmployees = this.employees;
+                })
         }
-    };
+    }
 </script>
 
 <style lang="scss">
