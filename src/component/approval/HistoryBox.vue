@@ -1,20 +1,30 @@
 <template>
     <div :class="'history history--'+item.status">
-        <div>
-            <div>
-                <span>{{item.nik}}</span> - <span>{{item.name}}</span>
+        <div :class="'history__header history__header--'+item.status">
+            <div class="history__text_holder">
+                <div>
+                    {{item.nik}} - {{item.name}}
+                </div>
+                <div>
+                    Type
+                </div>
+                <div>
+                    <span>start date</span> - <span>end date</span>
+                </div>
             </div>
-            <div>
-                Type
-            </div>
-            <div>
-                <span>start date</span> - <span>end date</span>
+            <div class="history__status-holder">
+                <div class="history__status">
+                    <strong :class="'history__status--'+item.status">{{item.status}}</strong> by someone
+                </div>
             </div>
         </div>
-        <div class="history__status-holder">
-            <div class="history__status">
-                <strong :class="'history__status--'+item.status">{{item.status}}</strong> by someone
-            </div>
+        <div class="history__body">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Quisque ornare erat massa, nec laoreet lorem semper ut.
+            Curabitur et arcu lectus. Mauris nec fringilla purus.
+            Duis sit amet ligula ac neque pellentesque mattis.
+            Donec sed malesuada dolor. Vivamus volutpat dapibus dapibus.
+            Duis nec bibendum sapien. Aliquam eu ex sed urna suscipit sodales ut quis lorem.
         </div>
     </div>
 </template>
@@ -36,23 +46,36 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .history {
-        display: flex;
         border-radius: 4px;
-        margin: 10px 0px;
-        padding: 5px;
+        margin: 10px 0;
 
         &--approved {
-            background-color: rgb(217, 237, 247);
             border: 1px solid rgb(188, 232, 241);
-            color: rgb(49, 112, 143);
         }
 
         &--rejected {
-            background-color: rgb(242, 222, 222);
             border: 1px solid rgb(235, 204, 209);
-            color: rgb(169, 68, 66);
+        }
+
+        &__header {
+            display: flex;
+            padding: 5px;
+
+            &--approved {
+                background-color: rgb(217, 237, 247);
+                color: rgb(49, 112, 143);
+            }
+
+            &--rejected {
+                background-color: rgb(242, 222, 222);
+                color: rgb(169, 68, 66);
+            }
+        }
+
+        &__body {
+            padding: 5px;
         }
 
         &__status-holder {
