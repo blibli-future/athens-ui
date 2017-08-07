@@ -9,6 +9,7 @@
 
 <script>
 import NavigationBar from './component/NavBar.vue';
+import JwtDecode from 'jwt-decode';
 
 export default {
     data() {
@@ -17,13 +18,22 @@ export default {
         };
     },
     created: function () {
-        if(localStorage.getItem('jwtToken')!==null) {
-            this.registerToken();
+        const jwtToken = window.localStorage.getItem('jwtToken');
+
+        if(jwtToken!==null) {
+            this.registerToken(jwtToken);
         }
     },
     methods: {
-        registerToken: function() {
+        registerToken: function(jwtToken) {
             this.authenticated = true;
+
+            const payload = JwtDecode(jwtToken);
+
+            localStorage.setItem('jwtToken', jwtToken);
+            localStorage.setItem('nik', payload.nik);
+            localStorage.setItem('sub', payload.sub);
+            localStorage.setItem('roles', payload.roles[0]);
 
             this.$http.defaults.headers.common['Authorization'] =
                 'Bearer ' + localStorage.getItem('jwtToken');
@@ -32,6 +42,12 @@ export default {
         },
         removeToken: function () {
             this.authenticated = false;
+
+            localStorage.removeItem('jwtToken');
+            localStorage.removeItem('nik');
+            localStorage.removeItem('sub');
+            localStorage.removeItem('roles');
+
             delete this.$http.defaults.headers.common['Authorization'];
             this.$router.push("/login");
         }
@@ -42,11 +58,13 @@ export default {
 
 <style lang="scss">
     @import "_scss/default";
-
-    html, body {
-        height: 100%;
-        width: 100%;
-        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-        margin : 0;
-    }
+  html, body {
+      height: 100%;
+      width: 100%;
+      font-family: Arial;
+      margin : 0;
+  }
+  * {
+    box-sizing: border-box;
+  }
 </style>

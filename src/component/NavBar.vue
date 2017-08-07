@@ -22,21 +22,7 @@
 <script>
 export default {
     methods:{
-         showDropdown:function ()  {
-    document.getElementById("myDropdown").classList.toggle("show");
-         },
-        created:function () {
-            window.onclick = function(e) {
-                if (!e.target.matches('.dropdown--btn')) {
-                    var myDropdown = document.getElementById("myDropdown");
-                    if (myDropdown.classList.contains('show')) {
-                        myDropdown.classList.remove('show');
-                    }
-                }
-            }
-        },
         invalidate: function () {
-            localStorage.removeItem('jwtToken');
             this.$emit('invalidating');
         }
   }
@@ -80,8 +66,9 @@ export default {
     &__drop-down {
         position: absolute;
         background-color: #f9f9f9;
+        z-index: 1;
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-        margin: 11px 0 0 -20px;
+        margin: 13.5px 0 0 -20px;
         display: none;
     }
 

@@ -22,14 +22,13 @@
         padding: 20px 10px;
         margin-bottom: 10px;
         border-radius: 6px;
-        border: thin solid #d1d1d1;
-
-
         &--success{
             background-color: #ddf9d2;
+            border: thin solid #c7edbd;
         }
         &--danger{
             background-color: #f9bdbd;
+            border: thin solid #eea7aa;
         }
 
 

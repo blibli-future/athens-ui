@@ -31,10 +31,36 @@
 <script>
 export default {
   props: {
-    item: {
+    unapproved: {
       type: Object
     }
-  }
+  },
+  methods: {
+      approving: function() {
+        this.$http.put('http://localhost:8080/requests/'+this.unapproved.type+'/'+this.unapproved.id, {
+            nik:localStorage.getItem('nik'),
+            isApproved:true
+        })
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+      },
+      rejecting: function() {
+        this.$http.put('http://localhost:8080/requests/'+this.unapproved.type+'/'+this.unapproved.id, {
+            nik:localStorage.getItem('nik'),
+            isApproved:false
+        })
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+      }
+  },
 }
 </script>
 
