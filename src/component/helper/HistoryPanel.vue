@@ -3,28 +3,23 @@
         <div :class="'history__header history__header--'+item.status">
             <div class="history__text_holder">
                 <div>
-                    {{item.nik}} - {{item.name}}
+                    {{item.nik}} - {{item.fullName}}
                 </div>
                 <div>
-                    Type
+                    {{item.type}}
                 </div>
                 <div>
-                    <span>start date</span> - <span>end date</span>
+                    <span>{{item.startDate}}</span> - <span>{{item.endDate}}</span>
                 </div>
             </div>
             <div class="history__status-holder">
                 <div class="history__status">
-                    <strong :class="'history__status--'+item.status">{{item.status}}</strong> by someone
+                    <strong :class="'history__status--'+item.status">{{item.status}}</strong> by {{item.processedBy}}
                 </div>
             </div>
         </div>
         <div class="history__body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Quisque ornare erat massa, nec laoreet lorem semper ut.
-            Curabitur et arcu lectus. Mauris nec fringilla purus.
-            Duis sit amet ligula ac neque pellentesque mattis.
-            Donec sed malesuada dolor. Vivamus volutpat dapibus dapibus.
-            Duis nec bibendum sapien. Aliquam eu ex sed urna suscipit sodales ut quis lorem.
+            {{item.reason}}
         </div>
     </div>
 </template>
@@ -35,6 +30,9 @@
       item: {
         type: Object
       }
+    },
+    created: function () {
+      this.item.status = this.item.status.toLowerCase();
     }
   }
 </script>

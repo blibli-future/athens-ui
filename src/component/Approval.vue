@@ -21,7 +21,7 @@
         <section>
             <div class="approval__sub-title">Request History</div>
             <history-panel
-                    v-for="item in history"
+                    v-for="item in historyList"
                     :key="item.nik"
                     :item="item">
             </history-panel>

@@ -14,7 +14,7 @@
                     <label class="apply__label" for="sub-criteria">Sub Criteria</label>
                     <select v-model="selectedSubCriterion"
                             class="apply__input apply__input--selector" id="sub-criteria">
-                        <option v-for="subCriterion in criteria[selectedCriteria]">{{subCriterion}}</option>
+                        <option v-for="subCriterion in criteria[selectedCriteria]" :value="subCriterion.id">{{subCriterion.name}}</option>
                     </select>
                 </div>
             </div>
@@ -52,43 +52,62 @@ export default {
             criteria: {
                 '---': ['---'],
                 'absence permit': [
-                    'Hourly',
-                    'Sick',
-                    'Sick with hospital letter',
-                    'Unpaid Leave'
+                    {id:'HOURLY', name:'Hourly'},
+                    {id:'SICK', name:'Sick'},
+                    {id:'SICK_WITH_HOSPITAL_LETTER', name:'Sick with hospital letter'},
+                    {id:'UNPAID_LEAVE', name:'Unpaid Leave'}
                 ],
-                'leave': []
+                'leave': [],
+                'yearly': ['---'],
+                'subtitution': ['---']
             },
             selectedCriteria: '---',
             selectedSubCriterion:'',
             startDate: '',
             endDate: '',
-            reason: ''
+            reason: '',
+            type: ' '
         }
     },
     created: function () {
-//        this.$http.get('UNKNOWN URL WITH NIK AS PATH VARIABLE')
-//            .then((response) => {
-//                //todo: fix code below
-//                this.criteria['leave'] = response.SOMETHING;//Something that will be given from server
-//            })
-//            .catch((errors) => {
-//                console.log(errors)
-//            })
+       this.$http.get('http://localhost:8080/requests/'+localStorage.getItem('nik')+'/leave-right')
+           .then((response) => {
+               this.criteria['leave'] = response.data;
+           })
+           .catch((errors) => {
+               console.log(errors)
+           })
     },
     methods: {
         submitRequest: function () {
-            //todo: fix the url
-            let url = this.selectedCriteria==='absence permit'?
-                'SOMEWHERE FOR ABSENCE PERMIT':
-                'SOMEWHERE FOR LEAVE';
-
-            this.$http.post(url, {
-                'absencePermit': this.selectedSubCriterion.toUpperCase().replace(/ /g, '_'),
+          console.log(this.selectedCriteria)
+            if(this.selectedCriteria==='absence permit'){
+                this.type = "absence";
+            }
+            else if (this.selectedCriteria==='leave') {
+                this.type = "leave";
+            }
+            else if (this.selectedCriteria==='yearly') {
+                this.type = "yearly";
+            }
+            else if (this.selectedCriteria==='subtitution') {
+                this.type = "subtitution";
+            }
+            else{
+              this.type = "notFound";
+            }
+            this.$http.post('http://localhost:8080/requests/'+localStorage.getItem('nik')+'/'+this.type, {
+                'requestKey': this.selectedSubCriterion,
                 'startDate': this.startDate,
                 'endDate': this.endDate,
                 'reason': this.reason
-            })//todo: create alert alerting user either its successful or not
+            })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((errors) => {
+                console.log(errors)
+            })
         }
     }
 }

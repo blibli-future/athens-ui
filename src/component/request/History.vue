@@ -23,6 +23,20 @@ export default {
             ]
         }
     },
+    created: function () {
+      this.histories = this.getHistories();
+    },
+    methods: {
+        getHistories: function() {
+          this.$http.get('http://localhost:8080/requests'+'/'+localStorage.getItem('nik'))
+          .then(response => {
+              this.histories = response.data;
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+        },
+    },
     components: { HistoryPanel },
 };
 </script>

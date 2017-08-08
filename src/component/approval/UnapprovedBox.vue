@@ -3,27 +3,22 @@
         <div class="unapproved__header">
             <div class="unapproved__text-holder">
                 <div>
-                    <span>{{item.nik}}</span> - <span>{{item.name}}</span>
+                    <span>{{unapproved.nik}}</span> - <span>{{unapproved.fullName}}</span>
                 </div>
                 <div>
-                    Type
+                    {{unapproved.type}}
                 </div>
                 <div>
-                    <span>start date</span> - <span>end date</span>
+                    <span>{{unapproved.startDate}}</span> - <span>{{unapproved.endDate}}</span>
                 </div>
             </div>
             <div class="unapproved__button-holder">
-                <button class="unapproved__button unapproved__button--accept">Accept</button>
-                <button class="unapproved__button unapproved__button--decline">Decline</button>
+                <button v-on:click="approving" class="unapproved__button unapproved__button--accept">Accept</button>
+                <button v-on:click="rejecting" class="unapproved__button unapproved__button--decline">Decline</button>
             </div>
         </div>
         <div class="unapproved__body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Quisque ornare erat massa, nec laoreet lorem semper ut.
-            Curabitur et arcu lectus. Mauris nec fringilla purus.
-            Duis sit amet ligula ac neque pellentesque mattis.
-            Donec sed malesuada dolor. Vivamus volutpat dapibus dapibus.
-            Duis nec bibendum sapien. Aliquam eu ex sed urna suscipit sodales ut quis lorem.
+            {{unapproved.reason}}
         </div>
     </div>
 </template>

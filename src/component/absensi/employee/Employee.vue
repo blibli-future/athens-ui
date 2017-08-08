@@ -41,9 +41,9 @@
                 <tbody class="emp-table__body">
                   <tr v-for="employee in employees">
                       <td>{{employee.nik}}</td>
-                      <td>{{employee.fullname}}</td>
+                      <td>{{employee.fullName}}</td>
                       <td>{{employee.gender}}</td>
-                      <td>{{employee.positionText}}</td>
+                      <td>{{employee.position}}</td>
                       <td>{{employee.organizationalUnitText}}</td>
                       <td>{{employee.maritalStatus}}</td>
                       <td>{{employee.religion}}</td>
@@ -51,7 +51,7 @@
                       <td>{{employee.chiefNik}}</td>
                       <td>{{employee.chiefName}}</td>
                       <td>{{employee.startWorkingDate}}</td>
-                      <td><router-link :to="{ name: 'edit_employee', params: { nik: item.nik }}">Edit</router-link></td>
+                      <td><router-link :to="{ name: 'edit_employee', params: { nik: employee.nik }}">Edit</router-link></td>
                   </tr>
                 </tbody>
             </table>
@@ -112,10 +112,13 @@
             }
         },
         created: function () {
-            this.$http.get(Api + '/employees')
+            this.$http.get('http://localhost:8080/employees')
                 .then((response) => {
                     this.employees = response.data;
                     this.filteredEmployees = this.employees;
+                })
+                .catch(function (error) {
+                  console.log(error);
                 })
         }
     }
