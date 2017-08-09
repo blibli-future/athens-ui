@@ -6,17 +6,8 @@
             <form class="emp-search">
                 <input @keyup="filterResult" v-model="keyword"
                         type="text" placeholder="search by nik or name" class="emp-search__input" />
-                <label for="dep" class="emp-search__label">Department</label>
-                <select id="dep" class="emp-search__input">
-                        <option value="All">All Department</option>
-                        <option v-for="department in departments"
-                                :value="department">
-                            {{department}}
-                        </option>
-                </select>
                 <button class="emp-search__button">Search</button>
                 <router-link class="emp-search__button emp-search__button-blue" to="/employee/add">Add New</router-link>
-
             </form>
         </section>
         <br/>
@@ -28,22 +19,22 @@
                     <td>Full Name</td>
                     <td>Gender</td>
                     <td>Position Text</td>
-                    <td>Organizational Unit</td>
-                    <td>Marital Status</td>
+                    <td>Unit</td>
+                    <td>Marital</td>
                     <td>Religion</td>
                     <td>Name Of Dept</td>
                     <td>Chief NIK</td>
                     <td>Chief Name</td>
-                    <td>Start Working Date</td>
-                    <td></td>
+                    <td>Working Date</td>
+                    <td>Action</td>
                 </tr>
                 </thead>
                 <tbody class="emp-table__body">
-                  <tr v-for="employee in employees">
+                  <tr v-for="employee in filteredEmployees">
                       <td>{{employee.nik}}</td>
-                      <td>{{employee.fullName}}</td>
+                      <td>{{employee.fullname}}</td>
                       <td>{{employee.gender}}</td>
-                      <td>{{employee.position}}</td>
+                      <td>{{employee.positionText}}</td>
                       <td>{{employee.organizationalUnitText}}</td>
                       <td>{{employee.maritalStatus}}</td>
                       <td>{{employee.religion}}</td>
@@ -51,8 +42,12 @@
                       <td>{{employee.chiefNik}}</td>
                       <td>{{employee.chiefName}}</td>
                       <td>{{employee.startWorkingDate}}</td>
-                      <td><router-link :to="{ name: 'edit_employee', params: { nik: employee.nik }}">Edit</router-link></td>
+                      <td><router-link :to="{ name: 'edit_employee', params: { nik: employee.nik }}" >Edit</router-link> |
+                          <router-link :to="{ name: 'employee_shifting', params: { nik: employee.nik }}" >Shifting</router-link>
+
+                      </td>
                   </tr>
+
                 </tbody>
             </table>
         </section>
@@ -63,7 +58,6 @@
 <script>
     import Api from '../../../constant/api.url';
     import Departments from '../../../constant/departments';
-
     export default {
         data() {
             return {
@@ -81,33 +75,28 @@
         },
         methods: {
             filterResult: function () {
+                if (this.keyword === '') {
+                    this.filteredEmployees = this.employees;
+                    return;
+                }
+
                 const queryFilter = (/\d/.test(this.keyword)) ?
                     this.nikFilter(this.keyword) :
                     this.nameFilter(this.keyword);
 
                 this.filteredEmployees = this.employees
-                        .filter(queryFilter)
-                        .filter(this.departmentFilter(this.selectedDepartment));
+                    .filter(queryFilter);
             },
             nameFilter: function (keyword) {
                 return function (employee) {
-                    return employee.name.search(keyword) > 0;
+                    return employee.fullname
+                            .toLowerCase()
+                            .search(keyword) >= 0;
                 }
             },
             nikFilter: function (keyword) {
                 return function (employee) {
-                    return employee.nik.search(keyword) > 0;
-                }
-            },
-            departmentFilter: function (department) {
-                if (department === 'All') {
-                    return function () {
-                        return true;
-                    }
-                }
-
-                return function (employee) {
-                    return employee.department === department;
+                    return employee.nik.search(keyword) >= 0;
                 }
             }
         },
@@ -121,6 +110,7 @@
                   console.log(error);
                 })
         }
+
     }
 </script>
 
@@ -215,6 +205,4 @@
             overflow-x:auto;
         }
     }
-
-
 </style>
