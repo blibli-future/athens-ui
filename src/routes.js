@@ -8,6 +8,7 @@ import Shift from './component/absensi/shift/Shift.vue';
 import NewShift from './component/absensi/shift/NewShift.vue';
 import Presensi from './component/absensi/Presensi.vue';
 import Employee from './component/absensi/employee/Employee.vue';
+import EditEmployee from './component/absensi/employee/EditEmp.vue';
 import NewEmployee from './component/absensi/employee/NewEmp.vue';
 import Report from './component/Report.vue';
 import Approval from  './component/Approval.vue';
@@ -18,40 +19,45 @@ Vue.use(Router);
 
 export default new Router({
   // mode: 'history',
-    routes: [
-        {
-            path: '/login',
-            component: LoginPage
-        }, {
-            path: '/index',
-            component: Request
-        }, {
-            path:'/upload',
-            component:Upload
-        }, {
-            path:'/shift',
-            component: Shift
-        },{
-            path:'/shift/add',
-            component: NewShift
-        },{
-            path:'/presensi',
-            component: Presensi
-        },{
-            path:'/employee',
-            component: Employee
-        },{
-            path:'/employee/add',
-            component: NewEmployee
-        },{
-            path:'/report',
-            component: Report
-        }, {
-            path: '/approval',
-            component: Approval
-        },  {
+  routes: [
+    {
+      path: '/login',
+      component: LoginPage
+    }, {
+      path: '/index',
+      component: Request
+    },{
+      path:'/upload',
+      component:Upload
+    },{
+      path:'/shift',
+          component: Shift
+      },{
+          path:'/shift/add',
+          component: NewShift
+      },{
+          path:'/presensi',
+          component: Presensi
+      },{
+          path:'/employee',
+          component: Employee
+      },{
+          path:'/employee/add',
+          component: NewEmployee
+      },{
+          path:'/report',
+          component: Report
+      }, {
+        path: '/approval',
+        component: Approval
+      },{
+          path:'/employee/edit/:nik',
+          component: EditEmployee,
+          name:"edit_employee"
+      },  {
             path: '/home',
             component: Home
         }
+
   ]
 });

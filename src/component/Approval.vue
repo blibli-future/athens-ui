@@ -13,36 +13,36 @@
         <section>
             <div class="approval__sub-title">Unapproved Request</div>
             <unapproved-box
-                    v-for="item in unapproved"
-                    :key="item.nik"
-                    :item="item">
+                    v-for="unapproved in unapprovedList"
+                    :key="unapproved.nik"
+                    :unapproved="unapproved">
             </unapproved-box>
         </section>
         <section>
             <div class="approval__sub-title">Request History</div>
-            <history-box
-                    v-for="item in history"
+            <history-panel
+                    v-for="item in historyList"
                     :key="item.nik"
                     :item="item">
-            </history-box>
+            </history-panel>
         </section>
     </main>
 </template>
 
 <script>
 import UnapprovedBox from './approval/UnapprovedBox.vue';
-import HistoryBox from './approval/HistoryBox.vue';
+import HistoryPanel from './helper/HistoryPanel.vue';
 
 export default {
   data() {
     return {
-      unapproved: [
+      unapprovedList: [
         { nik: '001', name: 'Ariel' },
         { nik: '002', name: 'Bastian' },
         { nik: '000', name: 'Paduka Azhalia' },
         { nik: '100', name: 'Kaisar Yogie' }
       ],
-      history: [
+      historyList: [
         { nik: '001', name: 'Ariel', status: 'rejected' },
         { nik: '002', name: 'Bastian', status: 'rejected' },
         { nik: '000', name: 'Paduka Azhalia', status: 'approved' },
@@ -50,7 +50,37 @@ export default {
       ]
     }
   },
-  components: { UnapprovedBox, HistoryBox }
+  created: function() {
+        this.getHistories();
+        this.getUnapprovedRequests();
+  },
+  methods: {
+      getHistories: function() {
+        this.$http.get('http://localhost:8080/requests', {params:{
+            chiefNik:localStorage.getItem('nik'),
+            type:"history"
+        }})
+        .then(response => {
+            this.historyList = response.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+      },
+      getUnapprovedRequests: function() {
+        this.$http.get('http://localhost:8080/requests', {params:{
+            chiefNik:localStorage.getItem('nik'),
+            type:"unapproved"
+        }})
+        .then(response => {
+            this.unapprovedList = response.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+      },
+  },
+    components: { UnapprovedBox, HistoryPanel }
 }
 </script>
 
