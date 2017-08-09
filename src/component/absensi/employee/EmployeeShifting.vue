@@ -11,6 +11,7 @@
                 <td>Name</td>
                 <td>Start Hour</td>
                 <td>End Hour</td>
+                <td>Work Day</td>
                 <td>Department</td>
                 <td>Location</td>
                 <td>Action</td>
@@ -22,9 +23,10 @@
                 <td>{{item.name}}</td>
                 <td class="text-center">{{item.startHour}}</td>
                 <td class="text-center">{{item.endHour}}</td>
-                <td>{{item.department}}</td>
+                <td>{{item.workDay}}</td>
+                <td>{{item.departmentEmployee}}</td>
                 <td>{{item.location}}</td>
-                <td><button class="emp-shift__link" @click="selectShift(item)" v-if="shift.Assigned">Add</button>
+                <td><button class="emp-shift__link" @click="selectShift(item)" v-if="item.Assigned">Add</button>
                     <button class="emp-shift__link" @click="selectShift(item)" v-else>Delete</button></td>
             </tr>
             </tbody>
@@ -40,14 +42,19 @@
         data() {
             return {
                 selectedShift:'',
-                shiftItems: [
-                    { id: '001', name: 'Cawang Ops' , startHour:"08:00", endHour:"14:00",department:"Operation",location:"Cawang"},
-                    { id: '002', name: 'Cawang Ops' , startHour:"08:00", endHour:"16:00",department:"Operation",location:"Cawang"},
-                    { id: '003', name: 'Batu Ceper' , startHour:"07:00", endHour:"16:00",department:"Operation",location:"Batu Ceper"},
-                    { id: '004', name: 'KS Tubun BES' , startHour:"08:00", endHour:"17:00",department:"Operation",location:"location"},
-                ],
+                shiftItems: '',
 
             };
+        },
+        created: function() {
+            this.nik = this.$route.params.nik;
+            this.$http.get('http://localhost:8080/employees'+'/'+localStorage.getItem('nik')+'/shifts')
+                .then((response) => {
+                    this.shiftItems = response.data;
+                })
+                .catch(function (error) {
+                  console.log(error);
+                })
         },
         methods:{
             selectShift(item){
