@@ -49,8 +49,8 @@
                         <td>{{item.tapOut}}</td>
                         <td>{{item.duration}}</td>
                         <td>
-                            <button id="tapIn-modal" @click="selectNikTapIn(item)" class="form__button">Tap In</button>
-                            <button id="tapOut-modal" @click="selectNikTapOut(item)" class="form__button">Tap Out</button>
+                            <button id="tapIn-modal" @click="selectNikTap(item, 'In')" class="form__button">Tap In</button>
+                            <button id="tapOut-modal" @click="selectNikTap(item, 'Out')" class="form__button">Tap Out</button>
                         </td>
                     </tr>
                 </tbody>
@@ -58,38 +58,22 @@
         </section>
         <br/>
         <section class="editTapHour">
-            <modal v-if="showModalTapIn" @close="showModalTapIn = false">
-                <h3 slot="header">Edit Tap In</h3>
+            <modal v-if="showTapModal" @close="showTapModal = false">
+                <h3 slot="header">Edit Tap {{ tapType }}</h3>
                 <form slot="body" >
-                    <p>NIK : {{selectedEmp}}</p><br/>
+                    <p>NIK : {{selectedEmployeeNik }}</p><br/>
                     <p>Date : {{selectedDate}}</p><br/>
-                    <label for="tapIn" >Tap In Hour</label>
-                    <input type="time"  id="tapIn"/>
+                    <label for="tap" >Tap {{ tapType }} Hour</label>
+                    <input v-model="tapTime"
+                            type="time"  id="tap"/>
                 </form>
                 <div slot="footer">
                     <!--TODO: direct form-->
-                    <button class="modal-button form__button">
+                    <button @click="editAttendanceData"
+                            class="modal-button form__button">
                         Save
                     </button>
-                    <button class="modal-button form__button" @click="showModalTapIn = false">
-                        Cancel
-                    </button>
-                </div>
-            </modal>
-            <modal v-if="showModalTapOut" @close="showModalTapOut = false">
-                <h3 slot="header">Edit Tap Out</h3>
-                <form slot="body" >
-                    <p>NIK : {{selectedEmp}}</p><br/>
-                    <p>Date : {{selectedDate}}</p><br/>
-                    <label for="tapOut">Tap Out Hour</label>
-                    <input type="time" id="tapOut"/>
-                </form>
-                <div slot="footer">
-                    <!--TODO: direct form-->
-                    <button class="modal-button form__button">
-                        Save
-                    </button>
-                    <button class="modal-button form__button" @click="showModalTapOut = false">
+                    <button class="modal-button form__button" @click="showTapModal = false">
                         Cancel
                     </button>
                 </div>
@@ -100,42 +84,41 @@
 </template>
 <script>
     import Modal from'../Modal.vue';
-   //TODO: get data from checked item to be edited
 
     export default {
         data() {
             return {
-                showModalTapIn: false,
-                showModalTapOut: false,
-                selectedEmp:'',
+                showTapModal: false,
+                selectedEmployeeNik:'',
                 selectedDate:'',
-                presensi:[
-                    {nik:'9999',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'},
-                    {nik:'9997',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'},
-                    {nik:'9993',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'},
-                    {nik:'9998',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'},
-                    {nik:'9990',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'},
-                    {nik:'9991',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'},
-                    {nik:'9992',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'}
-                ]
+                tapType: '',
+                tapTime: '',
+                presensi: []
             };
         },
-        components: {Modal},
-        methods:{
-            selectNikTapIn(item){
-                this.selectedEmp= item.nik,
-                    this.selectedDate=item.date,
-                    this.showModalTapIn = true
-
+        created: function () {
+            this.$http.get('http://localhost:8080/employees/taps')
+                .then((response) => {
+                    this.presensi = response.data
+                })
+        },
+        methods: {
+            selectNikTap: function(item, type){
+                this.selectedEmployeeNik= item.nik;
+                this.selectedDate=item.date;
+                this.showTapModal = true;
+                this.tapType = type;
             },
-            selectNikTapOut(item){
-                this.selectedEmp= item.nik,
-                    this.selectedDate=item.date,
-                    this.showModalTapOut = true
-
+            editAttendanceData: function () {
+                this.$http.put('http://localhost:8080/employees/taps', {
+                    nik: this.selectedEmployeeNik,
+                    tapTime: this.tapTime,
+                    tapDate: this.selectedDate,
+                    type: this.tapType
+                })
             }
-        }
-
+        },
+        components: {Modal}
     };
 </script>
 <style lang="scss">
