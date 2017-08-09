@@ -8,7 +8,8 @@
         <br/>
         <form class="upload__form">
             <input class="upload__input" type="file" name="uploadAbsensi" id="uploadAbsensi"/> <br/><br/>
-            <button class="upload__button" type="submit">Upload</button>
+            <button v-on:click="submitFile"
+                    class="upload__button" type="button">Upload</button>
         </form>
     </div>
 </template>
@@ -17,11 +18,23 @@
 <script>
     import Alerts from '../Alert.vue'
     export default {
-
         data() {
             return {
 
             };
+        },
+        methods: {
+            submitFile: function() {
+                let formData = new FormData();
+                let uploadedFile = document.getElementById('uploadAbsensi').files[0];
+
+                formData.append('file', uploadedFile);
+                this.$http.post('http://localhost:8080/employees/taps/upload', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+            }
         },
         components: {Alerts},
     }
