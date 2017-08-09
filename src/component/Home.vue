@@ -3,7 +3,7 @@
     <main class="home">
         <section >
             <div class="home__search">
-                <form @submit="refreshHome"
+                <form
                         class="home__form">
                     <label for="criteria" class="home__label">Criteria</label>
                     <select v-model="selectedType"
@@ -25,7 +25,7 @@
                         </option>
                     </select>
 
-                    <button type="submit" class="home__button">Submit</button>
+                    <button v-on:click="refreshHome" type="submit" class="home__button">Submit</button>
                 </form>
             </div>
 
@@ -78,7 +78,9 @@ export default {
     },
     methods: {
         refreshHome: function () {
-            this.$http.get('http://localhost:8080/chart/' + this.selectedDepartment + '/' + this.selectedType)
+            this.$http.get('http://localhost:8080/chart/' + this.selectedType,{params:{
+                dept:this.selectedDepartment
+            }})
                 .then(response => {
                     const dailyChart = response.data.dailyChart;
 
@@ -94,7 +96,9 @@ export default {
                 });
         }
     },
-    created: this.refreshHome,
+    created: function () {
+      this.refreshHome()
+    },
     mounted: function() {
         let context = document.getElementById('chart').getContext('2d');
         this.chart = new ChartJs(context, {
@@ -228,6 +232,6 @@ export default {
             justify-content: space-between;
         }
     }
-    
+
 
 </style>

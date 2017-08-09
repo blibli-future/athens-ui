@@ -32,9 +32,9 @@
                 <tbody class="emp-table__body">
                   <tr v-for="employee in filteredEmployees">
                       <td>{{employee.nik}}</td>
-                      <td>{{employee.fullname}}</td>
+                      <td>{{employee.fullName}}</td>
                       <td>{{employee.gender}}</td>
-                      <td>{{employee.positionText}}</td>
+                      <td>{{employee.position}}</td>
                       <td>{{employee.organizationalUnitText}}</td>
                       <td>{{employee.maritalStatus}}</td>
                       <td>{{employee.religion}}</td>
