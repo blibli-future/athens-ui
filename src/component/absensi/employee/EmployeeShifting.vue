@@ -24,7 +24,8 @@
                 <td class="text-center">{{item.endHour}}</td>
                 <td>{{item.department}}</td>
                 <td>{{item.location}}</td>
-                <td><button class="emp-shift__link" @click="selectShift(item)">Add</button> | <button class="emp-shift__link" @click="selectShift(item)">Delete</button></td>
+                <td><button class="emp-shift__link" @click="selectShift(item)" v-if="shift.Assigned">Add</button>
+                    <button class="emp-shift__link" @click="selectShift(item)" v-else>Delete</button></td>
             </tr>
             </tbody>
         </table>
