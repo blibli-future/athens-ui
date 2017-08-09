@@ -31,36 +31,40 @@
             <table class="table">
                 <thead class="table__header">
                 <tr>
-                    <td width="5px"></td>
                     <td>NIK
                     <td>Nama</td>
                     <td>Date</td>
                     <td>Tap In</td>
                     <td>Tap Out</td>
                     <td>Duration</td>
+                    <td>Action</td>
                 </tr>
                 </thead>
                 <tbody class="table__body">
                     <tr v-for="item in presensi" >
-                        <td><input type="checkbox" :value=item.nik  v-model="selectedEmp"/></td>
                         <td>{{item.nik}}</td>
-                        <td>{{item.nama}}</td>
+                        <td>{{item.fullName}}</td>
                         <td>{{item.date}}</td>
-                        <td>{{item.tapin}}</td>
-                        <td>{{item.tapout}}</td>
+                        <td>{{item.tapIn}}</td>
+                        <td>{{item.tapOut}}</td>
                         <td>{{item.duration}}</td>
+                        <td>
+                            <button id="tapIn-modal" @click="selectNikTapIn(item)" class="form__button">Tap In</button>
+                            <button id="tapOut-modal" @click="selectNikTapOut(item)" class="form__button">Tap Out</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </section>
         <br/>
         <section class="editTapHour">
-            <button id="tapIn-modal" @click="showModalTapIn = true" class="form__button">Tap In</button>
             <modal v-if="showModalTapIn" @close="showModalTapIn = false">
                 <h3 slot="header">Edit Tap In</h3>
-                <form slot="body" class="form">
-                    <label for="tapIn" class="form__label">Tap In Hour</label>
-                    <input type="time" class="form__input" id="tapIn"/>
+                <form slot="body" >
+                    <p>NIK : {{selectedEmp}}</p><br/>
+                    <p>Date : {{selectedDate}}</p><br/>
+                    <label for="tapIn" >Tap In Hour</label>
+                    <input type="time"  id="tapIn"/>
                 </form>
                 <div slot="footer">
                     <!--TODO: direct form-->
@@ -72,13 +76,13 @@
                     </button>
                 </div>
             </modal>
-
-            <button id="tapOut-modal" @click="showModalTapOut = true" class="form__button">Tap Out</button>
             <modal v-if="showModalTapOut" @close="showModalTapOut = false">
                 <h3 slot="header">Edit Tap Out</h3>
-                <form slot="body" class="form">
-                    <label for="tapOut" class="form__label">Tap Out Hour</label>
-                    <input type="time" class="form__input" id="tapOut"/>
+                <form slot="body" >
+                    <p>NIK : {{selectedEmp}}</p><br/>
+                    <p>Date : {{selectedDate}}</p><br/>
+                    <label for="tapOut">Tap Out Hour</label>
+                    <input type="time" id="tapOut"/>
                 </form>
                 <div slot="footer">
                     <!--TODO: direct form-->
@@ -103,19 +107,35 @@
             return {
                 showModalTapIn: false,
                 showModalTapOut: false,
-                selectedEmp:[],
+                selectedEmp:'',
+                selectedDate:'',
                 presensi:[
-                    {nik:'9999',nama:'Employee1',date:'14-Jul-2017',tapin:'08:00', tapout:'17:05', duration:'9h 5m'},
-                    {nik:'9997',nama:'Employee1',date:'14-Jul-2017',tapin:'08:00', tapout:'17:05', duration:'9h 5m'},
-                    {nik:'9993',nama:'Employee1',date:'14-Jul-2017',tapin:'08:00', tapout:'17:05', duration:'9h 5m'},
-                    {nik:'9998',nama:'Employee1',date:'14-Jul-2017',tapin:'08:00', tapout:'17:05', duration:'9h 5m'},
-                    {nik:'9990',nama:'Employee1',date:'14-Jul-2017',tapin:'08:00', tapout:'17:05', duration:'9h 5m'},
-                    {nik:'9991',nama:'Employee1',date:'14-Jul-2017',tapin:'08:00', tapout:'17:05', duration:'9h 5m'},
-                    {nik:'9992',nama:'Employee1',date:'14-Jul-2017',tapin:'08:00', tapout:'17:05', duration:'9h 5m'}
+                    {nik:'9999',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'},
+                    {nik:'9997',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'},
+                    {nik:'9993',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'},
+                    {nik:'9998',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'},
+                    {nik:'9990',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'},
+                    {nik:'9991',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'},
+                    {nik:'9992',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'}
                 ]
             };
         },
-        components: {Modal}
+        components: {Modal},
+        methods:{
+            selectNikTapIn(item){
+                this.selectedEmp= item.nik,
+                    this.selectedDate=item.date,
+                    this.showModalTapIn = true
+
+            },
+            selectNikTapOut(item){
+                this.selectedEmp= item.nik,
+                    this.selectedDate=item.date,
+                    this.showModalTapOut = true
+
+            }
+        }
+
     };
 </script>
 <style lang="scss">
