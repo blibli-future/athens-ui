@@ -51,8 +51,9 @@
                       <td>{{employee.chiefNik}}</td>
                       <td>{{employee.chiefName}}</td>
                       <td>{{employee.startWorkingDate}}</td>
-                      <td><router-link :to="{ name: 'edit_employee', params: { nik: employee.nik }}">Edit</router-link> |
-                          <router-link :to="{ name: 'employee_shifting', params: { nik: employee.nik }}">Shifting</router-link>
+                      <td><router-link :to="{ name: 'edit_employee', params: { nik: employee.nik }}" v-if="shift.Assigned">Edit</router-link> |
+                          <router-link :to="{ name: 'employee_shifting', params: { nik: employee.nik }}" v-else>Shifting</router-link>
+
                       </td>
                   </tr>
 
@@ -66,8 +67,6 @@
 <script>
     import Api from '../../../constant/api.url';
     import Departments from '../../../constant/departments';
-
-
     export default {
         data() {
             return {
@@ -80,11 +79,9 @@
                 filteredEmployees: [],
                 keyword: '',
                 selectedDepartment: '',
-                departments: Departments,
-                showModalShifting:false
+                departments: Departments
             };
         },
-
         methods: {
             filterResult: function () {
                 const queryFilter = (/\d/.test(this.keyword)) ?
