@@ -3,35 +3,27 @@
     <main class="home">
         <section >
             <div class="home__search">
-                <form class="home__form">
+                <form @submit="refreshHome"
+                        class="home__form">
                     <label for="criteria" class="home__label">Criteria</label>
-                    <select id="criteria" class="home__select">
-                        <option>Number of Late</option>
-                        <option>Hourly Leave</option>
-                        <option>Sick Leave</option>
-                        <option>Substitution Leave</option>
-                        <option>Special Leave</option>
-                        <option>Yearly Leave</option>
+                    <select v-model="selectedType"
+                            id="criteria" class="home__select">
+                        <option value="late">Number of Late</option>
+                        <option value="hourly">Hourly Leave</option>
+                        <option value="sick">Sick Leave</option>
+                        <option value="substitution">Substitution Leave</option>
+                        <option value="special">Special Leave</option>
+                        <option value="yearly">Yearly Leave</option>
                     </select>
 
                     <label for="department" class="home__label">Department</label>
-                    <select name="department" id="department" class="home__input">
-                        <option value="{{}}">Business Development </option>
-                        <option value="{{}}">Finance</option>
-                        <option value="{{}}">Human Resource </option>
-                        <option value="{{}}">Marketing</option>
-                        <option value="{{}}">Operations </option>
-                        <option value="{{}}">Product Management </option>
-                        <option value="{{}}">Program Management </option>
-                        <option value="{{}}">Technology </option>
-                        <option value="{{}}">Trade Partnership</option>
+                    <select v-model="selectedDepartment"
+                            name="department" id="department" class="home__input">
+                        <option v-for="department in departments"
+                                :value="department">
+                            {{department}}
+                        </option>
                     </select>
-
-                    <label  for="startDate" class="home__label">Start Date</label>
-                    <input type="date" class="home__input" id="startDate"/>
-
-                    <label  for="endDate" class="home__label">Start Date</label>
-                    <input type="date" class="home__input" id="endDate"/>
 
                     <button type="submit" class="home__button">Submit</button>
                 </form>
@@ -53,11 +45,11 @@
                     </tr>
                 </thead>
                 <tbody class="table__body">
-                    <tr v-for="item in presensi" >
-                        <td>{{item.nik}}</td>
-                        <td>{{item.name}}</td>
-                        <td>{{item.department}}</td>
-                        <td>{{item.numberOfLate}}</td>
+                    <tr v-for="employee in topTenData" >
+                        <td>{{employee.nik}}</td>
+                        <td>{{employee.fullName}}</td>
+                        <td>{{employee.department}}</td>
+                        <td>{{employee.numberResult}}</td>
 
                     </tr>
                 </tbody>
@@ -70,35 +62,48 @@
 
 <script>
 import ChartJs from 'chart.js';
+import Department from '../constant/departments';
 
 export default {
     data(){
         return {
             chart: {},
-            presensi:[
-                {nik:'9999',name:'Employee1',department:'IT',numberOfLate:'10'},
-                {nik:'9999',name:'Employee1',department:'IT',numberOfLate:'9'},
-                {nik:'9999',name:'Employee1',department:'IT',numberOfLate:'8'},
-                {nik:'9999',name:'Employee1',department:'IT',numberOfLate:'7'},
-                {nik:'9999',name:'Employee1',department:'IT',numberOfLate:'6'},
-                {nik:'9999',name:'Employee1',department:'IT',numberOfLate:'5'},
-                {nik:'9999',name:'Employee1',department:'IT',numberOfLate:'4'},
-                {nik:'9999',name:'Employee1',department:'IT',numberOfLate:'3'},
-                {nik:'9999',name:'Employee1',department:'IT',numberOfLate:'2'},
-                {nik:'9999',name:'Employee1',department:'IT',numberOfLate:'1'},
-
-            ]
+            topTenData: [],
+            dateOnChart: [],
+            numberOnChart: [],
+            selectedDepartment: 'Business Development',
+            selectedType: 'late',
+            departments: Department
         }
     },
+    methods: {
+        refreshHome: function () {
+            this.$http.get('http://localhost:8080/chart/' + this.selectedDepartment + '/' + this.selectedType)
+                .then(response => {
+                    const dailyChart = response.data.dailyChart;
+
+                    this.topTenData = response.data.top10Report;
+
+                    this.dateOnChart = [];
+                    this.numberOnChart = [];
+
+                    for (let i=0; i<dailyChart.size(); i++) {
+                        this.dateOnChart.push(dailyChart.day);
+                        this.numberOnChart.push(dailyChart.total);
+                    }
+                });
+        }
+    },
+    created: this.refreshHome,
     mounted: function() {
         let context = document.getElementById('chart').getContext('2d');
         this.chart = new ChartJs(context, {
                 type: 'bar',
                 data: {
-                    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                    labels: this.dateOnChart,
                     datasets: [{
-                        label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
+                        label: '# of Employees',
+                        data: this.numberOnChart,
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
