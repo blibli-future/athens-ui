@@ -38,7 +38,7 @@
 </script>
 
 <style lang="scss">
-    .history {
+    .approval-history {
         display: flex;
         border-radius: 4px;
         margin: 10px 0px;

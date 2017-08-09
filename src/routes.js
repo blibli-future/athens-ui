@@ -8,9 +8,13 @@ import Shift from './component/absensi/shift/Shift.vue';
 import NewShift from './component/absensi/shift/NewShift.vue';
 import Presensi from './component/absensi/Presensi.vue';
 import Employee from './component/absensi/employee/Employee.vue';
+import EditEmployee from './component/absensi/employee/EditEmp.vue';
 import NewEmployee from './component/absensi/employee/NewEmp.vue';
 import Report from './component/Report.vue';
 import Approval from  './component/Approval.vue';
+import Home from './component/Home.vue';
+import EmpployeeShifting from './component/absensi/employee/EmployeeShifting.vue';
+
 
 Vue.use(Router);
 
@@ -47,7 +51,19 @@ export default new Router({
       }, {
         path: '/approval',
         component: Approval
+      },{
+          path:'/employee/edit/:nik',
+          component: EditEmployee,
+          name:"edit_employee"
+      },  {
+            path: '/home',
+            component: Home
+      },{
+          path:'/employee/shifting/:nik',
+          component: EmpployeeShifting,
+          name:"employee_shifting"
       }
+
 
   ]
 });

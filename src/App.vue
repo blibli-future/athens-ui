@@ -18,8 +18,10 @@ export default {
         };
     },
     created: function () {
-        if(localStorage.getItem('jwtToken')!==null) {
-            this.registerToken();
+        const jwtToken = window.localStorage.getItem('jwtToken');
+
+        if(jwtToken!==null) {
+            this.registerToken(jwtToken);
         }
     },
     methods: {

@@ -16,6 +16,7 @@
                     <td>End Day</td>
                     <td>Department</td>
                     <td>Location</td>
+                    <td>Action</td>
                 </tr>
             </thead>
             <tbody class="table__body">
@@ -31,13 +32,46 @@
                 </tr>
             </tbody>
         </table>
+        <modal v-if="showModal" @close="showModal = false">
+            <h3 slot="header">Add Employee to Shift</h3>
+            <form slot="body" class="form">
+                <table class="table">
+                    <thead class="table__header">
+                    <tr>
+                        <td></td>
+                        <td>NIK</td>
+                        <td>Full Name</td>
+                        <td>Name Of Dept</td>
+                    </tr>
+                    </thead>
+                    <tbody class="table__body">
+                    <tr v-for="item in employee">
+                        <td><input type="checkbox" :value=item.nik  v-model="selectedEmp"/></td>
+                        <td>{{item.nik}}</td>
+                        <td>{{item.fullname}}</td>
+                        <td>{{item.nameOfDept}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+            <div slot="footer">
+                <!--TODO: direct form-->
+                <button class="modal-button shift__button">
+                    Save
+                </button>
+                <button class="modal-button shift__button" @click="showModal = false">
+                    Cancel
+                </button>
+            </div>
+        </modal>
+
+
     </main>
 </template>
 
 
 <script>
-    import Alerts from '../../Alert.vue'
-
+    import Alerts from '../../Alert.vue';
     export default {
         data() {
             return {
@@ -66,7 +100,7 @@
         &__button{
             display: inline-block;
             padding: 8px 12px;
-            margin-bottom: 0;
+            margin: 0 3px;
             font-size: 14px;
             text-align: center;
             border: 1px solid transparent;
@@ -78,6 +112,16 @@
             &:hover{
                 background-color: #92ccff;
             }
+        }
+        &__link{
+            text-decoration: underline;
+            background: none;
+            border : none;
+            color: cornflowerblue;
+            &:hover{
+                cursor:pointer;
+            }
+
         }
     }
     .table{
