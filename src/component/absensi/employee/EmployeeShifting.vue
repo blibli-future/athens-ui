@@ -24,10 +24,11 @@
                 <td class="text-center">{{item.endHour}}</td>
                 <td>{{item.department}}</td>
                 <td>{{item.location}}</td>
-                <td><button class="emp-shift__link">Add</button> | <button class="emp-shift__link">Delete</button></td>
+                <td><button class="emp-shift__link" @click="selectShift(item)">Add</button> | <button class="emp-shift__link" @click="selectShift(item)">Delete</button></td>
             </tr>
             </tbody>
         </table>
+        Selected :{{selectedShift}}
     </main>
 </template>
 
@@ -37,6 +38,7 @@
 
         data() {
             return {
+                selectedShift:'',
                 shiftItems: [
                     { id: '001', name: 'Cawang Ops' , startHour:"08:00", endHour:"14:00",department:"Operation",location:"Cawang"},
                     { id: '002', name: 'Cawang Ops' , startHour:"08:00", endHour:"16:00",department:"Operation",location:"Cawang"},
@@ -46,6 +48,11 @@
 
             };
         },
+        methods:{
+            selectShift(item){
+               this.selectedShift= item.id
+            }
+        }
     }
 </script>
 
