@@ -4,19 +4,42 @@
         <form method="post" class="newShift__form">
             <div class="newShift__section">
                 <label for="shiftName" class="newShift__label"> Shift Name</label>
-                <input type="text" name="shiftName" id="shiftName" class="newShift__input">
+                <input v-model="this.shiftVo.name"
+                        type="text" name="shiftName" id="shiftName" class="newShift__input">
             </div>
             <div class="newShift__section">
-                <label for="startShift" class="newShift__label"> Shift Start</label>
-                <input type="time" name="startShift" id="startShift" class="newShift__input">
+                <label for="startHour" class="newShift__label"> Start Hour</label>
+                <input v-model="this.shiftVo.startHour"
+                       type="time" name="startShift" id="startHour" class="newShift__input">
             </div>
             <div class="newShift__section">
-                <label for="endShift" class="newShift__label"> Shift End</label>
-                <input type="time" name="endShift" id="endShift" class="newShift__input">
+                <label for="endHour" class="newShift__label"> End Hour</label>
+                <input v-model="this.shiftVo.endHour"
+                        type="time" name="endDayShift" id="endHour" class="newShift__input">
+            </div>
+            <div class="newShift__section">
+                <label for="startDay" class="newShift__label"> Start Day</label>
+                <select v-model="this.shiftVo.startDay"
+                        name="endShift" id="startDay" class="newShift__input">
+                    <option v-for="day in this.dayOfWeek" :value="day.value">
+                        {{day.name}}
+                    </option>
+                </select>
+            </div>
+            <div class="newShift__section">
+                <label for="endDay" class="newShift__label"> End Day</label>
+                <select v-model="this.shiftVo.endDay"
+                        name="endShift" id="endDay" class="newShift__input">
+                    <option v-for="day in this.dayOfWeek" :value="day.value">
+                        {{day.name}}
+                    </option>
+                </select>
             </div>
             <div class="newShift__section">
                 <label for="department" class="newShift__label"> Department</label>
-                <select name="department" id="department" class="newShift__input">
+                <select v-model="this.shiftVo.department"
+                        name="department" id="department" class="newShift__input">
+                    //todo: apply department enum after merge
                     <option value="{{}}">Business Development </option>
                     <option value="{{}}">Finance</option>
                     <option value="{{}}">Human Resource </option>
@@ -31,20 +54,47 @@
             </div>
             <div class="newShift__section">
                 <label for="location" class="newShift__label"> Location</label>
-                <select type="text" name="location" id="location" class="newShift__input">
-                    <option value="{{}}">Thamrin</option>
-                    <option value="{{}}">Cawang</option>
-                    <option value="{{}}">Tubun</option>
+                <select v-model="this.shiftVo.location"
+                        name="location" id="location" class="newShift__input">
+                    <option value="Thamrin">Thamrin</option>
+                    <option value="Cawang">Cawang</option>
+                    <option value="Tubun">Tubun</option>
                 </select>
             </div>
-            <button type="submit" class="newShift__btn">Save</button>
+            <button v-on:click="postNewShift"
+                    type="button" class="newShift__btn">Save</button>
         </form>
     </div>
 
 
 </template>
 <script>
+import DayOfWeek from '../../../constant/DayOfWeek';
 
+export default {
+    data(){
+        return {
+            dayOfWeek: DayOfWeek,
+            shiftVo: {
+                name: '',
+                startHour: '',
+                endHour: '',
+                startDay: 1,
+                endDay: 2,
+                department: '',
+                location: ''
+            }
+        }
+    },
+    methods: {
+        postNewShift: function () {
+            this.$http.post("http://localhost:8080/shifts", this.shiftVo)
+                .then((response) => {
+                    //then what?
+                })
+        }
+    }
+}
 </script>
 <style lang="scss">
     .newShift{
