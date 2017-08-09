@@ -58,7 +58,7 @@
         </section>
         <br/>
         <section class="editTapHour">
-            <modal v-if="showTapModal" @close="showModalTap = false">
+            <modal v-if="showTapModal" @close="showTapModal = false">
                 <h3 slot="header">Edit Tap {{ tapType }}</h3>
                 <form slot="body" >
                     <p>NIK : {{selectedEmployeeNik }}</p><br/>
@@ -73,7 +73,7 @@
                             class="modal-button form__button">
                         Save
                     </button>
-                    <button class="modal-button form__button" @click="showModalTap = false">
+                    <button class="modal-button form__button" @click="showTapModal = false">
                         Cancel
                     </button>
                 </div>
@@ -93,18 +93,15 @@
                 selectedDate:'',
                 tapType: '',
                 tapTime: '',
-                presensi:[
-                    {nik:'9999',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'},
-                    {nik:'9997',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'},
-                    {nik:'9993',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'},
-                    {nik:'9998',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'},
-                    {nik:'9990',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'},
-                    {nik:'9991',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'},
-                    {nik:'9992',fullName:'Employee1',date:'14-Jul-2017',tapIn:'08:00', tapOut:'17:05', duration:'9h 5m'}
-                ]
+                presensi: []
             };
         },
-        components: {Modal},
+        created: function () {
+            this.$http.get('http://localhost:8080/employees/taps')
+                .then((response) => {
+                    this.presensi = response.data
+                })
+        },
         methods: {
             selectNikTap: function(item, type){
                 this.selectedEmployeeNik= item.nik;
@@ -120,8 +117,8 @@
                     type: this.tapType
                 })
             }
-        }
-
+        },
+        components: {Modal}
     };
 </script>
 <style lang="scss">
