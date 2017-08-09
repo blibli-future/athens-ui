@@ -28,22 +28,22 @@
                     <td>Full Name</td>
                     <td>Gender</td>
                     <td>Position Text</td>
-                    <td>Organizational Unit</td>
-                    <td>Marital Status</td>
+                    <td>Unit</td>
+                    <td>Marital</td>
                     <td>Religion</td>
                     <td>Name Of Dept</td>
                     <td>Chief NIK</td>
                     <td>Chief Name</td>
-                    <td>Start Working Date</td>
-                    <td></td>
+                    <td>Working Date</td>
+                    <td>Action</td>
                 </tr>
                 </thead>
                 <tbody class="emp-table__body">
                   <tr v-for="employee in employees">
                       <td>{{employee.nik}}</td>
-                      <td>{{employee.fullName}}</td>
+                      <td>{{employee.fullname}}</td>
                       <td>{{employee.gender}}</td>
-                      <td>{{employee.position}}</td>
+                      <td>{{employee.positionText}}</td>
                       <td>{{employee.organizationalUnitText}}</td>
                       <td>{{employee.maritalStatus}}</td>
                       <td>{{employee.religion}}</td>
@@ -51,8 +51,11 @@
                       <td>{{employee.chiefNik}}</td>
                       <td>{{employee.chiefName}}</td>
                       <td>{{employee.startWorkingDate}}</td>
-                      <td><router-link :to="{ name: 'edit_employee', params: { nik: employee.nik }}">Edit</router-link></td>
+                      <td><router-link :to="{ name: 'edit_employee', params: { nik: employee.nik }}">Edit</router-link> |
+                          <router-link :to="{ name: 'employee_shifting', params: { nik: employee.nik }}">Shifting</router-link>
+                      </td>
                   </tr>
+
                 </tbody>
             </table>
         </section>
@@ -63,6 +66,7 @@
 <script>
     import Api from '../../../constant/api.url';
     import Departments from '../../../constant/departments';
+
 
     export default {
         data() {
@@ -76,9 +80,11 @@
                 filteredEmployees: [],
                 keyword: '',
                 selectedDepartment: '',
-                departments: Departments
+                departments: Departments,
+                showModalShifting:false
             };
         },
+
         methods: {
             filterResult: function () {
                 const queryFilter = (/\d/.test(this.keyword)) ?
@@ -121,6 +127,7 @@
                   console.log(error);
                 })
         }
+
     }
 </script>
 

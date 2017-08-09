@@ -12,6 +12,7 @@ import EditEmployee from './component/absensi/employee/EditEmp.vue';
 import NewEmployee from './component/absensi/employee/NewEmp.vue';
 import Report from './component/Report.vue';
 import Approval from  './component/Approval.vue';
+import EmpployeeShifting from './component/absensi/employee/EmployeeShifting.vue';
 
 Vue.use(Router);
 
@@ -52,7 +53,12 @@ export default new Router({
           path:'/employee/edit/:nik',
           component: EditEmployee,
           name:"edit_employee"
+      },{
+          path:'/employee/shifting/:nik',
+          component: EmpployeeShifting,
+          name:"employee_shifting"
       }
+
 
   ]
 });
