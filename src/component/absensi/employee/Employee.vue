@@ -51,8 +51,8 @@
                       <td>{{employee.chiefNik}}</td>
                       <td>{{employee.chiefName}}</td>
                       <td>{{employee.startWorkingDate}}</td>
-                      <td><router-link :to="{ name: 'edit_employee', params: { nik: employee.nik }}" v-if="shift.Assigned">Edit</router-link> 
-                          <router-link :to="{ name: 'employee_shifting', params: { nik: employee.nik }}" v-else>Shifting</router-link>
+                      <td><router-link :to="{ name: 'edit_employee', params: { nik: employee.nik }}" >Edit</router-link> |
+                          <router-link :to="{ name: 'employee_shifting', params: { nik: employee.nik }}" >Shifting</router-link>
 
                       </td>
                   </tr>
