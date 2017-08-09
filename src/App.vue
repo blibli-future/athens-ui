@@ -14,7 +14,7 @@ import JwtDecode from 'jwt-decode';
 export default {
     data() {
         return {
-            authenticated: false
+            authenticated: true
         };
     },
     created: function () {
