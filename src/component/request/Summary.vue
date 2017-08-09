@@ -6,7 +6,7 @@
                 <h5 class="summary__sub-title">Annual leave right</h5>
                 <div class="summary__progress">
                     <div class="summary__progress-bar summary__progress-bar--blue" style="width: 50%">
-                       50%
+                      {{summaries.yearlyLeaveUsed}} of {{summaries.maxYearlyLeave}}
                     </div>
                 </div>
             </div>
@@ -14,7 +14,7 @@
                 <h5 class="summary__sub-title">Substitution leave right</h5>
                 <div class="summary__progress">
                     <div class="summary__progress-bar summary__progress-bar--blue" style="width: 50%">
-                        50%
+                        {{summaries.substitutionLeaveRightUsed}} of {{summaries.maxSubstitutionLeaveRight}}
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                 <h5 class="summary__sub-title">Number of Late</h5>
                 <div class="summary__progress">
                     <div class="summary__progress-bar summary__progress-bar--red" style="width: 50%">
-                        50%
+                        {{summaries.lateUsed}} of {{summaries.maxEmployeeLate}}
                     </div>
                 </div>
             </div>
@@ -32,7 +32,21 @@
 
 <script>
 export default {
-}
+  data(){
+      return {
+          summaries: ''
+      }
+  },
+  created: function() {
+    this.$http.get('http://localhost:8080/employees'+'/'+localStorage.getItem('nik')+'/'+'summaries')
+    .then(response => {
+        this.summaries = response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  },
+};
 </script>
 
 <style lang="scss">
