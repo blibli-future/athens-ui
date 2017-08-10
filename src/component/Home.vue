@@ -78,7 +78,7 @@ export default {
     },
     methods: {
         refreshHome: function () {
-            this.$http.get('http://localhost:8080/chart/' + this.selectedType,{params:{
+            this.$http.get('http://localhost:8080/chart' + this.selectedType,{params:{
                 dept:this.selectedDepartment
             }})
                 .then(response => {
