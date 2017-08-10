@@ -26,8 +26,8 @@
                 <td>{{item.workDay}}</td>
                 <td>{{item.departmentEmployee}}</td>
                 <td>{{item.location}}</td>
-                <td><button class="emp-shift__link" @click="selectShift(item)" v-if="item.Assigned">Add</button>
-                    <button class="emp-shift__link" @click="selectShift(item)" v-else>Delete</button></td>
+                <td><button class="emp-shift__link" @click="deleteShift(item)" v-if="item.assigned">Delete</button>
+                    <button class="emp-shift__link" @click="assignShift(item)" v-else>Add</button></td>
             </tr>
             </tbody>
         </table>
@@ -41,24 +41,43 @@
 
         data() {
             return {
+                nik:'',
                 selectedShift:'',
-                shiftItems: '',
+                shiftItems: [],
 
             };
         },
         created: function() {
             this.nik = this.$route.params.nik;
-            this.$http.get('http://localhost:8080/employees'+'/'+localStorage.getItem('nik')+'/shifts')
+            this.$http.get('http://localhost:8080/employees'+'/'+this.nik+'/shifts')
                 .then((response) => {
                     this.shiftItems = response.data;
+                    console.log(response);
                 })
                 .catch(function (error) {
                   console.log(error);
                 })
         },
         methods:{
-            selectShift(item){
+            assignShift(item){
                this.selectedShift= item.id
+               this.$http.post('http://localhost:8080/employees'+'/'+this.nik+'/'+this.selectedShift+'/add')
+                   .then((response) => {
+                       console.log(response);
+                   })
+                   .catch(function (error) {
+                     console.log(error);
+                   })
+            },
+            deleteShift(item){
+               this.selectedShift= item.id
+               this.$http.post('http://localhost:8080/employees'+'/'+this.nik+'/'+this.selectedShift+'/remove')
+                   .then((response) => {
+                       console.log(response);
+                   })
+                   .catch(function (error) {
+                     console.log(error);
+                   })
             }
         }
     }
