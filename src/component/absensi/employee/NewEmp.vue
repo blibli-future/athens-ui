@@ -37,7 +37,7 @@
                     <option value="Human Resource">Human Resource </option>
                     <option value="Marketing">Marketing</option>
                     <option value="Operations">Operations </option>
-                    <option value="Product Managemen">Product Management </option>
+                    <option value="Product Management">Product Management </option>
                     <option value="Program Management">Program Management </option>
                     <option value="Technology">Technology </option>
                     <option value="Trade Partnership">Trade Partnership</option>

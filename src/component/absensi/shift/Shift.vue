@@ -25,7 +25,7 @@
                     <td>{{shift.name}}</td>
                     <td class="text-center">{{shift.startHour}}</td>
                     <td class="text-center">{{shift.endHour}}</td>
-                    <td>{{shift.startDay}}</td>
+                    <td>{{shift.workDay}}</td>
                     <td>{{shift.endDay}}</td>
                     <td>{{shift.department}}</td>
                     <td>{{shift.location}}</td>
@@ -75,7 +75,8 @@
     export default {
         data() {
             return {
-                shifts: []
+                shifts: [],
+                showModal: false
             };
         },
         created:function() {

@@ -4,22 +4,22 @@
         <form method="post" class="newShift__form">
             <div class="newShift__section">
                 <label for="shiftName" class="newShift__label"> Shift Name</label>
-                <input v-model="this.shiftVo.name"
+                <input v-model="name"
                         type="text" name="shiftName" id="shiftName" class="newShift__input">
             </div>
             <div class="newShift__section">
                 <label for="startHour" class="newShift__label"> Start Hour</label>
-                <input v-model="this.shiftVo.startHour"
+                <input v-model="startHour"
                        type="time" name="startShift" id="startHour" class="newShift__input">
             </div>
             <div class="newShift__section">
                 <label for="endHour" class="newShift__label"> End Hour</label>
-                <input v-model="this.shiftVo.endHour"
+                <input v-model="endHour"
                         type="time" name="endDayShift" id="endHour" class="newShift__input">
             </div>
             <div class="newShift__section">
-                <label for="startDay" class="newShift__label"> Start Day</label>
-                <select v-model="this.shiftVo.startDay"
+                <label for="startDay" class="newShift__label">Work Day</label>
+                <select v-model="workDay"
                         name="endShift" id="startDay" class="newShift__input">
                     <option v-for="day in this.dayOfWeek" :value="day.value">
                         {{day.name}}
@@ -27,34 +27,25 @@
                 </select>
             </div>
             <div class="newShift__section">
-                <label for="endDay" class="newShift__label"> End Day</label>
-                <select v-model="this.shiftVo.endDay"
-                        name="endShift" id="endDay" class="newShift__input">
-                    <option v-for="day in this.dayOfWeek" :value="day.value">
-                        {{day.name}}
-                    </option>
-                </select>
-            </div>
-            <div class="newShift__section">
                 <label for="department" class="newShift__label"> Department</label>
-                <select v-model="this.shiftVo.department"
+                <select v-model="department"
                         name="department" id="department" class="newShift__input">
                     //todo: apply department enum after merge
-                    <option value="{{}}">Business Development </option>
-                    <option value="{{}}">Finance</option>
-                    <option value="{{}}">Human Resource </option>
-                    <option value="{{}}">Marketing</option>
-                    <option value="{{}}">Operations </option>
-                    <option value="{{}}">Product Management </option>
-                    <option value="{{}}">Program Management </option>
-                    <option value="{{}}">Technology </option>
-                    <option value="{{}}">Trade Partnership</option>
+                    <option value="Business Development">Business Development </option>
+                    <option value="Finance">Finance</option>
+                    <option value="Human Resource">Human Resource </option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Operations">Operations </option>
+                    <option value="Product Management">Product Management </option>
+                    <option value="Program Management">Program Management </option>
+                    <option value="Technology">Technology </option>
+                    <option value="Trade Partnership">Trade Partnership</option>
                 </select>
 
             </div>
             <div class="newShift__section">
                 <label for="location" class="newShift__label"> Location</label>
-                <select v-model="this.shiftVo.location"
+                <select v-model="location"
                         name="location" id="location" class="newShift__input">
                     <option value="Thamrin">Thamrin</option>
                     <option value="Cawang">Cawang</option>
@@ -75,22 +66,28 @@ export default {
     data(){
         return {
             dayOfWeek: DayOfWeek,
-            shiftVo: {
-                name: '',
-                startHour: '',
-                endHour: '',
-                startDay: 1,
-                endDay: 2,
-                department: '',
-                location: ''
-            }
+            name: '',
+            startHour: '',
+            endHour: '',
+            workDay: 1,
+            department: '',
+            location: ''
         }
     },
     methods: {
         postNewShift: function () {
-            this.$http.post("http://localhost:8080/shifts", this.shiftVo)
+
+            console.log(this.endHour);
+            this.$http.post("http://localhost:8080/shifts", {
+                "name": this.name,
+                "startHour": this.startHour,
+                "endHour": this.endHour,
+                "workDay": this.workDay,
+                "department": this.department,
+                "location": this.location
+            })
                 .then((response) => {
-                    //then what?
+//                    this.$routes.push('/shift');
                 })
         }
     }
