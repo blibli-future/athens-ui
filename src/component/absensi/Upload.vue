@@ -4,7 +4,6 @@
 
         <h2 class="upload__title">Upload Absensi</h2>
         <br/>
-        <alerts></alerts>
         <br/>
         <form class="upload__form">
             <input class="upload__input" type="file" name="uploadAbsensi" id="uploadAbsensi"/> <br/><br/>

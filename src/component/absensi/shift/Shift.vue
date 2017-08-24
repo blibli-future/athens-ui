@@ -1,7 +1,6 @@
 <template>
     <main class="shift">
         <h2 class="shift__title">Shift</h2>
-            <alerts></alerts>
         <br/>
         <router-link to="/shift/add" class="shift__button">Add New</router-link>
         <br/><br/>

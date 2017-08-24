@@ -12,16 +12,15 @@
 
                 <label for="filter" class="report__label" >Department</label>
                 <select v-model="selected" id="filter" class="report__input">
-                    <option>All Department</option>
-                    <option value="TT">Business Development </option>
-                    <option value="TT">Finance</option>
-                    <option value="TT">Human Resource </option>
-                    <option value="TT">Marketing</option>
-                    <option value="TT">Operations </option>
-                    <option value="TT">Product Management </option>
-                    <option value="TT">Program Management </option>
-                    <option value="IT">Technology </option>
-                    <option value="TT">Trade Partnership</option>
+                  <option value="Business Development">Business Development </option>
+                  <option value="Finance">Finance</option>
+                  <option value="Human Resource">Human Resource </option>
+                  <option value="Marketing">Marketing</option>
+                  <option value="Operations">Operations </option>
+                  <option value="Product Management">Product Management </option>
+                  <option value="Program Management">Program Management </option>
+                  <option value="Technology">Technology </option>
+                  <option value="Trade Partnership">Trade Partnership</option>
                 </select>
                 <button v-on:click="showReport" class="report__button">Search</button>
                 <button v-on:click="downloadReport" class="report__button">Download</button>
@@ -31,8 +30,8 @@
             <table class="rep-table">
                 <thead class="rep-table__title">
                 <tr>
-                    <th>Nama</th>
                     <th>NIK</th>
+                    <th>Nama</th>
                     <th>Dept</th>
                     <th>Days Coming</th>
                     <th>Days Absence</th>
@@ -45,7 +44,7 @@
                     <th>Hourly Leave</th>
                     <th>Replacement Leave</th>
                     <th>No-tap out days</th>
-                    <!--<td>Transport fee</td>-->
+                    <td>Transport fee</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -64,7 +63,7 @@
                     <td>{{item.hourlyLeave}}</td>
                     <td>{{item.replacementLeave}}</td>
                     <td>{{item.noTapOutDay}}</td>
-                    <!--<td>{{item.transportFee}}</td>-->
+                    <td>{{item.daysComing*50000}}</td>
                 </tr>
 
                 </tbody>
@@ -82,13 +81,6 @@
                 endDate:'2017-12-31',
                 selected:'All Department',
                 reportData: [
-                    { nik: '001', fullName: 'Ariel Christanto' , department:'Technology', daysComing: 5, daysAbsence:6, sick:1,unpaidLeave:"-" ,yearlyLeave:'-',leaveEarly:'-', noTapOutDay:1,lateWithoutPermission:2,lateWithPermission:1,hourlyLeave:5,replacementLeave:9,noTapOut:2, transportFee:50000},
-                    { nik: '002', fullName: 'Ariela Christanto' ,department:'Technology', daysComing: 5, daysAbsence:6, sick:1,unpaidLeave:"-" ,yearlyLeave:'-',leaveEarly:'-', noTapOutDay:1,lateWithoutPermission:2,lateWithPermission:1,hourlyLeave:5,replacementLeave:9,noTapOut:2, transportFee:50000},
-                    { nik: '003', fullName: 'Aimee Christanto' ,department:'Technology', daysComing: 5, daysAbsence:6, sick:1,unpaidLeave:"-" ,yearlyLeave:'-',leaveEarly:'-', noTapOutDay:1,lateWithoutPermission:2,lateWithPermission:1,hourlyLeave:5,replacementLeave:9,noTapOut:2, transportFee:50000},
-                    { nik: '004', fullName: 'Ariela Christanto' ,department:'Technology', daysComing: 5, daysAbsence:6, sick:1,unpaidLeave:"-" ,yearlyLeave:'-',leaveEarly:'-', noTapOutDay:1,lateWithoutPermission:2,lateWithPermission:1,hourlyLeave:5,replacementLeave:9,noTapOut:2, transportFee:50000},
-                    { nik: '005', fullName: 'Aeriel Christanto' ,department:'Technology', daysComing: 5, daysAbsence:6, sick:1,unpaidLeave:"-" ,yearlyLeave:'-',leaveEarly:'-', noTapOutDay:1,lateWithoutPermission:2,lateWithPermission:1,hourlyLeave:5,replacementLeave:9,noTapOut:2, transportFee:50000},
-                    { nik: '006', fullName: 'Arie Christanto' , department:'Technology',daysComing: 5, daysAbsence:6, sick:1,unpaidLeave:"-" ,yearlyLeave:'-',leaveEarly:'-', noTapOutDay:1,lateWithoutPermission:2,lateWithPermission:1,hourlyLeave:5,replacementLeave:9,noTapOut:2, transportFee:50000},
-
                 ]
             };
         },

@@ -89,7 +89,7 @@
             },
             nameFilter: function (keyword) {
                 return function (employee) {
-                    return employee.fullname
+                    return employee.fullName
                             .toLowerCase()
                             .search(keyword) >= 0;
                 }

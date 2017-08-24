@@ -3,8 +3,7 @@
     <main class="home">
         <section >
             <div class="home__search">
-                <form
-                        class="home__form">
+                <form class="home__form">
                     <label for="criteria" class="home__label">Criteria</label>
                     <select v-model="selectedType"
                             id="criteria" class="home__select">
@@ -25,7 +24,7 @@
                         </option>
                     </select>
 
-                    <button v-on:click="refreshHome" type="submit" class="home__button">Submit</button>
+                    <button v-on:click="refreshHome" type="button" class="home__button">Submit</button>
                 </form>
             </div>
 
@@ -71,29 +70,32 @@ export default {
             topTenData: [],
             dateOnChart: [],
             numberOnChart: [],
-            selectedDepartment: 'Business Development',
+            selectedDepartment: 'Technology',
             selectedType: 'late',
             departments: Department
         }
     },
     methods: {
         refreshHome: function () {
-            this.$http.get('http://localhost:8080/chart' + this.selectedType,{params:{
+            this.$http.get('http://localhost:8080/main/chart/' + this.selectedType,{params:{
                 dept:this.selectedDepartment
             }})
                 .then(response => {
                     const dailyChart = response.data.dailyChart;
 
+                    console.log(response.data);
                     this.topTenData = response.data.top10Report;
 
                     this.dateOnChart = [];
                     this.numberOnChart = [];
 
-                    for (let i=0; i<dailyChart.size(); i++) {
-                        this.dateOnChart.push(dailyChart.day);
-                        this.numberOnChart.push(dailyChart.total);
+                    for (let i=0; i<dailyChart.length ; i++) {
+                        this.dateOnChart.push(dailyChart[i].day);
+                        this.numberOnChart[i] = dailyChart[i].total;
                     }
                 });
+
+                console.log(this.dateOnChart);
         }
     },
     created: function () {
